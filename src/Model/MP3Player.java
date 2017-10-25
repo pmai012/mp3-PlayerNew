@@ -16,7 +16,8 @@ public class MP3Player {
     public MP3Player(){}
 
     private void play(String fileName){
-           audioPlayer= minim.loadMP3File(fileName);
+
+        audioPlayer = minim.loadMP3File(fileName);
 
 
     }
