@@ -15,25 +15,26 @@ public class MP3Player {
 
     public MP3Player(){}
 
-    private void play(String fileName){
+    public void play(String fileName){
 
+        minim = new SimpleMinim();
         audioPlayer = minim.loadMP3File(fileName);
 
 
     }
-    private void play(){
+    public void play(){
         audioPlayer.play();
     }
-    private void pause(){
+    public void pause(){
         audioPlayer.pause();
     }
-    private void stop(){
+    public void stop(){
 
     }
-    private void volume(float value){
+    public void volume(float value){
         audioPlayer.setVolume(value);
     }
-    private void balance(float value){
+    public void balance(float value){
         audioPlayer.setBalance(value);
     }
 }
