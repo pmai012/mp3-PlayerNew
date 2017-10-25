@@ -12,13 +12,16 @@ public class Controller {
         if (command[i].equals("PLAY")){
             MP3Player player = new MP3Player();
 
-            if (i+1 <= command.length){
-                player.play(command[i+1]);
-                i++;
-                break;
-          } else {
+            if (i+1 == command.length){
                 player.play();
+            }else {
+                String title = "";
+                for(int t = i+1; t < command.length; t++){
+                 title = title + command[t]+" ";
+                }
+                player.play(title);
             }
+
 
 
         }
