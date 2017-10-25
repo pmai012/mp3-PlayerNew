@@ -10,9 +10,16 @@ public class MP3Player {
     SimpleMinim minim;
     SimpleAudioPlayer audioPlayer;
 
+
+
+
     public MP3Player(){}
 
-    private void play(String fileName){}
+    private void play(String fileName){
+           audioPlayer= minim.loadMP3File(fileName);
+
+
+    }
     private void play(){
         audioPlayer.play();
     }
