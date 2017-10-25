@@ -7,8 +7,8 @@ import de.hsrm.mi.eibo.simpleplayer.SimpleMinim;
  * Created by Pascal on 25.10.2017.
  */
 public class MP3Player {
-    SimpleMinim minim;
-    SimpleAudioPlayer audioPlayer;
+    private SimpleMinim minim;
+    private SimpleAudioPlayer audioPlayer;
 
 
 
