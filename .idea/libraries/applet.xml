@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="applet">
+    <CLASSES />
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://F:/Proggen 3/Minim-2.2.0/Minim-2.2.0/examples/Synthesis/dampExample/applet" />
+      <root url="file://F:/Proggen 3/Minim-2.2.0/Minim-2.2.0/src" />
+    </SOURCES>
+  </library>
+</component>

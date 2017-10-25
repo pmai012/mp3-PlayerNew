@@ -13,9 +13,19 @@ public class MP3Player {
     public MP3Player(){}
 
     private void play(String fileName){}
-    private void play(){}
-    private void pause(){}
-    private void stop(){}
-    private void volume(float value){}
-    private void balance(float value){}
+    private void play(){
+        audioPlayer.play();
+    }
+    private void pause(){
+        audioPlayer.pause();
+    }
+    private void stop(){
+
+    }
+    private void volume(float value){
+        audioPlayer.setVolume(value);
+    }
+    private void balance(float value){
+        audioPlayer.setBalance(value);
+    }
 }
