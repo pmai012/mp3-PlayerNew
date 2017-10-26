@@ -29,6 +29,8 @@ import javafx.stage.Stage;
     Controller eingabe = new Controller();
     String input = null;
     while (beenden == false){
+
+
         System.out.println("Geben Sie einen Befehl ein: ");
         input = StaticScanner.nextString();
         eingabe.befehl(input);

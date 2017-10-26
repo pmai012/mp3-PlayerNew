@@ -6,9 +6,9 @@ import de.hsrm.mi.eibo.simpleplayer.SimpleMinim;
 import javafx.scene.layout.Background;
 
 /**
- * Created by Pascal on 25.10.2017.
+ * Created by Pascal, Julian
  */
-public class MP3Player {
+public class MP3Player implements Runnable{
 
 
     private SimpleMinim minim;
@@ -21,7 +21,7 @@ public class MP3Player {
 
     public void play(String fileName) {
 
-        minim = new SimpleMinim();
+        minim = new SimpleMinim(true);
         audioPlayer = minim.loadMP3File(fileName);
         play();
         System.out.println("Es wird " + fileName + " gespielt");
@@ -29,22 +29,20 @@ public class MP3Player {
     }
 
     public void play() {
-      new Thread(){
-            public void run() {
-                audioPlayer.play();
-            }
-        }.start();
+
+        audioPlayer.play();
+
+
     }
 
 
-
     public void pause() {
+
         audioPlayer.pause();
     }
 
     public void stop() {
     }
-
 
 
     public void volume(float value) {
@@ -56,10 +54,10 @@ public class MP3Player {
     }
 
 
+    @Override
+    public void run() {
 
-
-
-
+    }
 }
 
 
