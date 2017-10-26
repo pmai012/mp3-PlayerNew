@@ -11,37 +11,43 @@ import javafx.scene.layout.Background;
 public class MP3Player implements Runnable{
 
 
-    private SimpleMinim minim;
-    private SimpleAudioPlayer audioPlayer;
-    private Thread background;
+    SimpleMinim minim;
+    SimpleAudioPlayer audioPlayer;
+
 
     public MP3Player() {
+       minim = new SimpleMinim(true);
 
     }
 
-    public void play(String fileName) {
+    public synchronized void play(String fileName) {
 
-        minim = new SimpleMinim(true);
         audioPlayer = minim.loadMP3File(fileName);
+
         play();
-        System.out.println("Es wird " + fileName + " gespielt");
+    System.out.println("Es wird " + fileName + " gespielt. \n Du kannst es nicht beenden! Du musst ihn bis zum Ende hören!!!!!!!!!!!!");
 
     }
 
-    public void play() {
+    public synchronized void play() {
 
-        audioPlayer.play();
+
+    audioPlayer.play();
 
 
     }
 
 
-    public void pause() {
+    public  synchronized void pause() {
 
-        audioPlayer.pause();
+if (audioPlayer.isPlaying()) {
+    audioPlayer.pause();
+
+}
     }
 
     public void stop() {
+        minim.stop();
     }
 
 

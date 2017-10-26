@@ -26,7 +26,7 @@ import javafx.stage.Stage;
        // launch(args);
     System.out.println("MusikPlayer");
     boolean beenden = false;
-    Controller eingabe = new Controller();
+    KeyboardController eingabe = new KeyboardController();
     String input = null;
     while (beenden == false){
 
