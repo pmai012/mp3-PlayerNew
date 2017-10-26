@@ -1,5 +1,6 @@
 package Model;
 
+import ddf.minim.Playable;
 import de.hsrm.mi.eibo.simpleplayer.SimpleAudioPlayer;
 import de.hsrm.mi.eibo.simpleplayer.SimpleMinim;
 
@@ -11,11 +12,11 @@ public class MP3Player {
     private SimpleAudioPlayer audioPlayer;
 
 
+    public MP3Player() {
 
+    }
 
-    public MP3Player(){}
-
-    public void play(String fileName){
+    public void play(String fileName) {
 
         minim = new SimpleMinim();
         audioPlayer = minim.loadMP3File(fileName);
@@ -23,19 +24,43 @@ public class MP3Player {
         System.out.println("Es wird " + fileName + " gespielt");
 
     }
-    public void play(){
-        audioPlayer.play();
-    }
-    public void pause(){
-        audioPlayer.pause();
-    }
-    public void stop(){
+
+    public void play() {
+
+    audioPlayer.play();
+
 
     }
-    public void volume(float value){
+
+    public void pause() {
+        audioPlayer.pause();
+    }
+
+    public void stop() {
+    }
+
+    ;
+
+    public void volume(float value) {
         audioPlayer.setVolume(value);
     }
-    public void balance(float value){
+
+    public void balance(float value) {
         audioPlayer.setBalance(value);
     }
-}
+
+                                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
