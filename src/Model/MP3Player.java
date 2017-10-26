@@ -19,7 +19,8 @@ public class MP3Player {
 
         minim = new SimpleMinim();
         audioPlayer = minim.loadMP3File(fileName);
-
+        play();
+        System.out.println("Es wird " + fileName + " gespielt");
 
     }
     public void play(){
