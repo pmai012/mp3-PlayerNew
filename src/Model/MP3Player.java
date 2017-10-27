@@ -8,7 +8,7 @@ import javafx.scene.layout.Background;
 /**
  * Created by Pascal, Julian
  */
-public class MP3Player implements Runnable{
+public class MP3Player implements Runnable {
 
 
     SimpleMinim minim;
@@ -16,34 +16,34 @@ public class MP3Player implements Runnable{
 
 
     public MP3Player() {
-       minim = new SimpleMinim(true);
+        minim = new SimpleMinim(true);
 
     }
 
-    public synchronized void play(String fileName) {
+    public void play(String fileName) {
 
         audioPlayer = minim.loadMP3File(fileName);
 
         play();
-    System.out.println("Es wird " + fileName + " gespielt. \n Du kannst es nicht beenden! Du musst ihn bis zum Ende hören!!!!!!!!!!!!");
+        System.out.println("Es wird " + fileName + " gespielt. \n Du kannst es nicht beenden! Du musst ihn bis zum Ende hören!!!!!!!!!!!!");
 
     }
 
-    public synchronized void play() {
+    public void play() {
 
 
-    audioPlayer.play();
+        audioPlayer.play();
 
 
     }
 
 
-    public  synchronized void pause() {
+    public void pause() {
 
-if (audioPlayer.isPlaying()) {
-    audioPlayer.pause();
+        if (audioPlayer.isPlaying()) {
+            audioPlayer.pause();
 
-}
+        }
     }
 
     public void stop() {

@@ -6,10 +6,14 @@ import Model.MP3Player;
  * Created by User on 26.10.2017.
  */
 public class KeyboardController {
+    MP3Player player;
+    public KeyboardController(){
+         player = new MP3Player();
+    }
 
     public void befehl(String input) {
 
-        MP3Player player = new MP3Player();
+
         String[] command = input.split(" ");
 
 
@@ -31,8 +35,6 @@ public class KeyboardController {
                     }
                     player.play(title);
                 }
-
-
             }
 
             //PAUSE BEFEHL
