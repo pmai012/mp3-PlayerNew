@@ -1,14 +1,18 @@
-package sample;
+package Controller;
 
 import Model.MP3Player;
+import Model.Playlist;
+import Model.PlaylistManager;
 
 /**
  * Created by User on 26.10.2017.
  */
 public class KeyboardController {
     MP3Player player;
+    PlaylistManager playlistManager;
     public KeyboardController(){
          player = new MP3Player();
+         playlistManager = new PlaylistManager();
     }
 
     public void befehl(String input) {
@@ -62,6 +66,20 @@ public class KeyboardController {
                     player.balance(value);
                 } else {
                     System.out.println("Geben Sie bitte einen Wert mit!");
+                }
+            }
+            if (command[i].equals("PLAYLIST")){
+                if (command[i+1].equals("SUCHEN")){
+                    playlistManager.findPlaylist(command[i+2]);
+                }
+                else if (command[i+1].equals("ERSTELLEN")){
+                    playlistManager.setPlaylist(new Playlist(command[i+2]));
+                }
+                else if (command[i+1].equals("LOESCHEN")){
+
+                }
+                else if (command[i+1].equals("AKTUALISIEREN")){
+
                 }
             }
 
