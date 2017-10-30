@@ -35,7 +35,7 @@ public class KeyboardController {
                 } else {
                     String title = "";
                     for (int t = i + 1; t < command.length; t++) {
-                        title = title + command[t] + " ";
+                        title = title + command[t];
                     }
                     player.play(title);
                 }

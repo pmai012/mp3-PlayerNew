@@ -2,9 +2,6 @@
   <library name="Mimi">
     <CLASSES />
     <JAVADOC />
-    <SOURCES>
-      <root url="jar://F:/Proggen 3/minim-2.2.0.zip!/Minim-2.2.0/examples/Synthesis/dampExample/applet" />
-      <root url="jar://F:/Proggen 3/minim-2.2.0.zip!/Minim-2.2.0/src" />
-    </SOURCES>
+    <SOURCES />
   </library>
 </component>
