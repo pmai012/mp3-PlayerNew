@@ -52,7 +52,29 @@ public class MP3Player implements Runnable {
 
 
     public void volume(float value) {
-        audioPlayer.setVolume(value);
+
+
+        if (value > 0.5){
+            value = (float) ((value - 0.5)*100);
+            audioPlayer.setGain(value);
+            return;
+        }
+
+        if (value < 0.5){
+            value = (float) ((0.5-value)*100)*(-1);
+            audioPlayer.setGain(value);
+            return;
+        }
+
+        if (value == 0.5){
+
+            audioPlayer.setGain(0);
+            return;
+        }
+
+
+
+        audioPlayer.setGain(value);
     }
 
     public void balance(float value) {
