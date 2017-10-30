@@ -25,7 +25,7 @@ public class MP3Player implements Runnable {
         audioPlayer = minim.loadMP3File(fileName);
 
         play();
-        System.out.println("Es wird " + fileName + " gespielt. \n Du kannst es nicht beenden! Du musst ihn bis zum Ende hören!!!!!!!!!!!!");
+        System.out.println("Es wird " + fileName + " gespielt. ");
 
     }
 

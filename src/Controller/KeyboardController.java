@@ -34,9 +34,10 @@ public class KeyboardController {
                     player.play();
                 } else {
                     String title = "";
-                    for (int t = i + 1; t < command.length; t++) {
-                        title = title + command[t]; // " " entfernt.
+                    for (int t = i + 1; t < command.length-1; t++) {
+                        title = title  +command[t] +" " ; // " " entfernt.
                     }
+                    title =  title + command[command.length-1];
                     player.play(title);
                 }
             }
