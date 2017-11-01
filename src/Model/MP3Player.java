@@ -3,6 +3,7 @@ package Model;
 import ddf.minim.Playable;
 import de.hsrm.mi.eibo.simpleplayer.SimpleAudioPlayer;
 import de.hsrm.mi.eibo.simpleplayer.SimpleMinim;
+
 import javafx.scene.layout.Background;
 
 /**
@@ -14,19 +15,21 @@ public class MP3Player implements Runnable {
     SimpleMinim minim;
     SimpleAudioPlayer audioPlayer;
     Playlist playlist;
+    Track track;
 
 
     public MP3Player() {
         minim = new SimpleMinim(true);
 
+
     }
 
     public void play(String fileName) {
-
-        audioPlayer = minim.loadMP3File(fileName);
+        track = new Track(fileName);
+        audioPlayer = minim.loadMP3File(track.getPath());
 
         play();
-        System.out.println("Es wird " + fileName + " gespielt. ");
+        System.out.println("Es wird '" + track.getTitle() + "' von " + track.getArtist()+" gespielt. ");
 
     }
 
@@ -67,7 +70,7 @@ public class MP3Player implements Runnable {
             audioPlayer.setGain(value);
             return;
         }
-//nichts
+        //nichts
         if (value == 0.5) {
 
             audioPlayer.setGain(0);

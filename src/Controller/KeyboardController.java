@@ -4,6 +4,10 @@ import Model.MP3Player;
 import Model.Playlist;
 import Model.PlaylistManager;
 
+
+
+import java.io.IOException;
+
 /**
  * Created by User on 26.10.2017.
  */
@@ -33,10 +37,12 @@ public class KeyboardController {
 
                     player.play();
                 } else {
+
                     String title = "";
                     for (int t = i + 1; t < command.length-1; t++) {
-                        title = title  +command[t] +" " ; // " " entfernt.
+                        title = title  +command[t] +" " ;
                     }
+
                     title =  title + command[command.length-1];
                     player.play(title);
                 }
