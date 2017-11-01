@@ -59,15 +59,6 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://F:/Proggen 3/Minim-2.2.0/Minim-2.2.0/library/mp3agic.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="">
-      <library>
-        <CLASSES>
           <root url="jar://F:/Proggen 3/Minim-2.2.0/Minim-2.2.0/library/mp3spi1.9.4.jar!/" />
         </CLASSES>
         <JAVADOC />
@@ -163,6 +154,15 @@
       <library>
         <CLASSES>
           <root url="jar://$MODULE_DIR$/libraries/tritonus_aos.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://F:/Proggen 3/Minim-2.2.0/Minim-2.2.0/library/mp3agic.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
