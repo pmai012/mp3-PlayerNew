@@ -13,6 +13,7 @@ public class MP3Player implements Runnable {
 
     SimpleMinim minim;
     SimpleAudioPlayer audioPlayer;
+    Playlist playlist;
 
 
     public MP3Player() {
@@ -54,24 +55,24 @@ public class MP3Player implements Runnable {
     public void volume(float value) {
 
 
-        if (value > 0.5){
-            value = (float) ((value - 0.5)*100);
+        //Lauter
+        if (value > 0.5) {
+            value = (float) ((value - 0.5) * 100);
             audioPlayer.setGain(value);
             return;
         }
-
-        if (value < 0.5){
-            value = (float) ((0.5-value)*100)*(-1);
+        //leiser
+        if (value < 0.5) {
+            value = (float) ((0.5 - value) * 100) * (-1);
             audioPlayer.setGain(value);
             return;
         }
-
-        if (value == 0.5){
+//nichts
+        if (value == 0.5) {
 
             audioPlayer.setGain(0);
             return;
         }
-
 
 
         audioPlayer.setGain(value);
@@ -80,6 +81,20 @@ public class MP3Player implements Runnable {
     public void balance(float value) {
         audioPlayer.setBalance(value);
     }
+
+
+
+
+
+    public void setPlaylist(Playlist actPlaylist){
+    this.playlist = actPlaylist;
+    }
+    public void skip(){
+        audioPlayer= minim.loadMP3File(playlist.skip());
+    }
+     public void skipBack( ){}
+    public void shuffle(boolean on){}
+    public void repeat(boolean on) {}
 
 
     @Override

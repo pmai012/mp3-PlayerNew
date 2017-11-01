@@ -51,6 +51,10 @@ public class KeyboardController {
             if (command[i].equals("STOP")) {
                 player.stop();
             }
+            if (command[i].equals("SKIP")) {
+                player.skip();
+            }
+
 
             if (command[i].equals("VOLUME")) {
                 if (i + 1 <= command.length) {

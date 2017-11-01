@@ -28,4 +28,7 @@ public class PlaylistManager {
     public void setPlaylist(Playlist actPlaylist){}
     public void deletePlaylist(Playlist actPlaylist){}
     public void updatePlaylist(Playlist actPlaylist){}
+
+    public void next() {
+    }
 }
