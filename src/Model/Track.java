@@ -47,7 +47,11 @@ import com.mpatric.mp3agic.*;
         private String  year = null;
         private long lenght = 0;
         private Mp3File mp3file = null;
+        byte[] cover = null;
 
+    public byte[] getCover() {
+        return cover;
+    }
 
     public Track(String path) {
         Mp3File mp3file = null;
@@ -68,8 +72,7 @@ import com.mpatric.mp3agic.*;
 
         }
         if (mp3file.hasId3v1Tag()) {
-
-            ID3v1  id3tags= mp3file.getId3v1Tag();
+            ID3v2 id3tags= mp3file.getId3v2Tag();
             this.path = path;
             title = id3tags.getTitle();
             artist = id3tags.getArtist();
@@ -78,6 +81,9 @@ import com.mpatric.mp3agic.*;
             comment = id3tags.getComment();
             year = id3tags.getYear();
             lenght = mp3file.getLengthInMilliseconds();
+            cover = id3tags.getAlbumImage();
+
+
 
     }
 
