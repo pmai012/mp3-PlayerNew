@@ -7,6 +7,8 @@ import java.util.List;
  * Created by Pascal on 29.10.2017.
  */
 public class Playlist {
+    private int index = 0;
+    private Track currentTrack = null;
 
     private List<Track> tracks;
 
@@ -20,8 +22,9 @@ public class Playlist {
         return this.name;
     }
 
-    public String skip() {
-        return null;
+    public Track skip() {
+        currentTrack =  tracks.get(index+1);
+        return   currentTrack;
     }
 }
 

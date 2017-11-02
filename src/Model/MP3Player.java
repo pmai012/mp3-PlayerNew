@@ -24,8 +24,8 @@ public class MP3Player implements Runnable {
 
     }
 
-    public void play(String fileName) {
-        track = new Track(fileName);
+    public void play(Track track) {
+        this.track = track;
         audioPlayer = minim.loadMP3File(track.getPath());
 
         play();
@@ -93,7 +93,7 @@ public class MP3Player implements Runnable {
     this.playlist = actPlaylist;
     }
     public void skip(){
-        audioPlayer= minim.loadMP3File(playlist.skip());
+        audioPlayer= minim.loadMP3File(playlist.skip().getPath());
     }
      public void skipBack( ){}
     public void shuffle(boolean on){}
