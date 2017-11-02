@@ -2,13 +2,14 @@ package Model;
 
 
 import com.mpatric.mp3agic.*;
- import java.io.IOException;
+
+import java.io.IOException;
 
 /**
-     * Created by Pascal on 29.10.2017.
-     */
+ * Created by Pascal on 29.10.2017.
+ */
 
-    public class Track {
+public class Track {
 
     public String getTitle() {
         return title;
@@ -38,23 +39,28 @@ import com.mpatric.mp3agic.*;
         return year;
     }
 
-        private String title ;
-        private String artist = "unbekannter Künstler";
-        private String album = "unbekanntes Album";
-        private String genre = "unbekanntes Genre";
-        private String comment = "";
-        private String path = null;
-        private String  year = "unbekanntes Jahr";
-        private long lenght = 0;
-        private Mp3File mp3file = null;
-        byte[] cover = null;
+    private String title;
+    private String artist = "unbekannter Künstler";
+    private String album = "unbekanntes Album";
+    private String genre = "unbekanntes Genre";
+    private String comment = "";
+    private String path = null;
+    private String year = "unbekanntes Jahr";
+    private long lenght = 0;
+    private Mp3File mp3file = null;
+    byte[] cover = null;
 
     public byte[] getCover() {
         return cover;
     }
 
     public Track(String path) {
-        Mp3File mp3file = null;
+        setTrack(path);
+    }
+
+
+    public void setTrack(String path) {
+        mp3file = null;
         try {
             mp3file = new Mp3File(path);
         } catch (IOException e) {
@@ -67,57 +73,50 @@ import com.mpatric.mp3agic.*;
             e.printStackTrace();
             return;
         }
-        if (mp3file == null){
-             return;
+        if (mp3file == null) {
+            return;
 
         }
         if (mp3file.hasId3v1Tag()) {
-            ID3v2 id3tags= mp3file.getId3v2Tag();
+            ID3v2 id3tags = mp3file.getId3v2Tag();
             this.path = path;
 
-            if (id3tags.getTitle() != null){
+            if (id3tags.getTitle() != null) {
                 title = id3tags.getTitle();
-            }else {
+            } else {
 
                 int index = path.lastIndexOf("\\");
                 title = path.substring(index + 1);
 
             }
 
-            if (id3tags.getArtist() != null){
+            if (id3tags.getArtist() != null) {
                 artist = id3tags.getArtist();
             }
 
-            if (id3tags.getAlbum() != null){
+            if (id3tags.getAlbum() != null) {
                 album = id3tags.getAlbum();
             }
 
-            if (id3tags.getGenreDescription() != null){
+            if (id3tags.getGenreDescription() != null) {
                 genre = id3tags.getGenreDescription();
             }
 
-            if (id3tags.getComment() != null){
+            if (id3tags.getComment() != null) {
                 comment = id3tags.getComment();
             }
-            if (id3tags.getYear() != null){
+            if (id3tags.getYear() != null) {
                 year = id3tags.getYear();
             }
-            if (id3tags.getAlbumImage() != null){
+            if (id3tags.getAlbumImage() != null) {
                 cover = id3tags.getAlbumImage();
             }
             lenght = mp3file.getLengthInMilliseconds();
 
 
-
-
-    }
-
-
-
-
-
-
-
-    }
-
         }
+
+
+    }
+
+}
