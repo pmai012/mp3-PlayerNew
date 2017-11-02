@@ -38,13 +38,13 @@ import com.mpatric.mp3agic.*;
         return year;
     }
 
-    private String title = null;
-        private String artist = null;
-        private String album = null;
-        private String genre = null;
-        private String comment = null;
+        private String title ;
+        private String artist = "unbekannter Künstler";
+        private String album = "unbekanntes Album";
+        private String genre = "unbekanntes Genre";
+        private String comment = "";
         private String path = null;
-        private String  year = null;
+        private String  year = "unbekanntes Jahr";
         private long lenght = 0;
         private Mp3File mp3file = null;
         byte[] cover = null;
@@ -74,14 +74,39 @@ import com.mpatric.mp3agic.*;
         if (mp3file.hasId3v1Tag()) {
             ID3v2 id3tags= mp3file.getId3v2Tag();
             this.path = path;
-            title = id3tags.getTitle();
-            artist = id3tags.getArtist();
-            album = id3tags.getAlbum();
-            genre = id3tags.getGenreDescription();
-            comment = id3tags.getComment();
-            year = id3tags.getYear();
+
+            if (id3tags.getTitle() != null){
+                title = id3tags.getTitle();
+            }else {
+
+                int index = path.lastIndexOf("\\");
+                title = path.substring(index + 1);
+
+            }
+
+            if (id3tags.getArtist() != null){
+                artist = id3tags.getArtist();
+            }
+
+            if (id3tags.getAlbum() != null){
+                album = id3tags.getAlbum();
+            }
+
+            if (id3tags.getGenreDescription() != null){
+                genre = id3tags.getGenreDescription();
+            }
+
+            if (id3tags.getComment() != null){
+                comment = id3tags.getComment();
+            }
+            if (id3tags.getYear() != null){
+                year = id3tags.getYear();
+            }
+            if (id3tags.getAlbumImage() != null){
+                cover = id3tags.getAlbumImage();
+            }
             lenght = mp3file.getLengthInMilliseconds();
-            cover = id3tags.getAlbumImage();
+
 
 
 
