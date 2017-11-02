@@ -3,7 +3,7 @@ package Controller;
 import Model.MP3Player;
 import Model.Playlist;
 import Model.PlaylistManager;
-
+import Model.Track;
 
 
 import java.io.IOException;
@@ -44,7 +44,8 @@ public class KeyboardController {
                     }
 
                     title =  title + command[command.length-1];
-                    player.play(title);
+                    Track pfad = new Track(title);
+                    player.play(pfad);
                 }
             }
 
