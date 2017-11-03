@@ -11,6 +11,17 @@ import java.io.IOException;
 
 public class Track {
 
+    private String title;
+    private String artist = "unbekannter Künstler";
+    private String album = "unbekanntes Album";
+    private String genre = "unbekanntes Genre";
+    private String comment = "";
+    private String path = null;
+    private String year = "unbekanntes Jahr";
+    private long lenght = 0;
+    private Mp3File mp3file = null;
+    byte[] cover = null;
+
     public String getTitle() {
         return title;
     }
@@ -38,17 +49,6 @@ public class Track {
     public String getYear() {
         return year;
     }
-
-    private String title;
-    private String artist = "unbekannter Künstler";
-    private String album = "unbekanntes Album";
-    private String genre = "unbekanntes Genre";
-    private String comment = "";
-    private String path = null;
-    private String year = "unbekanntes Jahr";
-    private long lenght = 0;
-    private Mp3File mp3file = null;
-    byte[] cover = null;
 
     public byte[] getCover() {
         return cover;

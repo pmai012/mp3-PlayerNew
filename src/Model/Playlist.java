@@ -14,11 +14,13 @@ public class Playlist {
 
     private String name;
 
-    public Playlist(String name) {
+    public Playlist(String name)
+    {
         this.name = name;
     }
 
-    public String getName() {
+    public String getName()
+    {
         return this.name;
     }
 
@@ -26,5 +28,16 @@ public class Playlist {
         currentTrack =  tracks.get(index+1);
         return   currentTrack;
     }
+
+    public Track skipback() {
+        currentTrack =  tracks.get(index-1);
+        return   currentTrack;
+    }
+
+    public Track shuffle(){
+       currentTrack = tracks.get((int)(Math.random()*tracks.size()));
+        return currentTrack;
+    }
+
 }
 

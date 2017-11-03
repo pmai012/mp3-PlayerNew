@@ -95,9 +95,16 @@ public class MP3Player implements Runnable {
     public void skip(){
         audioPlayer= minim.loadMP3File(playlist.skip().getPath());
     }
-     public void skipBack( ){}
-    public void shuffle(boolean on){}
-    public void repeat(boolean on) {}
+     public void skipBack( ){
+         audioPlayer= minim.loadMP3File(playlist.skipback().getPath());
+     }
+    public void shuffle(boolean on){
+        audioPlayer= minim.loadMP3File(playlist.shuffle().getPath());
+    }
+    public void repeat(boolean on) {
+        stop();
+        play();
+    }
 
 
     @Override

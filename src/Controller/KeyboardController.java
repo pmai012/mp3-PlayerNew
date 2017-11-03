@@ -14,9 +14,10 @@ import java.io.IOException;
 public class KeyboardController {
     MP3Player player;
     PlaylistManager playlistManager;
-    public KeyboardController(){
-         player = new MP3Player();
-         playlistManager = new PlaylistManager();
+
+    public KeyboardController() {
+        player = new MP3Player();
+        playlistManager = new PlaylistManager();
     }
 
     public void befehl(String input) {
@@ -39,11 +40,11 @@ public class KeyboardController {
                 } else {
 
                     String title = "";
-                    for (int t = i + 1; t < command.length-1; t++) {
-                        title = title  +command[t] +" " ;
+                    for (int t = i + 1; t < command.length - 1; t++) {
+                        title = title + command[t] + " ";
                     }
 
-                    title =  title + command[command.length-1];
+                    title = title + command[command.length - 1];
                     Track pfad = new Track(title);
                     player.play(pfad);
                 }
@@ -80,17 +81,14 @@ public class KeyboardController {
                     System.out.println("Geben Sie bitte einen Wert mit!");
                 }
             }
-            if (command[i].equals("PLAYLIST")){
-                if (command[i+1].equals("SUCHEN")){
-                    playlistManager.findPlaylist(command[i+2]);
-                }
-                else if (command[i+1].equals("ERSTELLEN")){
-                    playlistManager.setPlaylist(new Playlist(command[i+2]));
-                }
-                else if (command[i+1].equals("LOESCHEN")){
+            if (command[i].equals("PLAYLIST")) {
+                if (command[i + 1].equals("SUCHEN")) {
+                    playlistManager.findPlaylist(command[i + 2]);
+                } else if (command[i + 1].equals("ERSTELLEN")) {
+                    playlistManager.setPlaylist(new Playlist(command[i + 2]));
+                } else if (command[i + 1].equals("LOESCHEN")) {
 
-                }
-                else if (command[i+1].equals("AKTUALISIEREN")){
+                } else if (command[i + 1].equals("AKTUALISIEREN")) {
 
                 }
             }
