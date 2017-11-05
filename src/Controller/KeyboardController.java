@@ -81,14 +81,17 @@ public class KeyboardController {
                     System.out.println("Geben Sie bitte einen Wert mit!");
                 }
             }
-            if (command[i].equals("PLAYLIST")) {
-                if (command[i + 1].equals("SUCHEN")) {
+            if (command[i].equalsIgnoreCase("PLAYLIST")) {
+                if (command[i + 1].equalsIgnoreCase("ALLES")) {
+                    playlistManager.getAllTracks();
+                }
+                    if (command[i + 1].equalsIgnoreCase("SUCHEN")) {
                     playlistManager.findPlaylist(command[i + 2]);
-                } else if (command[i + 1].equals("ERSTELLEN")) {
+                } else if (command[i + 1].equalsIgnoreCase("ERSTELLEN")) {
                     playlistManager.setPlaylist(new Playlist(command[i + 2]));
-                } else if (command[i + 1].equals("LOESCHEN")) {
+                } else if (command[i + 1].equalsIgnoreCase("LOESCHEN")) {
 
-                } else if (command[i + 1].equals("AKTUALISIEREN")) {
+                } else if (command[i + 1].equalsIgnoreCase("AKTUALISIEREN")) {
 
                 }
             }

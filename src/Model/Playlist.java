@@ -15,6 +15,7 @@ public class Playlist {
 
 
     private String name;
+    final String extension = ".m3u";
 
 
 
