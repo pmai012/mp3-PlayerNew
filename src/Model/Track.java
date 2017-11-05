@@ -78,7 +78,8 @@ public class Track {
 
         }
         if (mp3file.hasId3v1Tag()) {
-            ID3v2 id3tags = mp3file.getId3v2Tag();
+//            ID3v2 id3tags = mp3file.getId3v2Tag();
+            ID3v1 id3tags = mp3file.getId3v1Tag();
             this.path = path;
 
             if (id3tags.getTitle() != null) {
@@ -108,9 +109,9 @@ public class Track {
             if (id3tags.getYear() != null) {
                 year = id3tags.getYear();
             }
-            if (id3tags.getAlbumImage() != null) {
-                cover = id3tags.getAlbumImage();
-            }
+//            if (id3tags.getAlbumImage() != null) {
+//                cover = id3tags.getAlbumImage();
+//            }
             lenght = mp3file.getLengthInMilliseconds();
 
 

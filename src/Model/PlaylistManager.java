@@ -27,8 +27,10 @@ public class PlaylistManager {
 
     public Playlist getAllTracks() {
 
-        createPlaylist("C://");
-        return new Playlist("AllTracks");
+        Playlist playlist = new Playlist("AllTracks");
+
+        createPlaylist(System.getProperty("user.home"), playlist );
+        return playlist;
     }
 
     public void setPlaylist(Playlist actPlaylist) {
@@ -44,13 +46,14 @@ public class PlaylistManager {
     }
 
     public void updatePlaylist(Playlist actPlaylist) {
+
     }
 
 
-    private void createPlaylist(String directoryName){
+    private Playlist createPlaylist(String directoryName, Playlist playlist){
         try {
             File directory = new File(directoryName);
-            File newPlaylist = new File(System.getProperty("user.home").concat("//Music") + "/AllTracks.m3u");
+            File newPlaylist = new File(System.getProperty("user.home").concat("//Music") + "/AllTracks.txt");
 
             FileWriter writer;
 
@@ -62,9 +65,10 @@ public class PlaylistManager {
                         if (file.getName().endsWith(extension)) {
                             writer = new FileWriter(newPlaylist);
                             writer.write(file.getAbsolutePath() + file.getName());
+                            playlist.addTrack(new Track(file.getAbsolutePath()));
                         }
                     } else if (file.isDirectory()) {
-                        createPlaylist(file.getAbsolutePath());
+                        createPlaylist(file.getAbsolutePath(), playlist);
                     }
                 }
             }
@@ -75,5 +79,6 @@ public class PlaylistManager {
         catch (IOException e1){
             e1.printStackTrace();
         }
+        return playlist;
     }
 }
