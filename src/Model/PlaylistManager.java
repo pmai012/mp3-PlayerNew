@@ -1,34 +1,47 @@
 package Model;
 
+import java.io.IOException;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
+
 public class PlaylistManager {
 
     private List<Playlist> playlists;
-    public PlaylistManager()
-    {
 
+    public PlaylistManager() {
     }
 
-    public List<Playlist> findPlaylist(String name){
-        for (Playlist x: playlists) {
-            if (x.getName().equals(name)){
+    public List<Playlist> findPlaylist(String name) {
+        for (Playlist x : playlists) {
+            if (x.getName().equals(name)) {
 
             }
         }
         return null;
     }
-    public Playlist getAllTracks()
-    {
+
+    public Playlist getAllTracks() {
         return new Playlist("AllTracks");
     }
-    public void setPlaylist(Playlist actPlaylist){}
-    public void deletePlaylist(Playlist actPlaylist){}
-    public void updatePlaylist(Playlist actPlaylist){}
 
-    public void next() {
+    public void setPlaylist(Playlist actPlaylist) {
     }
+
+    public void deletePlaylist(Playlist actPlaylist) {
+    }
+
+    public void updatePlaylist(Playlist actPlaylist) {
+    }
+
+
+
+
+
+
+
+
+
 }

@@ -16,6 +16,7 @@ public class MP3Player implements Runnable {
     SimpleAudioPlayer audioPlayer;
     Playlist playlist;
     Track track;
+    boolean again = false;
 
 
     public MP3Player() {
@@ -31,6 +32,7 @@ public class MP3Player implements Runnable {
         play();
         System.out.println("Es wird '" + track.getTitle() + "' von " + track.getArtist()+" gespielt. ");
 
+
     }
 
     public void play() {
@@ -38,7 +40,9 @@ public class MP3Player implements Runnable {
 
         audioPlayer.play();
 
-
+        if (again) {
+            audioPlayer.play();
+        }
     }
 
 
@@ -102,8 +106,7 @@ public class MP3Player implements Runnable {
         audioPlayer= minim.loadMP3File(playlist.shuffle().getPath());
     }
     public void repeat(boolean on) {
-        stop();
-        play();
+        again = on;
     }
 
 
