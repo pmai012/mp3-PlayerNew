@@ -24,7 +24,11 @@ import javafx.stage.Stage;
 
 
     public static void main(String[] args) {
-       // launch(args);
+
+        Application.launch(Frameapplication.class, args);
+
+      /* launch(args);
+
     System.out.println("MusikPlayer");
     boolean beenden = false;
     KeyboardController eingabe = new KeyboardController();
@@ -36,6 +40,6 @@ import javafx.stage.Stage;
         input = StaticScanner.nextString();
         eingabe.befehl(input);
     }
-
+*/
     }
 }

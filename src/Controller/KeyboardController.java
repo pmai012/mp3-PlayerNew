@@ -74,7 +74,7 @@ public class KeyboardController {
             }
 
             if (command[i].equals("BALANCE")) {
-                if (i + 1 == command.length) {
+                if (i + 1 <= command.length) {
                     float value = Float.parseFloat(command[i + 1]);
                     player.balance(value);
                 } else {
