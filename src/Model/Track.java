@@ -82,40 +82,41 @@ public class Track {
             ID3v1 id3tags = mp3file.getId3v1Tag();
             this.path = path;
 
-            if (id3tags.getTitle() != null) {
-                title = id3tags.getTitle();
-            } else {
+            if (id3tags != null) {
+                if (id3tags.getTitle() != null) {
+                    title = id3tags.getTitle();
+                } else {
 
-                int index = path.lastIndexOf("\\");
-                title = path.substring(index + 1);
+                    int index = path.lastIndexOf("\\");
+                    title = path.substring(index + 1);
 
-            }
+                }
 
-            if (id3tags.getArtist() != null) {
-                artist = id3tags.getArtist();
-            }
+                if (id3tags.getArtist() != null) {
+                    artist = id3tags.getArtist();
+                }
 
-            if (id3tags.getAlbum() != null) {
-                album = id3tags.getAlbum();
-            }
+                if (id3tags.getAlbum() != null) {
+                    album = id3tags.getAlbum();
+                }
 
-            if (id3tags.getGenreDescription() != null) {
-                genre = id3tags.getGenreDescription();
-            }
+                if (id3tags.getGenreDescription() != null) {
+                    genre = id3tags.getGenreDescription();
+                }
 
-            if (id3tags.getComment() != null) {
-                comment = id3tags.getComment();
-            }
-            if (id3tags.getYear() != null) {
-                year = id3tags.getYear();
-            }
+                if (id3tags.getComment() != null) {
+                    comment = id3tags.getComment();
+                }
+                if (id3tags.getYear() != null) {
+                    year = id3tags.getYear();
+                }
 //            if (id3tags.getAlbumImage() != null) {
 //                cover = id3tags.getAlbumImage();
 //            }
-            lenght = mp3file.getLengthInMilliseconds();
+                lenght = mp3file.getLengthInMilliseconds();
 
 
-
+            }
         }
 
 
