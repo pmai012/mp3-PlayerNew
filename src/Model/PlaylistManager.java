@@ -10,6 +10,7 @@ import java.util.ListIterator;
 public class PlaylistManager {
 
     private List<Playlist> playlists;
+    private List<String> contents;
     File newPlaylist = new File(System.getProperty("user.home").concat("//Music") + "/AllTracks.m3u");
     private String extension = ".mp3";
 
@@ -29,7 +30,7 @@ public class PlaylistManager {
 
         Playlist playlist = new Playlist("AllTracks");
 
-        createPlaylist(System.getProperty("user.home"), playlist );
+        playlist = createPlaylist(System.getProperty("user.home").concat("//Music"), playlist );
         return playlist;
     }
 
@@ -51,11 +52,10 @@ public class PlaylistManager {
 
 
     private Playlist createPlaylist(String directoryName, Playlist playlist){
-        try {
             File directory = new File(directoryName);
             File newPlaylist = new File(System.getProperty("user.home").concat("//Music") + "/AllTracks.txt");
 
-            FileWriter writer;
+            Writer output = null;
 
             // get all the files from a directory
             File[] fList = directory.listFiles();
@@ -63,8 +63,7 @@ public class PlaylistManager {
                 for (File file : fList) {
                     if (file.isFile()) {
                         if (file.getName().endsWith(extension)) {
-                            writer = new FileWriter(newPlaylist);
-                            writer.write(file.getAbsolutePath() + file.getName());
+                            contents.add(file.getAbsolutePath() + file.getName());
                             playlist.addTrack(new Track(file.getAbsolutePath()));
                         }
                     } else if (file.isDirectory()) {
@@ -72,13 +71,7 @@ public class PlaylistManager {
                     }
                 }
             }
-        }
-        catch (FileNotFoundException e1){
-            e1.printStackTrace();
-        }
-        catch (IOException e1){
-            e1.printStackTrace();
-        }
         return playlist;
     }
+    private void savePlaylist(){}
 }
