@@ -18,6 +18,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.*;
@@ -67,7 +68,9 @@ public class Frameapplication extends Application implements EventHandler{
 
         Scene scene = new Scene(root, WIDTH, HEIGHT);
         primaryStage.setScene(scene);
-        // primaryStage.initStyle(StageStyle.TRANSPARENT);
+        //primaryStage.initStyle(StageStyle.TRANSPARENT);
+        primaryStage.setMinHeight(200);
+        primaryStage.setMinWidth(200);
         primaryStage.setTitle("3Player");
 
         root.setPadding(new Insets(20,0,0,0));
