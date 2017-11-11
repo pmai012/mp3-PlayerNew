@@ -1,27 +1,47 @@
 package sample;
 
+import Controller.Controller;
 import javafx.application.Application;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
+
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import javafx.scene.*;
-import javafx.scene.layout.*;
-import javafx.scene.control.*;
-
-
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.*;
 
 
 /**
  * Created by User on 06.11.2017.
  */
-public class Frameapplication extends Application {
+public class Frameapplication extends Application implements EventHandler{
     final int WIDTH = 1200;
     final int HEIGHT = 620;
+
+    private boolean playing = false;
+
+    Controller controller = new Controller();
+    //GUI KOMPONENTE
+    Button play = new Button("Play ");
+    Button next = new Button("next");
+    Button prev = new Button("previous");
+    Label title = new Label("Title");
+    Label artist = new Label("Artist");
+    Label album = new Label("Album");
+    Image cover ;
+    FlowPane centerpane = new FlowPane();
 
 
     public void init() {
@@ -29,16 +49,16 @@ public class Frameapplication extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) throws Exception  {
 
         //Fenstereinstellungen
-        BorderPane root = new BorderPane();
+
         HBox leftpane = new HBox();
         HBox rightpane = new HBox();
         FlowPane toppane = new FlowPane();
         FlowPane bottompane = new FlowPane();
-        HBox centerpane = new HBox();
 
+        BorderPane root = new BorderPane();
         root.setTop(toppane);
         root.setBottom(bottompane);
         root.setLeft(leftpane);
@@ -55,23 +75,9 @@ public class Frameapplication extends Application {
 
 
 
-
-
-
-
-
-
-        //GUI KOMPONENTE
-        Button play = new Button("Play ");
-        Button next = new Button("next");
-        Button prev = new Button("previous");
-
-
-
-        Label title = new Label("Title");
-        Label artist = new Label("Artist");
-        Label album = new Label("Album");
-
+        play.setOnAction(this);
+        next.setOnAction(this);
+        prev.setOnAction(this);
 
 
 
@@ -101,10 +107,36 @@ public class Frameapplication extends Application {
 
 
 
+
         primaryStage.show();
     }
 
     public void stop() {
     }
+    @Override
+    public void handle(Event event) {
+        if(event.getSource() == play){
 
+            if (playing == false) {
+                playing = true;
+                play.setText("Pause");
+                controller.play();
+                title.setText(controller.getTitle());
+                album.setText(controller.getAlbum());
+                artist.setText(controller.getArtist());
+
+                byte[] coverdata = controller.getCover();
+            } else{
+                playing = false;
+                controller.pause();
+                title.setText("");
+                album.setText("");
+                artist.setText("");
+                play.setText("Play");
+            }
+
+
+        }
+    }
 }
+
