@@ -5,6 +5,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import javafx.scene.*;
@@ -34,7 +35,7 @@ public class Frameapplication extends Application {
         HBox leftpane = new HBox();
         HBox rightpane = new HBox();
         HBox toppane = new HBox();
-        TilePane bottompane = new TilePane();
+        FlowPane bottompane = new FlowPane();
         HBox centerpane = new HBox();
 
         root.setTop(toppane);
@@ -51,8 +52,6 @@ public class Frameapplication extends Application {
         root.setPadding(new Insets(20,0,0,0));
         root.setStyle("-fx-background-color: gold;");
 
-        //Konfiguration von bottom Pane
-        bottompane.setPadding(new Insets(10));
 
 
 
@@ -63,7 +62,9 @@ public class Frameapplication extends Application {
 
         //GUI KOMPONENTE
         Button play = new Button("Play ");
-        play.setLayoutX(50);
+        Button next = new Button("next");
+        Button prev = new Button("previous");
+
 
 
         Label title = new Label("Title");
@@ -72,10 +73,16 @@ public class Frameapplication extends Application {
 
 
 
+        //Konfiguration von bottom Pane
+        bottompane.setPadding(new Insets(10));
+        bottompane.setAlignment(Pos.TOP_CENTER);
+        bottompane.setHgap(20);
+        bottompane.setStyle("-fx-background-color: black}; ");
 
 
-
-
+        bottompane.getChildren().add(prev);
+        bottompane.getChildren().add(play);
+        bottompane.getChildren().add(next);
 
         //toppane Childrens
         toppane.getChildren().add(title);
@@ -83,8 +90,8 @@ public class Frameapplication extends Application {
 
 
 
-        //Bottompane
-        bottompane.getChildren().add(play);
+
+
 
 
         primaryStage.show();
