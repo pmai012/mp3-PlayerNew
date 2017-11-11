@@ -1,6 +1,8 @@
 package sample;
 
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
@@ -8,6 +10,7 @@ import javafx.stage.Stage;
 import javafx.scene.*;
 import javafx.scene.layout.*;
 import javafx.scene.control.*;
+
 
 
 
@@ -31,7 +34,7 @@ public class Frameapplication extends Application {
         HBox leftpane = new HBox();
         HBox rightpane = new HBox();
         HBox toppane = new HBox();
-        HBox bottompane = new HBox();
+        TilePane bottompane = new TilePane();
         HBox centerpane = new HBox();
 
         root.setTop(toppane);
@@ -48,14 +51,24 @@ public class Frameapplication extends Application {
         root.setPadding(new Insets(20,0,0,0));
         root.setStyle("-fx-background-color: gold;");
 
-        //BUTTON
+        //Konfiguration von bottom Pane
+        bottompane.setPadding(new Insets(10));
+
+
+
+
+
+
+
+
+        //GUI KOMPONENTE
         Button play = new Button("Play ");
+        play.setLayoutX(50);
 
 
         Label title = new Label("Title");
 
 
-        Label album = new Label("Album");
 
 
 
@@ -63,7 +76,17 @@ public class Frameapplication extends Application {
 
 
 
+
+        //toppane Childrens
         toppane.getChildren().add(title);
+
+
+
+
+        //Bottompane
+        bottompane.getChildren().add(play);
+
+
         primaryStage.show();
     }
 
