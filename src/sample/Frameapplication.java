@@ -5,6 +5,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
@@ -34,7 +35,7 @@ public class Frameapplication extends Application {
         BorderPane root = new BorderPane();
         HBox leftpane = new HBox();
         HBox rightpane = new HBox();
-        HBox toppane = new HBox();
+        FlowPane toppane = new FlowPane();
         FlowPane bottompane = new FlowPane();
         HBox centerpane = new HBox();
 
@@ -68,6 +69,8 @@ public class Frameapplication extends Application {
 
 
         Label title = new Label("Title");
+        Label artist = new Label("Artist");
+        Label album = new Label("Album");
 
 
 
@@ -84,9 +87,13 @@ public class Frameapplication extends Application {
         bottompane.getChildren().add(play);
         bottompane.getChildren().add(next);
 
-        //toppane Childrens
+        //Konfiguration von toppane
+        toppane.setAlignment(Pos.TOP_CENTER);
+        toppane.setPadding(new Insets(1));
         toppane.getChildren().add(title);
-
+        toppane.getChildren().add(artist);
+        toppane.getChildren().add(album);
+        toppane.setOrientation(Orientation.VERTICAL);
 
 
 
