@@ -27,35 +27,43 @@ public class Frameapplication extends Application {
     public void start(Stage primaryStage) throws Exception {
 
         //Fenstereinstellungen
-        AnchorPane root = new AnchorPane();
+        BorderPane root = new BorderPane();
+        HBox leftpane = new HBox();
+        HBox rightpane = new HBox();
+        HBox toppane = new HBox();
+        HBox bottompane = new HBox();
+        HBox centerpane = new HBox();
+
+        root.setTop(toppane);
+        root.setBottom(bottompane);
+        root.setLeft(leftpane);
+        root.setRight(rightpane);
+        root.setCenter(centerpane);
+
         Scene scene = new Scene(root, WIDTH, HEIGHT);
         primaryStage.setScene(scene);
         // primaryStage.initStyle(StageStyle.TRANSPARENT);
         primaryStage.setTitle("3Player");
+
         root.setPadding(new Insets(20,0,0,0));
         root.setStyle("-fx-background-color: gold;");
 
         //BUTTON
         Button play = new Button("Play ");
-        play.setLayoutX(WIDTH*0.5);
-        play.setLayoutY(HEIGHT*0.8 );
+
 
         Label title = new Label("Title");
-        title.setLayoutX(WIDTH*0.5);
-        title.setLayoutY(HEIGHT*0.7);
+
 
         Label album = new Label("Album");
-        album.setLayoutX(WIDTH*0.5);
-        album.setLayoutY(HEIGHT*0.73) ;
 
 
 
 
 
 
-        root.getChildren().add(album);
-        root.getChildren().add(title);
-        root.getChildren().add(play);
+
+        toppane.getChildren().add(title);
         primaryStage.show();
     }
 
