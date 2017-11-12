@@ -30,8 +30,6 @@ public class MP3Player implements Runnable {
         audioPlayer = minim.loadMP3File(track.getPath());
 
         play();
-        System.out.println("Es wird '" + track.getTitle() + "' von " + track.getArtist()+" gespielt. ");
-
 
     }
 
