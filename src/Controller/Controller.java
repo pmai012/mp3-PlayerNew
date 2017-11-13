@@ -9,7 +9,7 @@ import Model.Track;
  * Created by User on 06.11.2017.
  */
 public class Controller {
-    final String PATH ="C:\\Users\\User\\Music\\Eminem\\03 - Die Alone [feat. Kobe] [Explicit].mp3";
+    final String PATH = "03 - Die Alone [feat. Kobe] [Explicit].mp3";
     MP3Player player;
     PlaylistManager playlistManager;
     Track track = new Track(PATH);

@@ -11,6 +11,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -28,7 +29,7 @@ public class Frameapplication extends Application implements EventHandler{
 
     private boolean playing = false;
 
-    Controller controller = new Controller();
+    Controller controller;
     //GUI KOMPONENTE
     Button play = new Button("Play ");
     Button next = new Button("next");
@@ -39,10 +40,11 @@ public class Frameapplication extends Application implements EventHandler{
     Image cover ;
     ImageView display = null;
     Pane centerpane = new Pane();
+    Slider volume = new Slider();
 
 
     public void init() {
-
+        controller = new Controller();
     }
 
     @Override
@@ -70,13 +72,21 @@ public class Frameapplication extends Application implements EventHandler{
         primaryStage.setTitle("3Player");
 
         root.setPadding(new Insets(20,0,0,0));
-       // root.setStyle("-fx-background-color: gold;");
+        root.setStyle("-fx-background-color: gold;");
+
+
 
 
         play.setStyle("-fx-color: blue");
+
+
+
+
+
         play.setOnAction(this);
         next.setOnAction(this);
         prev.setOnAction(this);
+
 
 
 
@@ -92,13 +102,14 @@ public class Frameapplication extends Application implements EventHandler{
         bottompane.getChildren().add(play);
         bottompane.getChildren().add(next);
 
+
         //Konfiguration von toppane
 
         //Konfiguration von bottom Pane
         //toppane.setPadding(new Insets(6));
         toppane.setAlignment(Pos.TOP_CENTER);
         toppane.setOrientation(Orientation.VERTICAL);
-        toppane.setStyle("-fx-background-color: yellow}; ");
+
         toppane.getChildren().add(title);
         toppane.getChildren().add(artist);
         toppane.getChildren().add(album);
@@ -109,7 +120,7 @@ public class Frameapplication extends Application implements EventHandler{
 
 
 
-        centerpane.setStyle("-fx-background-color: blue;");
+        centerpane.setStyle("-fx-background-color: gold;");
 
         primaryStage.show();
     }
@@ -127,7 +138,8 @@ public class Frameapplication extends Application implements EventHandler{
                 title.setText(controller.getTitle());
                 album.setText(controller.getAlbum());
                 artist.setText(controller.getArtist());
-                play.setStyle("-fx-color: red");
+              //  play.setStyle("-fx-color: red");
+
 
 
 
@@ -148,7 +160,7 @@ public class Frameapplication extends Application implements EventHandler{
                 album.setText("");
                 artist.setText("");
                 play.setText("Play");
-                play.setStyle("-fx-color: blue");
+               // play.setStyle("-fx-color: blue");
             }
 
 

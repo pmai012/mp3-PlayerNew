@@ -73,6 +73,7 @@ public class Track {
             e.printStackTrace();
             return;
         }
+
         if (mp3file == null) {
             return;
 
