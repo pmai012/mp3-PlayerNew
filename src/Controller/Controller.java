@@ -9,7 +9,9 @@ import Model.Track;
  * Created by User on 06.11.2017.
  */
 public class Controller {
-    final String PATH = "F:\\GitHub\\mp3-PlayerNew\\src\\music\\02_LoveWillBeWithYou.mp3";
+    final String PATH ="F:\\GitHub\\mp3-PlayerNew\\src\\music\\02_LoveWillBeWithYou.mp3";
+
+
 
     PlaylistManager playlistManager;
     Track track ;
@@ -39,6 +41,10 @@ public class Controller {
     public String getAlbum(){
 
         return track.getAlbum();
+    }
+
+    public void volume(float lautstaerke){
+        player.volume(lautstaerke);
     }
 public byte[] getCover(){
         return track.getCover();

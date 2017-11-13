@@ -2,6 +2,8 @@ package sample;
 
 import Controller.Controller;
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -118,6 +120,7 @@ public class Frameapplication extends Application implements EventHandler{
 
 
         leftpane.getChildren().add(tracksview);
+        bottompane.getChildren().add(volume);
 
 
 
@@ -154,16 +157,6 @@ public class Frameapplication extends Application implements EventHandler{
                 album.setText(controller.getAlbum());
                 artist.setText(controller.getArtist());
               //  play.setStyle("-fx-color: red");
-
-
-
-
-
-
-
-
-
-
 
 
 
