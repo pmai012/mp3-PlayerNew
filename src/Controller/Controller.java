@@ -10,15 +10,16 @@ import Model.Track;
  */
 public class Controller {
     final String PATH = "F:\\GitHub\\mp3-PlayerNew\\src\\music\\02_LoveWillBeWithYou.mp3";
-    MP3Player player;
+
     PlaylistManager playlistManager;
-    Track track = new Track(PATH);
+    Track track ;
+    MP3Player player;
     public Controller(){
         player = new MP3Player();
     }
 
     public void play(){
-
+        track = new Track(PATH);
         player.play(track);
     }
 

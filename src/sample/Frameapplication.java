@@ -164,7 +164,7 @@ public class Frameapplication extends Application implements EventHandler{
 
 
 
-                centerpane.getChildren().add(display);
+
 
 
                 byte[] coverdata = controller.getCover();
