@@ -15,6 +15,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -41,6 +42,7 @@ public class Frameapplication extends Application implements EventHandler{
     ImageView display = null;
     Pane centerpane = new Pane();
     Slider volume = new Slider();
+    ListView tracksview = new ListView();
 
 
     public void init() {
@@ -115,6 +117,9 @@ public class Frameapplication extends Application implements EventHandler{
         toppane.getChildren().add(album);
 
 
+        leftpane.getChildren().add(tracksview);
+
+
 
 
 
@@ -127,8 +132,18 @@ public class Frameapplication extends Application implements EventHandler{
 
     public void stop() {
     }
+
+
+
+
+
+
+
+
     @Override
     public void handle(Event event) {
+
+
         if(event.getSource() == play){
 
             if (playing == false) {
