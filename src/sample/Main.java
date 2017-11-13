@@ -25,21 +25,22 @@ import javafx.stage.Stage;
 
     public static void main(String[] args) {
 
-        Application.launch(Frameapplication.class, args);
-
-      /* launch(args);
-
-    System.out.println("MusikPlayer");
-    boolean beenden = false;
-    KeyboardController eingabe = new KeyboardController();
-    String input = null;
-    while (beenden == false){
+        if (args[0].isEmpty() == false && args[0].equals("key")) {
+            System.out.println("MusikPlayer");
+            boolean beenden = false;
+            KeyboardController eingabe = new KeyboardController();
+            String input = null;
+            while (beenden == false) {
 
 
-        System.out.println("Geben Sie einen Befehl ein: ");
-        input = StaticScanner.nextString();
-        eingabe.befehl(input);
-    }
-*/
+                System.out.println("Geben Sie einen Befehl ein: ");
+                input = StaticScanner.nextString();
+                eingabe.befehl(input);
+            }
+            ;
+
+
+            Application.launch(Frameapplication.class, args);
+        }
     }
 }

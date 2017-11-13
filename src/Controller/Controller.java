@@ -9,16 +9,19 @@ import Model.Track;
  * Created by User on 06.11.2017.
  */
 public class Controller {
-    final String PATH ="C:\\Users\\User\\Music\\Eminem\\03 - Die Alone [feat. Kobe] [Explicit].mp3";
-    MP3Player player;
+    final String PATH ="F:\\GitHub\\mp3-PlayerNew\\src\\music\\02_LoveWillBeWithYou.mp3";
+
+
+
     PlaylistManager playlistManager;
-    Track track = new Track(PATH);
+    Track track ;
+    MP3Player player;
     public Controller(){
         player = new MP3Player();
     }
 
     public void play(){
-
+        track = new Track(PATH);
         player.play(track);
     }
 
@@ -38,6 +41,10 @@ public class Controller {
     public String getAlbum(){
 
         return track.getAlbum();
+    }
+
+    public void volume(float lautstaerke){
+        player.volume(lautstaerke);
     }
 public byte[] getCover(){
         return track.getCover();

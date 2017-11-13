@@ -60,8 +60,7 @@ public class Track {
 
 
     public void setTrack(String path) {
-        mp3file = null;
-        try {
+          try {
             mp3file = new Mp3File(path);
         } catch (IOException e) {
             e.printStackTrace();
@@ -73,6 +72,7 @@ public class Track {
             e.printStackTrace();
             return;
         }
+
         if (mp3file == null) {
             return;
 

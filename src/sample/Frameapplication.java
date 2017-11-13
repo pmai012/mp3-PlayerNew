@@ -5,6 +5,8 @@ import Model.PlaylistManager;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -15,10 +17,11 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
+import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -34,7 +37,8 @@ public class Frameapplication extends Application implements EventHandler{
     private boolean playing = false;
 
     PlaylistManager playlistManager = new PlaylistManager();
-    Controller controller = new Controller();
+
+    Controller controller;
     //GUI KOMPONENTE
     Button play = new Button("Play ");
     Button next = new Button("next");
@@ -45,6 +49,8 @@ public class Frameapplication extends Application implements EventHandler{
     Image cover ;
     ImageView display = null;
     Pane centerpane = new Pane();
+    Slider volume = new Slider();
+    ListView tracksview = new ListView();
 
 
     public void init() {
@@ -53,10 +59,7 @@ public class Frameapplication extends Application implements EventHandler{
 
     @Override
     public void start(Stage primaryStage) throws Exception  {
-
-
         playlistManager.loadPlaylists(System.getProperty("user.home").concat("//Music"));
-
 
         //Fenstereinstellungen
 
@@ -87,13 +90,21 @@ public class Frameapplication extends Application implements EventHandler{
         primaryStage.setTitle("3Player");
 
         root.setPadding(new Insets(20,0,0,0));
-       // root.setStyle("-fx-background-color: gold;");
+        root.setStyle("-fx-background-color: gold;");
+
+
 
 
         play.setStyle("-fx-color: blue");
+
+
+
+
+
         play.setOnAction(this);
         next.setOnAction(this);
         prev.setOnAction(this);
+
 
 
 
@@ -109,34 +120,47 @@ public class Frameapplication extends Application implements EventHandler{
         bottompane.getChildren().add(play);
         bottompane.getChildren().add(next);
 
+
         //Konfiguration von toppane
 
         //Konfiguration von bottom Pane
         //toppane.setPadding(new Insets(6));
         toppane.setAlignment(Pos.TOP_CENTER);
         toppane.setOrientation(Orientation.VERTICAL);
-        toppane.setStyle("-fx-background-color: yellow}{");
+
         toppane.getChildren().add(title);
         toppane.getChildren().add(artist);
         toppane.getChildren().add(album);
 
 
-        leftpane.setPadding(new Insets(80));
-        leftpane.setAlignment(Pos.CENTER_LEFT);
-        leftpane.setNodeOrientation(NodeOrientation.LEFT_TO_RIGHT);
-        leftpane.setStyle("-fx-background-color: black}{");
+        leftpane.getChildren().add(tracksview);
+        bottompane.getChildren().add(volume);
 
 
 
-        centerpane.setStyle("-fx-background-color: blue;");
+
+
+
+
+        centerpane.setStyle("-fx-background-color: gold;");
 
         primaryStage.show();
     }
 
     public void stop() {
     }
+
+
+
+
+
+
+
+
     @Override
     public void handle(Event event) {
+
+
         if(event.getSource() == play){
 
             if (playing == false) {
@@ -146,17 +170,8 @@ public class Frameapplication extends Application implements EventHandler{
                 title.setText(controller.getTitle());
                 album.setText(controller.getAlbum());
                 artist.setText(controller.getArtist());
-                play.setStyle("-fx-color: red");
+              //  play.setStyle("-fx-color: red");
 
-
-
-
-
-
-
-
-
-                centerpane.getChildren().add(display);
 
 
                 byte[] coverdata = controller.getCover();
@@ -167,7 +182,7 @@ public class Frameapplication extends Application implements EventHandler{
                 album.setText("");
                 artist.setText("");
                 play.setText("Play");
-                play.setStyle("-fx-color: blue");
+               // play.setStyle("-fx-color: blue");
             }
 
 
