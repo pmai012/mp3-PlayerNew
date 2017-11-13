@@ -75,6 +75,8 @@ public class PlaylistManager {
 
     public List getPlaylists(){return this.playlists;}
 
+
+
     public List<Playlist> loadPlaylists(String path)
     {
 //        String path = System.getProperty("user.home").concat("//Music");

@@ -1,10 +1,7 @@
 package Model;
 
 import java.io.*;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
+import java.util.*;
 
 
 /**
@@ -14,133 +11,28 @@ public class Playlist {
     private int index = 0;
     private Track currentTrack = null;
 
-    private List<Track> tracks;
+    private ArrayList<Track> tracks;
 
     private String name;
     final String extension = ".m3u";
 
+public Playlist(){
+    tracks = new ArrayList<Track>() {
+    };
+}
+
     public Playlist(String name, String path) {
         this.name = name;
-        this.tracks = new List<Track>() {
-            @Override
-            public int size() {
-                return 0;
-            }
-
-            @Override
-            public boolean isEmpty() {
-                return false;
-            }
-
-            @Override
-            public boolean contains(Object o) {
-                return false;
-            }
-
-            @Override
-            public Iterator<Track> iterator() {
-                return null;
-            }
-
-            @Override
-            public Object[] toArray() {
-                return new Object[0];
-            }
-
-            @Override
-            public <T> T[] toArray(T[] a) {
-                return null;
-            }
-
-            @Override
-            public boolean add(Track track) {
-                return false;
-            }
-
-            @Override
-            public boolean remove(Object o) {
-                return false;
-            }
-
-            @Override
-            public boolean containsAll(Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public boolean addAll(Collection<? extends Track> c) {
-                return false;
-            }
-
-            @Override
-            public boolean addAll(int index, Collection<? extends Track> c) {
-                return false;
-            }
-
-            @Override
-            public boolean removeAll(Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public boolean retainAll(Collection<?> c) {
-                return false;
-            }
-
-            @Override
-            public void clear() {
-
-            }
-
-            @Override
-            public Track get(int index) {
-                return null;
-            }
-
-            @Override
-            public Track set(int index, Track element) {
-                return null;
-            }
-
-            @Override
-            public void add(int index, Track element) {
-
-            }
-
-            @Override
-            public Track remove(int index) {
-                return null;
-            }
-
-            @Override
-            public int indexOf(Object o) {
-                return 0;
-            }
-
-            @Override
-            public int lastIndexOf(Object o) {
-                return 0;
-            }
-
-            @Override
-            public ListIterator<Track> listIterator() {
-                return null;
-            }
-
-            @Override
-            public ListIterator<Track> listIterator(int index) {
-                return null;
-            }
-
-            @Override
-            public List<Track> subList(int fromIndex, int toIndex) {
-                return null;
-            }
-        };
+        this.tracks = new ArrayList<Track>();
     }
 
     public String getName() {
         return this.name;
+    }
+
+
+    public Track getTrack(int index){
+    return tracks.get(index);
     }
 
 
@@ -158,6 +50,7 @@ public class Playlist {
         currentTrack = tracks.get((int) (Math.random() * tracks.size()));
         return currentTrack;
     }
+
 
     public void addTrack(Track t) {
         tracks.add(t);
@@ -183,13 +76,18 @@ Beispiel m3u:
             while ((zeile = datei.readLine()) != null) // liest zeilenweise aus Datei
             {
                 if (next == true) {
-                    String name =  zeile;
-                    tracks.add(new Track(name));
+                    String trackpath =  zeile;
+
+                    if (trackpath.isEmpty() != false){
+                        System.out.println(trackpath);
+
+                   tracks.add(new Track(trackpath));
+                    }
+
                     next = false;
                 }
 
                 if (zeile.startsWith("#EXTINF:")) {
-
 
                     next = true;
                 }
@@ -201,6 +99,7 @@ Beispiel m3u:
                 }
 
             }
+
 
 
         } catch (FileNotFoundException e) {

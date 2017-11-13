@@ -14,19 +14,21 @@ public class MP3Player implements Runnable {
 
     SimpleMinim minim;
     SimpleAudioPlayer audioPlayer;
-    Playlist playlist;
+    Playlist playlist = new Playlist();
     Track track;
     boolean again = false;
 
 
     public MP3Player() {
         minim = new SimpleMinim(true);
-        playlist = new Playlist("no-name");
+
 
     }
 
   public void loadPlaylist(String path){
-        playlist.loadPlaylist(path);
+
+       playlist.loadPlaylist(path);
+        track = playlist.getTrack(1);
   }
 
     public void play(Track track) {
