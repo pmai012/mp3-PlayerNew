@@ -19,7 +19,7 @@ public class Playlist {
     private String name;
     final String extension = ".m3u";
 
-    public Playlist(String name) {
+    public Playlist(String name, String path) {
         this.name = name;
         this.tracks = new List<Track>() {
             @Override

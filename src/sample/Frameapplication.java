@@ -1,12 +1,16 @@
 package sample;
 
 import Controller.Controller;
+import Model.PlaylistManager;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.NodeOrientation;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 
@@ -32,6 +36,8 @@ public class Frameapplication extends Application implements EventHandler{
 
     private boolean playing = false;
 
+    PlaylistManager playlistManager = new PlaylistManager();
+
     Controller controller;
     //GUI KOMPONENTE
     Button play = new Button("Play ");
@@ -48,11 +54,12 @@ public class Frameapplication extends Application implements EventHandler{
 
 
     public void init() {
-        controller = new Controller();
+
     }
 
     @Override
     public void start(Stage primaryStage) throws Exception  {
+        playlistManager.loadPlaylists(System.getProperty("user.home").concat("//Music"));
 
         //Fenstereinstellungen
 
@@ -67,6 +74,13 @@ public class Frameapplication extends Application implements EventHandler{
         root.setLeft(leftpane);
         root.setRight(rightpane);
         root.setCenter(centerpane);
+
+        ListView<String> list = new ListView<String>();
+        ObservableList<String> items = FXCollections.observableArrayList ();
+        items.addAll(playlistManager.getPlaylists());
+        list.setItems(items);
+
+
 
         Scene scene = new Scene(root, WIDTH, HEIGHT);
         primaryStage.setScene(scene);
@@ -86,7 +100,6 @@ public class Frameapplication extends Application implements EventHandler{
 
 
 
-
         play.setOnAction(this);
         next.setOnAction(this);
         prev.setOnAction(this);
@@ -99,7 +112,7 @@ public class Frameapplication extends Application implements EventHandler{
         bottompane.setPadding(new Insets(10));
         bottompane.setAlignment(Pos.TOP_CENTER);
         bottompane.setHgap(20);
-        bottompane.setStyle("-fx-background-color: black}; ");
+        bottompane.setStyle("-fx-background-color: black}{");
 
 
         bottompane.getChildren().add(prev);

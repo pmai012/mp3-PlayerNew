@@ -1,20 +1,19 @@
 package Model;
 
+import javax.print.attribute.standard.PrinterLocation;
 import java.io.*;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
+import java.util.*;
 
 
 public class PlaylistManager {
 
-    private List<Playlist> playlists;
+    private ArrayList<Playlist> playlists;
     private List<String> contents;
     File newPlaylist = new File(System.getProperty("user.home").concat("//Music") + "/AllTracks.m3u");
     private String extension = ".mp3";
 
     public PlaylistManager() {
+        this.playlists = new ArrayList<>();
     }
 
     public List<Playlist> findPlaylist(String name) {
@@ -28,7 +27,7 @@ public class PlaylistManager {
 
     public Playlist getAllTracks() {
 
-        Playlist playlist = new Playlist("AllTracks");
+        Playlist playlist = new Playlist("AllTracks", null);
 
         playlist = createPlaylist(System.getProperty("user.home").concat("//Music"), playlist );
         return playlist;
@@ -53,7 +52,6 @@ public class PlaylistManager {
 
     private Playlist createPlaylist(String directoryName, Playlist playlist){
             File directory = new File(directoryName);
-            File newPlaylist = new File(System.getProperty("user.home").concat("//Music") + "/AllTracks.txt");
 
             Writer output = null;
 
@@ -74,4 +72,26 @@ public class PlaylistManager {
         return playlist;
     }
     private void savePlaylist(){}
+
+    public List getPlaylists(){return this.playlists;}
+
+    public List<Playlist> loadPlaylists(String path)
+    {
+//        String path = System.getProperty("user.home").concat("//Music");
+        File search = new File(path);
+
+        File[] fList = search.listFiles();
+        if (fList != null) {
+            for (File file : fList) {
+                if (file.isFile()) {
+                    if (file.getName().endsWith(".m3u")) {
+                        this.playlists.add(new Playlist(file.getName(), file.getAbsolutePath()));
+                    }
+                } else if (file.isDirectory()) {
+                    loadPlaylists(file.getAbsolutePath());
+                }
+            }
+        }
+        return playlists;
+    }
 }
