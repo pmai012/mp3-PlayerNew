@@ -73,6 +73,15 @@ public class KeyboardController {
                 }
             }
 
+            if (command[i].equals("LOAD")) {
+                if (i + 1 <= command.length) {
+                    String value = command[i + 1];
+                    player.loadPlaylist(value);
+                } else {
+                    System.out.println("Geben Sie bitte einen Wert mit!");
+                }
+            }
+
             if (command[i].equals("BALANCE")) {
                 if (i + 1 <= command.length) {
                     float value = Float.parseFloat(command[i + 1]);

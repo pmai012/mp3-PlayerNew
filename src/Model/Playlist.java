@@ -158,9 +158,11 @@ public class Playlist {
         currentTrack = tracks.get((int) (Math.random() * tracks.size()));
         return currentTrack;
     }
-    public void addTrack(Track t){
+
+    public void addTrack(Track t) {
         tracks.add(t);
     }
+
     /*
 Beispiel m3u:
 0 #EXTM3U
@@ -169,7 +171,47 @@ Beispiel m3u:
 3 #EXTINF:0,50 Cent - I'll Still Kill (feat. Akon).mp3
 4 E:\Diverse Interpreten\50 Cent - I'll Still Kill (feat. Akon).mp3
  */
-    public void loadPlaylist(String path){
+    public void loadPlaylist(String path) {
+
+        String zeile = null;
+        boolean next = false;
+
+        BufferedReader datei = null;
+        try {
+            datei = new BufferedReader(new FileReader(path));
+
+            while ((zeile = datei.readLine()) != null) // liest zeilenweise aus Datei
+            {
+                if (next == true) {
+                    String name =  zeile;
+                    tracks.add(new Track(name));
+                    next = false;
+                }
+
+                if (zeile.startsWith("#EXTINF:")) {
+
+
+                    next = true;
+                }
+                if (zeile.startsWith("#EXTM3U")) {   //Zeile exestiert
+
+                }
+                if (zeile.isEmpty() == true) {
+
+                }
+
+            }
+
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+
+        /*
         BufferedReader auslesen = null;
         String quelle;
         try {
@@ -192,7 +234,7 @@ Beispiel m3u:
             e.printStackTrace();
         }
 
-
+*/
     }
 }
 
