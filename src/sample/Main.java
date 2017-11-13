@@ -37,10 +37,10 @@ import javafx.stage.Stage;
                 input = StaticScanner.nextString();
                 eingabe.befehl(input);
             }
-            ;
+            return;
 
-
-            Application.launch(Frameapplication.class, args);
         }
+            Application.launch(Frameapplication.class, args);
+
     }
 }

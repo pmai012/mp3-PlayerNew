@@ -17,7 +17,7 @@ public class Playlist {
     final String extension = ".m3u";
 
 public Playlist(){
-    tracks = new ArrayList<Track>() {
+    this.tracks = new ArrayList<Track>() {
     };
 }
 
@@ -31,8 +31,8 @@ public Playlist(){
     }
 
 
-    public Track getTrack(int index){
-    return tracks.get(index);
+    public Track getCurrentTrackTrack(){
+    return currentTrack;
     }
 
 
@@ -78,11 +78,11 @@ Beispiel m3u:
                 if (next == true) {
                     String trackpath =  zeile;
 
-                    if (trackpath.isEmpty() != false){
-                        System.out.println(trackpath);
 
-                   tracks.add(new Track(trackpath));
-                    }
+
+                    tracks.add(new Track(trackpath));
+
+
 
                     next = false;
                 }
@@ -109,31 +109,8 @@ Beispiel m3u:
         }
 
 
+        currentTrack = tracks.get(0);
 
-        /*
-        BufferedReader auslesen = null;
-        String quelle;
-        try {
-            auslesen = new BufferedReader(new FileReader(path));
-            while ((quelle=auslesen.readLine())!= null) {
-            }
-            //Leere Zeilen werden übersprungen
-            String[] zeilen = quelle.split("[\\r\\n]+");
-
-            //Auslesen der Quelldatei jede 2. Zeile gibt den Pfad an
-            for (int i = 2; i <zeilen.length; i=i+2){
-                tracks.add(new Track(zeilen[i]));
-            }
-
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-*/
     }
 }
 

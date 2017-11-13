@@ -78,6 +78,7 @@ public class KeyboardController {
                     String value = command[i + 1];
                     player.loadPlaylist(value);
 
+
                 } else {
                     System.out.println("Geben Sie bitte einen Wert mit!");
                 }

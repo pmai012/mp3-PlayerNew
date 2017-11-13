@@ -14,13 +14,14 @@ public class MP3Player implements Runnable {
 
     SimpleMinim minim;
     SimpleAudioPlayer audioPlayer;
-    Playlist playlist = new Playlist();
+    Playlist playlist ;
     Track track;
     boolean again = false;
 
 
     public MP3Player() {
         minim = new SimpleMinim(true);
+       playlist = new Playlist();
 
 
     }
@@ -28,7 +29,9 @@ public class MP3Player implements Runnable {
   public void loadPlaylist(String path){
 
        playlist.loadPlaylist(path);
-        track = playlist.getTrack(1);
+        track = playlist.getCurrentTrackTrack();
+
+
   }
 
     public void play(Track track) {
@@ -41,7 +44,9 @@ public class MP3Player implements Runnable {
 
     public void play() {
 
-
+if (track != null){
+    audioPlayer = minim.loadMP3File(track.getPath());
+}
         audioPlayer.play();
 
         if (again) {
@@ -52,10 +57,10 @@ public class MP3Player implements Runnable {
 
     public void pause() {
 
-        if (audioPlayer.isPlaying()) {
+
             audioPlayer.pause();
 
-        }
+
     }
 
     public void stop() {
@@ -101,7 +106,9 @@ public class MP3Player implements Runnable {
     this.playlist = actPlaylist;
     }
     public void skip(){
+        minim.stop();
         audioPlayer= minim.loadMP3File(playlist.skip().getPath());
+        audioPlayer.play();
     }
      public void skipBack( ){
          audioPlayer= minim.loadMP3File(playlist.skipback().getPath());
