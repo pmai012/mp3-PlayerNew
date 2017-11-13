@@ -100,7 +100,6 @@ public class Frameapplication extends Application implements EventHandler{
 
 
 
-
         play.setOnAction(this);
         next.setOnAction(this);
         prev.setOnAction(this);
