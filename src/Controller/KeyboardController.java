@@ -88,7 +88,7 @@ public class KeyboardController {
                     if (command[i + 1].equalsIgnoreCase("SUCHEN")) {
                     playlistManager.findPlaylist(command[i + 2]);
                 } else if (command[i + 1].equalsIgnoreCase("ERSTELLEN")) {
-                    playlistManager.setPlaylist(new Playlist(command[i + 2]));
+                    playlistManager.setPlaylist(new Playlist(command[i + 2],null));
                 } else if (command[i + 1].equalsIgnoreCase("LOESCHEN")) {
 
                 } else if (command[i + 1].equalsIgnoreCase("AKTUALISIEREN")) {
