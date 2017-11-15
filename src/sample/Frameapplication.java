@@ -45,7 +45,7 @@ public class Frameapplication extends Application implements EventHandler{
     Button next = new Button("next");
     Button prev = new Button("previous");
     Label title = new Label("Title");
-    Label supertitle = new Label(" MEINE MUSIK | STORE | RADIO | MEHR ");
+    //Label supertitle = new Label(" MEINE MUSIK | STORE | RADIO | MEHR ");
     Label artist = new Label("Artist");
     Label album = new Label("Album");
     Image cover ;
@@ -135,10 +135,11 @@ public class Frameapplication extends Application implements EventHandler{
         toppane.getChildren().add(artist);
         toppane.getChildren().add(album);
 
+        /*
         supertitle.setFont(new Font(50));
         supertitle.setUnderline(true);
         centerpane.getChildren().add(supertitle);
-
+        */
 
         leftpane.getChildren().add(tracksview);
         bottompane.getChildren().add(volume);
