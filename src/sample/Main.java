@@ -25,7 +25,7 @@ import javafx.stage.Stage;
 
     public static void main(String[] args) {
 
-        if (args[0].isEmpty() == false && args[0].equals("key")) {
+       if (args.length != 0 && args[0].isEmpty() == false && args[0].equals("key")) {
             System.out.println("MusikPlayer");
             boolean beenden = false;
             KeyboardController eingabe = new KeyboardController();

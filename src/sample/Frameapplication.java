@@ -150,6 +150,9 @@ public class Frameapplication extends Application implements EventHandler{
 
 
 
+
+
+
         centerpane.setStyle("-fx-background-color: gold;");
 
         primaryStage.show();

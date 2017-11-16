@@ -9,6 +9,10 @@ import java.io.IOException;
  * Created by Pascal on 29.10.2017.
  */
 
+
+/*
+ Radio : SWR3 http://swr-swr3-live.cast.addradio.de/swr/swr3/live/mp3/128/stream.mp3
+ */
 public class Track {
 
     private String title;
