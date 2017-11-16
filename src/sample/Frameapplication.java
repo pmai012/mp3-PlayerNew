@@ -22,6 +22,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.control.ListView;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -44,6 +45,7 @@ public class Frameapplication extends Application implements EventHandler{
     Button next = new Button("next");
     Button prev = new Button("previous");
     Label title = new Label("Title");
+    //Label supertitle = new Label(" MEINE MUSIK | STORE | RADIO | MEHR ");
     Label artist = new Label("Artist");
     Label album = new Label("Album");
     Image cover ;
@@ -65,6 +67,7 @@ public class Frameapplication extends Application implements EventHandler{
 
         HBox leftpane = new HBox();
         HBox rightpane = new HBox();
+       // HBox toprightpane = new HBox();
         TilePane toppane = new TilePane();
         FlowPane bottompane = new FlowPane();
 
@@ -74,6 +77,7 @@ public class Frameapplication extends Application implements EventHandler{
         root.setLeft(leftpane);
         root.setRight(rightpane);
         root.setCenter(centerpane);
+
 
         ListView<String> list = new ListView<String>();
         ObservableList<String> items = FXCollections.observableArrayList ();
@@ -131,6 +135,11 @@ public class Frameapplication extends Application implements EventHandler{
         toppane.getChildren().add(artist);
         toppane.getChildren().add(album);
 
+        /*
+        supertitle.setFont(new Font(50));
+        supertitle.setUnderline(true);
+        centerpane.getChildren().add(supertitle);
+        */
 
         leftpane.getChildren().add(tracksview);
         bottompane.getChildren().add(volume);
