@@ -14,7 +14,7 @@ import java.io.IOException;
  Radio : SWR3 http://swr-swr3-live.cast.addradio.de/swr/swr3/live/mp3/128/stream.mp3
  */
 public class Track {
-
+    boolean radio = false;
     private String title;
     private String artist = "unbekannter Künstler";
     private String album = "unbekanntes Album";
@@ -62,6 +62,21 @@ public class Track {
         setTrack(path);
     }
 
+    public Track(String sender , boolean radio) {
+        if (radio = true){
+            sender = sender.toLowerCase();
+
+            if (sender.equals("swr3")){
+                path = "http://swr-swr3-live.cast.addradio.de/swr/swr3/live/mp3/128/stream.mp3";
+            }
+
+
+        }else{
+            setTrack(path);
+        }
+
+
+    }
 
     public void setTrack(String path) {
           try {

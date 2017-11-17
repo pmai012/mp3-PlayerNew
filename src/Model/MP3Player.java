@@ -38,6 +38,7 @@ public class MP3Player implements Runnable {
         this.track = track;
         audioPlayer = minim.loadMP3File(track.getPath());
 
+
         play();
 
     }

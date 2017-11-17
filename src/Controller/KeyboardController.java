@@ -73,6 +73,21 @@ public class KeyboardController {
                 }
             }
 
+            if (command[i].equals("RADIO")) {
+                if (i + 1 <= command.length) {
+                    String value = command[i + 1];
+
+
+
+                    Track pfad = new Track("swr3",true);
+                    player.play(pfad);
+
+
+                } else {
+                    System.out.println("Geben Sie bitte einen Wert mit!");
+                }
+            }
+
             if (command[i].equals("LOAD")) {
                 if (i + 1 <= command.length) {
                     String value = command[i + 1];
