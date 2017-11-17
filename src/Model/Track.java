@@ -22,7 +22,7 @@ public class Track {
     private String comment = "";
     private String path = null;
     private String year = "unbekanntes Jahr";
-    private long lenght = 0;
+    private long length = 0;
     private Mp3File mp3file = null;
     byte[] cover = null;
 
@@ -97,7 +97,7 @@ public class Track {
 
         }
         if (mp3file.hasId3v1Tag()) {
-//            ID3v2 id3tags = mp3file.getId3v2Tag();
+//          ID3v2 id3tags = mp3file.getId3v2Tag();
             ID3v1 id3tags = mp3file.getId3v1Tag();
             this.path = path;
 
@@ -132,7 +132,7 @@ public class Track {
 //            if (id3tags.getAlbumImage() != null) {
 //                cover = id3tags.getAlbumImage();
 //            }
-                lenght = mp3file.getLengthInMilliseconds();
+                length = mp3file.getLengthInMilliseconds();
 
 
             }

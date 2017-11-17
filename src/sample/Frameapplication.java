@@ -50,7 +50,7 @@ public class Frameapplication extends Application implements EventHandler{
     Label album = new Label("Album");
     Image cover ;
     ImageView display = null;
-    Pane centerpane = new Pane();
+    //Pane centerpane = new Pane();
     Slider volume = new Slider();
     ListView tracksview = new ListView();
 
@@ -70,6 +70,7 @@ public class Frameapplication extends Application implements EventHandler{
        // HBox toprightpane = new HBox();
         TilePane toppane = new TilePane();
         FlowPane bottompane = new FlowPane();
+        StackPane centerpane = new StackPane();
 
         BorderPane root = new BorderPane();
         root.setTop(toppane);
@@ -122,6 +123,12 @@ public class Frameapplication extends Application implements EventHandler{
         bottompane.getChildren().add(prev);
         bottompane.getChildren().add(play);
         bottompane.getChildren().add(next);
+
+
+        //Konfiguration von centerpane
+
+        //display = new ImageView("Album.png");
+        //centerpane.getChildren().add(display);
 
 
         //Konfiguration von toppane

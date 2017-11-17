@@ -17,8 +17,8 @@ public class Playlist {
     final String extension = ".m3u";
 
 public Playlist(){
-    this.tracks = new ArrayList<Track>() {
-    };
+    this.tracks = new ArrayList<Track>(); {
+    }
 }
 
     public Playlist(String name, String path) {

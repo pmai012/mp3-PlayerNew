@@ -11,7 +11,7 @@ import Model.Track;
 public class Controller {
     final String PATH ="F:\\GitHub\\mp3-PlayerNew\\src\\music\\02_LoveWillBeWithYou.mp3";
 
-
+    //os.name : "Mac OS X" | "Linux" | ("Windows" (?))
 
     PlaylistManager playlistManager;
     Track track ;
