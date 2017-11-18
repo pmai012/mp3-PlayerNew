@@ -39,7 +39,7 @@ public class Frameapplication extends Application implements EventHandler{
 
     PlaylistManager playlistManager = new PlaylistManager();
 
-    Controller controller;
+    Controller controller = new Controller();
     //GUI KOMPONENTE
     Image playico = new Image("picture/play.jpg");
     Image pauseico = new Image("picture/play.jpg");
@@ -142,6 +142,7 @@ public class Frameapplication extends Application implements EventHandler{
         //toppane.setPadding(new Insets(6));
         toppane.setAlignment(Pos.TOP_CENTER);
         toppane.setOrientation(Orientation.VERTICAL);
+        //toppane.setOpacity(0);
 
         toppane.getChildren().add(title);
         toppane.getChildren().add(artist);
@@ -187,7 +188,7 @@ public class Frameapplication extends Application implements EventHandler{
         if(event.getSource() == play){
             System.out.println("Button wurde betaetigt");
 
-            /*
+
             if (playing == false) {
                 playing = true;
                 play.setText("Pause");
@@ -209,7 +210,7 @@ public class Frameapplication extends Application implements EventHandler{
                 play.setText("Play");
                // play.setStyle("-fx-color: blue");
             }
-*/
+
 
         }
     }
