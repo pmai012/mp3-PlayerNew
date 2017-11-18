@@ -53,7 +53,7 @@ public class Frameapplication extends Application implements EventHandler{
 
 
     Label title = new Label("Title");
-    //Label supertitle = new Label(" MEINE MUSIK | STORE | RADIO | MEHR ");
+    //Label supertitle = new Label(" MEINE MUSIK | STORE | RADIO | MEHR |");
     Label artist = new Label("Artist");
     Label album = new Label("Album");
     Slider volume = new Slider();
