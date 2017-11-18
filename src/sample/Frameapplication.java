@@ -41,19 +41,21 @@ public class Frameapplication extends Application implements EventHandler{
 
     Controller controller;
     //GUI KOMPONENTE
-    Image playico = new Image("picture/Play.jpg");
+    Image playico = new Image("picture/play.jpg");
+    Image pauseico = new Image("picture/play.jpg");
+    Image previco = new Image("picture/play.jpg");
+    Image nextico = new Image("picture/play.jpg");
+    Image stopico = new Image("picture/play.jpg");
 
     Button play = new Button("", new ImageView(playico));
+    Button next = new Button("",new ImageView(nextico));
+    Button prev = new Button("", new ImageView(previco));
 
-    Button next = new Button("next");
-    Button prev = new Button("previous");
+
     Label title = new Label("Title");
     //Label supertitle = new Label(" MEINE MUSIK | STORE | RADIO | MEHR ");
     Label artist = new Label("Artist");
     Label album = new Label("Album");
-    Image cover ;
-    ImageView display = null;
-    //Pane centerpane = new Pane();
     Slider volume = new Slider();
     ListView tracksview = new ListView();
 
