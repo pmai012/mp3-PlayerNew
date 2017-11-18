@@ -41,7 +41,10 @@ public class Frameapplication extends Application implements EventHandler{
 
     Controller controller;
     //GUI KOMPONENTE
-    Button play = new Button("Play ");
+    Image playico = new Image("picture/Play.jpg");
+
+    Button play = new Button("", new ImageView(playico));
+
     Button next = new Button("next");
     Button prev = new Button("previous");
     Label title = new Label("Title");
@@ -100,7 +103,7 @@ public class Frameapplication extends Application implements EventHandler{
 
 
 
-        play.setStyle("-fx-color: blue");
+
 
 
 
@@ -180,7 +183,9 @@ public class Frameapplication extends Application implements EventHandler{
 
 
         if(event.getSource() == play){
+            System.out.println("Button wurde betaetigt");
 
+            /*
             if (playing == false) {
                 playing = true;
                 play.setText("Pause");
@@ -188,7 +193,7 @@ public class Frameapplication extends Application implements EventHandler{
                 title.setText(controller.getTitle());
                 album.setText(controller.getAlbum());
                 artist.setText(controller.getArtist());
-              //  play.setStyle("-fx-color: red");
+
 
 
 
@@ -202,7 +207,7 @@ public class Frameapplication extends Application implements EventHandler{
                 play.setText("Play");
                // play.setStyle("-fx-color: blue");
             }
-
+*/
 
         }
     }
