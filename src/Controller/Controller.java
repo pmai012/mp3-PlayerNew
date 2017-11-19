@@ -9,7 +9,8 @@ import Model.Track;
  * Created by User on 06.11.2017.
  */
 public class Controller {
-    final String PATH ="F:\\GitHub\\mp3-PlayerNew\\src\\music\\02_LoveWillBeWithYou.mp3";
+    final String PATH = "F:\\GitHub\\mp3-PlayerNew\\src\\music\\02_LoveWillBeWithYou.mp3";
+    final String PATH2 ="/Users/deniz/IdeaProjects/mp3-PlayerNew/src/music/02_LoveWillBeWithYou.mp3";
 
     //os.name : "Mac OS X" | "Linux" | ("Windows" (?))
 

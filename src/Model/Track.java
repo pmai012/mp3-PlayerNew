@@ -58,7 +58,14 @@ public class Track {
         return cover;
     }
 
+    public Track(){
+        choosePath();
+        setTrack(path);
+    }
+
     public Track(String path) {
+
+
         setTrack(path);
     }
 
@@ -78,6 +85,21 @@ public class Track {
 
     }
 
+    public void choosePath(){
+
+        if(System.getProperty("os.name").equals("Windows")){
+            path = "F:\\GitHub\\mp3-PlayerNew\\src\\music\\02_LoveWillBeWithYou.mp3";
+
+        }
+        else if(System.getProperty("os.name").equals("Mac OS X")){
+            path ="/Users/" +
+                    System.getProperty("user.name") +
+                    "/IdeaProjects/mp3-PlayerNew/src/music/02_LoveWillBeWithYou.mp3";
+        }
+
+
+    }
+
     public void setTrack(String path) {
           try {
             mp3file = new Mp3File(path);
@@ -92,7 +114,7 @@ public class Track {
             return;
         }
 
-        if (mp3file == null) {
+        if (mp3file == null) { // überflüssig?
             return;
 
         }

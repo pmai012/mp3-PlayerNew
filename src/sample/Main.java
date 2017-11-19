@@ -30,6 +30,7 @@ import javafx.stage.Stage;
 
            /*
            System.out.println(System.getProperty("os.name"));
+           System.out.println(System.getProperty("user.name"));
            System.out.println(System.getProperty("file.separator"));
            System.out.println(System.getProperty("path.separator"));
            System.out.println(System.getProperty("line.separator"));
