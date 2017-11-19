@@ -36,7 +36,9 @@ public class KeyboardController {
 
                 if (i + 1 == command.length) {
 
-                    player.play();
+                    player.play(new Track());
+                    //player.play();
+
                 } else {
 
                     String title = "";
