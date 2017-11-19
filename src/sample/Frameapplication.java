@@ -1,7 +1,9 @@
 package sample;
 
 import Controller.Controller;
+import Model.Playlist;
 import Model.PlaylistManager;
+import Model.Track;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,6 +22,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.control.ListView;
 import javafx.scene.text.Font;
@@ -41,6 +44,7 @@ public class Frameapplication extends Application implements EventHandler{
 
     Controller controller = new Controller();
     //GUI KOMPONENTE
+
     Image playico = new Image("picture/play.jpg");
     Image pauseico = new Image("picture/play.jpg");
     Image previco = new Image("picture/play.jpg");
@@ -50,6 +54,7 @@ public class Frameapplication extends Application implements EventHandler{
     Button play = new Button("", new ImageView(playico));
     Button next = new Button("",new ImageView(nextico));
     Button prev = new Button("", new ImageView(previco));
+    Button btn_sideView_back = new Button("<");
 
 
     Label title = new Label("Title");
@@ -57,7 +62,11 @@ public class Frameapplication extends Application implements EventHandler{
     Label artist = new Label("Artist");
     Label album = new Label("Album");
     Slider volume = new Slider();
-    ListView tracksview = new ListView();
+    ObservableList<String> sideViewItems = FXCollections.observableArrayList ("Songs", "Playlists");
+    ListView sideView = new ListView();
+    ListView songView = new ListView();
+    ListView playlistView = new ListView();
+
 
 
     public void init() {
@@ -84,13 +93,47 @@ public class Frameapplication extends Application implements EventHandler{
         root.setRight(rightpane);
         root.setCenter(centerpane);
 
+        sideView.setItems(sideViewItems);
+        sideView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                Object itemClicked = sideView.getSelectionModel().getSelectedItem();
+                if (itemClicked.equals("Songs"))
+                {
+                    leftpane.getChildren().clear();
+                    leftpane.getChildren().add(btn_sideView_back);
 
-        ListView<String> list = new ListView<String>();
-        ObservableList<String> items = FXCollections.observableArrayList ();
-        items.addAll(playlistManager.getPlaylists());
-        list.setItems(items);
+                    ObservableList<String> songs = FXCollections.observableArrayList();
+                    for (Track t: playlistManager.getAllTracks().getTracks())
+                    {
+                     songs.add(t.getTitle());
+                    }
+                    songView.setItems(songs);
+                    leftpane.getChildren().add(songView);
+                }
+                if (itemClicked.equals("Playlists"))
+                {
+                    leftpane.getChildren().clear();
+                    leftpane.getChildren().add(btn_sideView_back);
+                    ObservableList<String> playlists = FXCollections.observableArrayList();
+                    for (Playlist p: playlistManager.getPlaylists())
+                    {
+                        playlists.add(p.getName());
+                    }
+                    playlistView.setItems(playlists);
+                    leftpane.getChildren().add(playlistView);
 
+                }
+            }
+        });
 
+        btn_sideView_back.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                leftpane.getChildren().clear();
+                leftpane.getChildren().add(sideView);
+            }
+        });
 
         Scene scene = new Scene(root, WIDTH, HEIGHT);
         primaryStage.setScene(scene);
@@ -154,7 +197,7 @@ public class Frameapplication extends Application implements EventHandler{
         centerpane.getChildren().add(supertitle);
         */
 
-        leftpane.getChildren().add(tracksview);
+        leftpane.getChildren().add(sideView);
         bottompane.getChildren().add(volume);
 
 

@@ -51,6 +51,7 @@ public Playlist(){
         return currentTrack;
     }
 
+    public ArrayList<Track> getTracks(){return tracks;}
 
     public void addTrack(Track t) {
         tracks.add(t);
