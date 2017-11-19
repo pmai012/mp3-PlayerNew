@@ -89,8 +89,10 @@ public class PlaylistManager {
         try {
             output = new BufferedWriter(new FileWriter(newPlaylist));
             for (String content : contents) {
-                output.write(content);
-                output.write("\n");
+                if (content != null) {
+                    output.write(content);
+                    output.write("\n");
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
