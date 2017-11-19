@@ -92,7 +92,9 @@ public class Track {
 
         }
         else if(System.getProperty("os.name").equals("Mac OS X")){
-            path ="/Users/deniz/IdeaProjects/mp3-PlayerNew/src/music/02_LoveWillBeWithYou.mp3";
+            path ="/Users/" +
+                    System.getProperty("user.name") +
+                    "/IdeaProjects/mp3-PlayerNew/src/music/02_LoveWillBeWithYou.mp3";
         }
 
 
