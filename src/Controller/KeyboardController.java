@@ -37,7 +37,7 @@ public class KeyboardController {
                 if (i + 1 == command.length) {
 
                     player.play(new Track());
-                    //player.play();
+                    //player.play(); ...
 
                 } else {
 
