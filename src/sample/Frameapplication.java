@@ -44,7 +44,7 @@ public class Frameapplication extends Application implements EventHandler{
 
     Controller controller = new Controller();
     //GUI KOMPONENTE
-    Button btn_sideView_back = new Button("<");
+
     Image playico = new Image("picture/play.jpg");
     Image pauseico = new Image("picture/play.jpg");
     Image previco = new Image("picture/play.jpg");
@@ -54,6 +54,7 @@ public class Frameapplication extends Application implements EventHandler{
     Button play = new Button("", new ImageView(playico));
     Button next = new Button("",new ImageView(nextico));
     Button prev = new Button("", new ImageView(previco));
+    Button btn_sideView_back = new Button("<");
 
 
     Label title = new Label("Title");
