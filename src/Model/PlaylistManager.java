@@ -114,7 +114,7 @@ public class PlaylistManager {
 
 
 
-    public ArrayList<Playlist> loadPlaylists(String path)
+    public ArrayList<Playlist> searchPlaylists(String path)
     {
 //        String path = System.getProperty("user.home").concat("//Music");
         File search = new File(path);
@@ -127,7 +127,7 @@ public class PlaylistManager {
                         this.playlists.add(new Playlist(file.getName(), file.getAbsolutePath()));
                     }
                 } else if (file.isDirectory()) {
-                    loadPlaylists(file.getAbsolutePath());
+                    searchPlaylists(file.getAbsolutePath());
                 }
             }
         }

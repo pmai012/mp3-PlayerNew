@@ -1,6 +1,7 @@
 package sample;
 
 import Controller.Controller;
+import Model.MP3Player;
 import Model.Playlist;
 import Model.PlaylistManager;
 import Model.Track;
@@ -37,6 +38,7 @@ import javafx.stage.StageStyle;
 public class Frameapplication extends Application implements EventHandler{
     final int WIDTH = 1200;
     final int HEIGHT = 620;
+    private MP3Player mp3Player = new MP3Player();
 
     private boolean playing = false;
 
@@ -75,7 +77,8 @@ public class Frameapplication extends Application implements EventHandler{
 
     @Override
     public void start(Stage primaryStage) throws Exception  {
-        playlistManager.loadPlaylists(System.getProperty("user.home").concat("//Music"));
+        playlistManager.searchPlaylists(System.getProperty("user.home").concat("//Music"));
+        Playlist allSongs = playlistManager.getAllTracks();
 
         //Fenstereinstellungen
 
@@ -103,7 +106,7 @@ public class Frameapplication extends Application implements EventHandler{
                     leftpane.getChildren().remove(sideView);
                     leftpane.getChildren().add(btn_sideView_back);
                     ObservableList<String> songs = FXCollections.observableArrayList();
-                    for (Track t: playlistManager.getAllTracks().getTracks())
+                    for (Track t: allSongs.getTracks())
                     {
                      songs.add(t.getTitle());
                     }
@@ -121,6 +124,19 @@ public class Frameapplication extends Application implements EventHandler{
                     }
                     playlistView.setItems(playlists);
                     leftpane.getChildren().add(playlistView);
+                }
+            }
+        });
+        songView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                Object itemClicked = songView.getSelectionModel().getSelectedItem();
+                for (Track t: allSongs.getTracks())
+                {
+                    if (itemClicked.equals(t.getTitle()))
+                    {
+                        mp3Player.play(t);
+                    }
                 }
             }
         });
