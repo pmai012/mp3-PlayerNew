@@ -36,7 +36,7 @@ public class KeyboardController {
 
                 if (i + 1 == command.length) {
 
-                    player.play(new Track());
+                    player.play();
                     //player.play(); ...
 
                 } else {
@@ -64,6 +64,9 @@ public class KeyboardController {
             if (command[i].equals("SKIP")) {
                 player.skip();
             }
+            if (command[i].equals("BACK")) {
+                player.skipBack();
+            }
 
 
             if (command[i].equals("VOLUME")) {
@@ -75,20 +78,7 @@ public class KeyboardController {
                 }
             }
 
-            if (command[i].equals("RADIO")) {
-                if (i + 1 <= command.length) {
-                    String value = command[i + 1];
 
-
-
-                    Track pfad = new Track("swr3",true);
-                    player.play(pfad);
-
-
-                } else {
-                    System.out.println("Geben Sie bitte einen Wert mit!");
-                }
-            }
 
             if (command[i].equals("LOAD")) {
                 if (i + 1 <= command.length) {

@@ -17,6 +17,7 @@ public class MP3Player implements Runnable {
     Playlist playlist ;
     Track track;
     boolean again = false;
+    boolean playing = false;
 
 
     public MP3Player() {
@@ -35,18 +36,20 @@ public class MP3Player implements Runnable {
   }
 
     public void play(Track track) {
-        this.track = track;
-        audioPlayer = minim.loadMP3File(track.getPath());
+      if (playing == false) {
+          this.track = track;
+          audioPlayer = minim.loadMP3File(track.getPath());
+            playing = true;
 
-
-        play();
-
+          play();
+      }
     }
 
     public void play() {
 
 if (track != null){
     audioPlayer = minim.loadMP3File(track.getPath());
+    audioPlayer.cue((int)track.getCurrenttime());
 }
         audioPlayer.play();
 
@@ -58,7 +61,7 @@ if (track != null){
 
     public void pause() {
 
-
+      track.setCurrenttime(audioPlayer.position());
             audioPlayer.pause();
 
 
@@ -66,6 +69,7 @@ if (track != null){
 
     public void stop() {
         minim.stop();
+        track = null;
     }
 
 
@@ -108,11 +112,15 @@ if (track != null){
     }
     public void skip(){
         minim.stop();
-        audioPlayer= minim.loadMP3File(playlist.skip().getPath());
+        track = playlist.skip();
+        audioPlayer= minim.loadMP3File(track.getPath());
         audioPlayer.play();
     }
      public void skipBack( ){
-         audioPlayer= minim.loadMP3File(playlist.skipback().getPath());
+        minim.stop();
+        track =playlist.skipback();
+         audioPlayer= minim.loadMP3File(track.getPath());
+         audioPlayer.play();
      }
     public void shuffle(boolean on){
         audioPlayer= minim.loadMP3File(playlist.shuffle().getPath());

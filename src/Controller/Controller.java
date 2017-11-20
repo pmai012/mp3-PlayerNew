@@ -23,7 +23,7 @@ public class Controller {
 
     public void play(){
         //track = new Track(PATH);
-        track = new Track();
+       // track = new Track();
         player.play(track);
     }
 

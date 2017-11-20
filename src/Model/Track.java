@@ -23,6 +23,16 @@ public class Track {
     private String path = null;
     private String year = "unbekanntes Jahr";
     private long length = 0;
+    private long currenttime = 0;
+
+    public long getCurrenttime() {
+        return currenttime;
+    }
+
+    public void setCurrenttime(long currenttime) {
+        this.currenttime = currenttime;
+    }
+
     private Mp3File mp3file = null;
     byte[] cover = null;
 
@@ -58,10 +68,7 @@ public class Track {
         return cover;
     }
 
-    public Track(){
-        choosePath();
-        setTrack(path);
-    }
+
 
     public Track(String path) {
 
@@ -69,36 +76,7 @@ public class Track {
         setTrack(path);
     }
 
-    public Track(String sender , boolean radio) {
-        if (radio = true){
-            sender = sender.toLowerCase();
 
-            if (sender.equals("swr3")){
-                path = "http://swr-swr3-live.cast.addradio.de/swr/swr3/live/mp3/128/stream.mp3";
-            }
-
-
-        }else{
-            setTrack(path);
-        }
-
-
-    }
-
-    public void choosePath(){
-
-        if(System.getProperty("os.name").equals("Windows")){
-            path = "F:\\GitHub\\mp3-PlayerNew\\src\\music\\02_LoveWillBeWithYou.mp3";
-
-        }
-        else if(System.getProperty("os.name").equals("Mac OS X")){
-            path ="/Users/" +
-                    System.getProperty("user.name") +
-                    "/IdeaProjects/mp3-PlayerNew/src/music/02_LoveWillBeWithYou.mp3";
-        }
-
-
-    }
 
     public void setTrack(String path) {
           try {

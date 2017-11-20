@@ -37,12 +37,17 @@ public Playlist(){
 
 
     public Track skip() {
-        currentTrack = tracks.get(index + 1);
+        index++;
+        currentTrack = tracks.get(index);
         return currentTrack;
     }
 
     public Track skipback() {
-        currentTrack = tracks.get(index - 1);
+
+            index= index-1;
+     if (index > 0) {
+         currentTrack = tracks.get(index);
+     }
         return currentTrack;
     }
 
