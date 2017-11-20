@@ -10,11 +10,11 @@ public class PlaylistManager {
 
     private ArrayList<Playlist> playlists;
     private List<String> contents;
-    File newPlaylist;
+    File allTacksPlaylist;
     private String extension = ".mp3";
 
     public PlaylistManager() {
-        newPlaylist = new File(System.getProperty("user.home").concat("//Music") + "/AllTracks.m3u");
+        allTacksPlaylist = new File(System.getProperty("user.home").concat("//Music") + "/AllTracks.m3u");
         this.playlists = new ArrayList<>();
         contents = new ArrayList<String>();
         contents.add("EXTM3U");
@@ -87,7 +87,7 @@ public class PlaylistManager {
     private void savePlaylist(){
         Writer output = null;
         try {
-            output = new BufferedWriter(new FileWriter(newPlaylist));
+            output = new BufferedWriter(new FileWriter(allTacksPlaylist));
             for (String content : contents) {
                 if (content != null) {
                     output.write(content);
@@ -106,7 +106,7 @@ public class PlaylistManager {
                 }
         }
 
-        newPlaylist = null;
+        allTacksPlaylist = null;
         contents = null;
     }
 

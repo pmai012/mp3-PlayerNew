@@ -100,9 +100,8 @@ public class Frameapplication extends Application implements EventHandler{
                 Object itemClicked = sideView.getSelectionModel().getSelectedItem();
                 if (itemClicked.equals("Songs"))
                 {
-                    leftpane.getChildren().clear();
+                    leftpane.getChildren().remove(sideView);
                     leftpane.getChildren().add(btn_sideView_back);
-
                     ObservableList<String> songs = FXCollections.observableArrayList();
                     for (Track t: playlistManager.getAllTracks().getTracks())
                     {
@@ -113,7 +112,7 @@ public class Frameapplication extends Application implements EventHandler{
                 }
                 if (itemClicked.equals("Playlists"))
                 {
-                    leftpane.getChildren().clear();
+                    leftpane.getChildren().remove(sideView);
                     leftpane.getChildren().add(btn_sideView_back);
                     ObservableList<String> playlists = FXCollections.observableArrayList();
                     for (Playlist p: playlistManager.getPlaylists())
@@ -122,7 +121,6 @@ public class Frameapplication extends Application implements EventHandler{
                     }
                     playlistView.setItems(playlists);
                     leftpane.getChildren().add(playlistView);
-
                 }
             }
         });
