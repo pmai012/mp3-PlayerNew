@@ -6,18 +6,33 @@ import de.hsrm.mi.eibo.simpleplayer.SimpleMinim;
 
 import javafx.scene.layout.Background;
 
+import java.io.FileNotFoundException;
+
 /**
  * Created by Pascal, Julian
  */
 public class MP3Player implements Runnable {
 
 
-    SimpleMinim minim;
-    SimpleAudioPlayer audioPlayer;
-    Playlist playlist ;
-    Track track;
+    private SimpleMinim minim;
+    private SimpleAudioPlayer audioPlayer;
+    private Playlist playlist ;
+    private Track track;
     boolean again = false;
     boolean playing = false;
+
+
+
+
+
+    /**
+     * Gibt den aktuellen track heraus
+     *
+     * @return aktueler Track.
+     */
+    public Track getcurrentTrack(){
+  return track;
+};
 
 
     public MP3Player() {
@@ -40,9 +55,12 @@ public class MP3Player implements Runnable {
 
     public void play(Track track) {
       if (playing == false) {
+
+
           this.track = track;
+
           audioPlayer = minim.loadMP3File(track.getPath());
-            playing = true;
+          playing = true;
 
           play();
       }

@@ -3,6 +3,7 @@ package Model;
 
 import com.mpatric.mp3agic.*;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 /**
@@ -24,6 +25,18 @@ public class Track {
     private String year = "unbekanntes Jahr";
     private long length = 0;
     private long currenttime = 0;
+    private boolean internetpfad = false;
+
+
+    /**
+     * Gibt zurueck ob es sich um einen Internetpfad handelt oder nicht
+     * @return
+     */
+    public boolean isInternetpfad() {
+        return internetpfad;
+    }
+
+
 
     public long getCurrenttime() {
         return currenttime;
@@ -69,17 +82,21 @@ public class Track {
     }
 
 
-
     public Track(String path) {
 
+        if (path.startsWith("http") || path.startsWith("www") ){
+            this.path = path;
+            internetpfad = true;
+        }else {
+            internetpfad = false;
+            setTrack(path);
 
-        setTrack(path);
+        }
     }
 
 
-
     public void setTrack(String path) {
-          try {
+        try {
             mp3file = new Mp3File(path);
         } catch (IOException e) {
             e.printStackTrace();
@@ -92,13 +109,10 @@ public class Track {
             return;
         }
 
-        if (mp3file == null) { // überflüssig?
-            return;
 
-        }
+
         if (mp3file.hasId3v1Tag()) {
-//          ID3v2 id3tags = mp3file.getId3v2Tag();
-            ID3v1 id3tags = mp3file.getId3v1Tag();
+            ID3v2 id3tags = mp3file.getId3v2Tag();
             this.path = path;
 
             if (id3tags != null) {
@@ -129,9 +143,9 @@ public class Track {
                 if (id3tags.getYear() != null) {
                     year = id3tags.getYear();
                 }
-//            if (id3tags.getAlbumImage() != null) {
-//                cover = id3tags.getAlbumImage();
-//            }
+            if (id3tags.getAlbumImage() != null) {
+                cover = id3tags.getAlbumImage();
+           }
                 length = mp3file.getLengthInMilliseconds();
 
 

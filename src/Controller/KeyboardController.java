@@ -73,6 +73,17 @@ public class KeyboardController {
                 player.shuffle(!player.isShuffle());
             }
 
+            if (command[i].equals("RADIO")) {
+
+                player.play(new Track("http://swr-swr3-live.cast.addradio.de/swr/swr3/live/mp3/128/stream.mp3"));
+            }
+
+
+            if (command[i].equals("INFO")) {
+              System.out.println(player.getcurrentTrack().getTitle() + " von " + player.getcurrentTrack().getArtist() + "aus dem Album: " + player.getcurrentTrack().getAlbum());
+
+            }
+
 
             if (command[i].equals("VOLUME")) {
                 if (i + 1 <= command.length) {
