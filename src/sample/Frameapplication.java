@@ -8,12 +8,9 @@ import Model.Track;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.geometry.NodeOrientation;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 
@@ -26,10 +23,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.control.ListView;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-
 
 
 /**
@@ -47,15 +41,15 @@ public class Frameapplication extends Application implements EventHandler{
     Controller controller = new Controller();
     //GUI KOMPONENTE
 
-    Image playico = new Image("picture/play.jpg");
-    Image pauseico = new Image("picture/play.jpg");
-    Image previco = new Image("picture/play.jpg");
-    Image nextico = new Image("picture/play.jpg");
-    Image stopico = new Image("picture/play.jpg");
+    Image playicon = new Image("picture/play.jpg");
+    Image pauseicon = new Image("picture/pause.jpg");
+    Image previcon = new Image("picture/prev.jpg");
+    Image nexticon = new Image("picture/next.jpg");
+    Image stopicon = new Image("picture/stop.jpg");
 
-    Button play = new Button("", new ImageView(playico));
-    Button next = new Button("",new ImageView(nextico));
-    Button prev = new Button("", new ImageView(previco));
+    Button play = new Button("", new ImageView(playicon));
+    Button next = new Button("",new ImageView(nexticon));
+    Button prev = new Button("", new ImageView(previcon));
     Button btn_sideView_back = new Button("<");
 
 
