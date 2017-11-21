@@ -68,6 +68,11 @@ public class KeyboardController {
                 player.skipBack();
             }
 
+            if (command[i].equals("SHUFFLE")) {
+
+                player.shuffle(!player.isShuffle());
+            }
+
 
             if (command[i].equals("VOLUME")) {
                 if (i + 1 <= command.length) {

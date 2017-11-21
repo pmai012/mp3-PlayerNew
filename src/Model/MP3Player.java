@@ -35,6 +35,9 @@ public class MP3Player implements Runnable {
 
   }
 
+
+
+
     public void play(Track track) {
       if (playing == false) {
           this.track = track;
@@ -104,7 +107,9 @@ if (track != null){
     }
 
 
-
+    public boolean isShuffle(){
+      return playlist.isShuffling();
+    }
 
 
     public void setPlaylist(Playlist actPlaylist){
@@ -118,12 +123,15 @@ if (track != null){
     }
      public void skipBack( ){
         minim.stop();
-        track =playlist.skipback();
+        track = playlist.skipback();
          audioPlayer= minim.loadMP3File(track.getPath());
          audioPlayer.play();
      }
     public void shuffle(boolean on){
-        audioPlayer= minim.loadMP3File(playlist.shuffle().getPath());
+        if (on ){
+            playlist.shuffle(on);
+        }
+
     }
     public void repeat(boolean on) {
         again = on;
