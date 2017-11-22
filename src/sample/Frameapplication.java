@@ -29,7 +29,7 @@ import javafx.stage.Stage;
 /**
  * Created by User on 06.11.2017.
  */
-public class Frameapplication extends Application implements EventHandler{
+public class Frameapplication extends Application {
     final int WIDTH = 1200;
     final int HEIGHT = 620;
     private MP3Player mp3Player = new MP3Player();
@@ -41,15 +41,17 @@ public class Frameapplication extends Application implements EventHandler{
     Controller controller = new Controller();
     //GUI KOMPONENTE
 
-    Image playicon = new Image("picture/play.jpg");
-    Image pauseicon = new Image("picture/pause.jpg");
-    Image previcon = new Image("picture/prev.jpg");
-    Image nexticon = new Image("picture/next.jpg");
-    Image stopicon = new Image("picture/stop.jpg");
+    Image playicon = new Image("picture/play.png");
+    Image pauseicon = new Image("picture/pause.png");
+    Image previcon = new Image("picture/prev.png");
+    Image nexticon = new Image("picture/next.png");
+    Image stopicon = new Image("picture/stop.png");
 
-    Button play = new Button("", new ImageView(playicon));
-    Button next = new Button("",new ImageView(nexticon));
-    Button prev = new Button("", new ImageView(previcon));
+
+
+    ImageView play = new ImageView(playicon);
+    ImageView next = new ImageView(nexticon);
+    ImageView prev =  new ImageView(previcon);
     Button btn_sideView_back = new Button("<");
 
 
@@ -66,7 +68,12 @@ public class Frameapplication extends Application implements EventHandler{
 
 
     public void init() {
-
+    play.setScaleX(0.3);
+    play.setScaleY(0.3);
+    prev.setScaleX(0.1);
+    prev.setScaleY(0.1);
+    next.setScaleX(0.1);
+    next.setScaleY(0.1);
     }
 
     @Override
@@ -89,6 +96,35 @@ public class Frameapplication extends Application implements EventHandler{
         root.setLeft(leftpane);
         root.setRight(rightpane);
         root.setCenter(centerpane);
+
+
+        Scene scene = new Scene(root, WIDTH, HEIGHT);
+        primaryStage.setScene(scene);
+        //primaryStage.initStyle(StageStyle.TRANSPARENT);
+        primaryStage.setMinHeight(200);
+        primaryStage.setMinWidth(200);
+        primaryStage.setTitle("3Player");
+
+        root.setPadding(new Insets(20,0,0,0));
+        root.setStyle("-fx-background-color: gold;");
+
+
+
+        play.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if (mp3Player.isPlaying() == false){
+                   play.setImage(pauseicon);
+                   title.setText(mp3Player.getcurrentTrack().getTitle());
+                    album.setText(mp3Player.getcurrentTrack().getAlbum());
+                    artist.setText(mp3Player.getcurrentTrack().getArtist());
+                }else{
+                    play.setImage(playicon);
+                }
+
+            }
+        });
+
 
         sideView.setItems(sideViewItems);
         sideView.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -143,15 +179,6 @@ public class Frameapplication extends Application implements EventHandler{
             }
         });
 
-        Scene scene = new Scene(root, WIDTH, HEIGHT);
-        primaryStage.setScene(scene);
-        //primaryStage.initStyle(StageStyle.TRANSPARENT);
-        primaryStage.setMinHeight(200);
-        primaryStage.setMinWidth(200);
-        primaryStage.setTitle("3Player");
-
-        root.setPadding(new Insets(20,0,0,0));
-        root.setStyle("-fx-background-color: gold;");
 
 
 
@@ -161,19 +188,21 @@ public class Frameapplication extends Application implements EventHandler{
 
 
 
-        play.setOnAction(this);
-        next.setOnAction(this);
-        prev.setOnAction(this);
+
+       // play.setOnAction(this);
+      //  next.setOnAction(this);
+      //  prev.setOnAction(this);
 
 
 
 
 
         //Konfiguration von bottom Pane
-        bottompane.setPadding(new Insets(10));
+        bottompane.setPadding(new Insets(5));
         bottompane.setAlignment(Pos.TOP_CENTER);
-        bottompane.setHgap(20);
+        bottompane.setHgap(10);
         bottompane.setStyle("-fx-background-color: black}{");
+
 
 
         bottompane.getChildren().add(prev);
@@ -232,38 +261,6 @@ public class Frameapplication extends Application implements EventHandler{
 
 
 
-    @Override
-    public void handle(Event event) {
 
-
-        if(event.getSource() == play){
-            System.out.println("Button wurde betaetigt");
-
-
-            if (playing == false) {
-                playing = true;
-                play.setText("Pause");
-                controller.play();
-                title.setText(controller.getTitle());
-                album.setText(controller.getAlbum());
-                artist.setText(controller.getArtist());
-
-
-
-
-                byte[] coverdata = controller.getCover();
-            } else{
-                playing = false;
-                controller.pause();
-                title.setText("");
-                album.setText("");
-                artist.setText("");
-                play.setText("Play");
-               // play.setStyle("-fx-color: blue");
-            }
-
-
-        }
-    }
 }
 

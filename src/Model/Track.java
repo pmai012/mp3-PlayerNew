@@ -49,42 +49,86 @@ public class Track {
     private Mp3File mp3file = null;
     byte[] cover = null;
 
+    /**
+     * Get Title
+     * @return gibt den Titel des Tracks als String zurueck
+     */
     public String getTitle() {
         return title;
     }
 
+    /**
+     * get Artist
+     * @return gibt den komponisten des Tracks als String  zurueck.
+     */
     public String getArtist() {
         return artist;
     }
 
+    /**
+     * Get Album
+     * @return Gibt den Namen des Albums als String zurueck
+     */
     public String getAlbum() {
         return album;
     }
 
+    /**
+     * Get Genre
+     * @return Gibt das Genre des Tracks als String zurueck
+     */
     public String getGenre() {
         return genre;
     }
 
+    /**
+     * Get Comment
+     * @return Gibt den kommentar von dem Stück als String zurueck.
+     */
     public String getComment() {
         return comment;
     }
 
+    /**
+     * Get Path
+     * @return Gibt den Pfad des Tracks an
+     */
     public String getPath() {
         return path;
     }
 
+    /**
+     * Get Year
+     * @return Gibt das Entstehungsjahr des Tracks als String zurueck.
+     */
     public String getYear() {
         return year;
     }
 
+    /**
+     * Get Cover
+     * @return Gibt das Coverbild als ByteArray zurueck.
+     */
     public byte[] getCover() {
         return cover;
     }
 
 
+
+
+
+
+
+
+
+    /**
+     *Konstruktor der Track Klasse
+     * Erkennt zudem ob es sich um einen Internetpfad handelt
+     * @param path Der Pfad zur Mp3 Datei. Kann auch Internetadresse sein
+     */
     public Track(String path) {
 
-        if (path.startsWith("http") || path.startsWith("www") ){
+        if (path.startsWith("www.") ){
             this.path = path;
             internetpfad = true;
         }else {
@@ -95,6 +139,11 @@ public class Track {
     }
 
 
+    /**
+     * Set Track
+     * Dabei werden die Id3 Tags des Tracks ausgelesen und in den Parametern der Klasse gespeichert
+     * @param path Der Pfad des Tracks muss mitgegeben werden
+     */
     public void setTrack(String path) {
         try {
             mp3file = new Mp3File(path);

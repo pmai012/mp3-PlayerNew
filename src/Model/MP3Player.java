@@ -1,12 +1,8 @@
 package Model;
 
-import ddf.minim.Playable;
+
 import de.hsrm.mi.eibo.simpleplayer.SimpleAudioPlayer;
 import de.hsrm.mi.eibo.simpleplayer.SimpleMinim;
-
-import javafx.scene.layout.Background;
-
-import java.io.FileNotFoundException;
 
 /**
  * Created by Pascal, Julian
@@ -16,74 +12,88 @@ public class MP3Player implements Runnable {
 
     private SimpleMinim minim;
     private SimpleAudioPlayer audioPlayer;
-    private Playlist playlist ;
+    private Playlist playlist;
     private Track track;
-    boolean again = false;
+    boolean again = true;
+
+
+
     boolean playing = false;
-
-
-
+    private int repeats = 1;
 
 
     /**
      * Gibt den aktuellen track heraus
      *
-     * @return aktueler Track.
+     * @return aktueller Track.
      */
-    public Track getcurrentTrack(){
-  return track;
-};
+    public Track getcurrentTrack() {
+        return track;
+    }
 
+    ;
+    public boolean isPlaying() {
+        return playing;
+    }
 
     public MP3Player() {
         minim = new SimpleMinim(true);
-       playlist = new Playlist();
+        playlist = new Playlist();
 
 
     }
 
-  public void loadPlaylist(String path){
+    /**
+     * Load Playlist
+     *
+     * @param path laed die Playlist des aktuellen Pfades
+     */
+    public void loadPlaylist(String path) {
 
-       playlist.loadPlaylist(path);
+        playlist.loadPlaylist(path);
         track = playlist.getCurrentTrackTrack();
 
 
-  }
-
-
+    }
 
 
     public void play(Track track) {
-      if (playing == false) {
+        if (playing == false) {
 
 
-          this.track = track;
+            this.track = track;
 
-          audioPlayer = minim.loadMP3File(track.getPath());
-          playing = true;
+            audioPlayer = minim.loadMP3File(track.getPath());
+            playing = true;
 
-          play();
-      }
+            play();
+        }
     }
 
     public void play() {
 
-if (track != null){
-    audioPlayer = minim.loadMP3File(track.getPath());
-    audioPlayer.cue((int)track.getCurrenttime());
-}
-        audioPlayer.play();
 
-        if (again) {
-            audioPlayer.play();
+        if (track != null) {
+            audioPlayer = minim.loadMP3File(track.getPath());
+            audioPlayer.cue((int) track.getCurrenttime());
         }
+        System.out.println(track.getTitle() + " wird gespielt ");
+        audioPlayer.play();
+        if (again) {
+            audioPlayer.loop(repeats);
+            repeats += audioPlayer.loopCount();
+        }else {
+
+        }
+
+
     }
 
 
     public void pause() {
 
-      track.setCurrenttime(audioPlayer.position());
-            audioPlayer.pause();
+        track.setCurrenttime(audioPlayer.position());
+        audioPlayer.pause();
 
 
     }
@@ -125,34 +135,42 @@ if (track != null){
     }
 
 
-    public boolean isShuffle(){
-      return playlist.isShuffling();
+    public boolean isShuffle() {
+        return playlist.isShuffling();
     }
 
 
-    public void setPlaylist(Playlist actPlaylist){
-    this.playlist = actPlaylist;
+    public void setPlaylist(Playlist actPlaylist) {
+        this.playlist = actPlaylist;
     }
-    public void skip(){
+
+    public void skip() {
         minim.stop();
         track = playlist.skip();
-        audioPlayer= minim.loadMP3File(track.getPath());
-        audioPlayer.play();
+        audioPlayer = minim.loadMP3File(track.getPath());
+        play();
     }
-     public void skipBack( ){
+
+    public void skipBack() {
         minim.stop();
         track = playlist.skipback();
-         audioPlayer= minim.loadMP3File(track.getPath());
-         audioPlayer.play();
-     }
-    public void shuffle(boolean on){
-        if (on ){
+        audioPlayer = minim.loadMP3File(track.getPath());
+        play();
+    }
+
+    public void shuffle(boolean on) {
+        if (on) {
             playlist.shuffle(on);
         }
 
     }
+
     public void repeat(boolean on) {
         again = on;
+        if (!again){
+        }else{
+            repeats = repeats-1;
+        }
     }
 
 

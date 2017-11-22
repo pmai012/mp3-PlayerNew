@@ -46,7 +46,7 @@ import javafx.stage.Stage;
                 input = StaticScanner.nextString();
                 eingabe.befehl(input);
             }
-            return;
+       //     return;
 
         }
             Application.launch(Frameapplication.class, args);

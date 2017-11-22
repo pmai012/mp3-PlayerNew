@@ -1,5 +1,7 @@
 package Model;
 
+import javafx.scene.control.Alert;
+
 import java.io.*;
 import java.util.*;
 
@@ -13,7 +15,7 @@ import java.util.*;
 6
  * @version 1.0
 7  */
-public class Playlist {
+public class Playlist extends Exception{
 
     private int index = 0;
     private Track currentTrack = null;
@@ -214,6 +216,10 @@ public class Playlist {
      */
     public void loadPlaylist(String path) {
 
+        if (!path.endsWith(extension)){
+
+            return;
+        }
         String zeile = null;
         boolean next = false;
 
