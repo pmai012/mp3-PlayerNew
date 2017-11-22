@@ -19,7 +19,7 @@ public class MP3Player implements Runnable {
 
 
     boolean playing = false;
-    private int repeats = 1;
+
 
 
     /**
@@ -78,11 +78,10 @@ public class MP3Player implements Runnable {
             audioPlayer.cue((int) track.getCurrenttime());
         }
         System.out.println(track.getTitle() + " wird gespielt ");
+        playing = true;
         audioPlayer.play();
         if (again) {
-            audioPlayer.loop(repeats);
-            repeats += audioPlayer.loopCount();
-        }else {
+            audioPlayer.loop();
 
         }
 
@@ -94,6 +93,7 @@ public class MP3Player implements Runnable {
 
         track.setCurrenttime(audioPlayer.position());
         audioPlayer.pause();
+        playing = false;
 
 
     }
@@ -167,10 +167,7 @@ public class MP3Player implements Runnable {
 
     public void repeat(boolean on) {
         again = on;
-        if (!again){
-        }else{
-            repeats = repeats-1;
-        }
+
     }
 
 

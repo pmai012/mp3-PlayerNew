@@ -25,6 +25,8 @@ import javafx.scene.layout.*;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 
+import java.io.ByteArrayInputStream;
+
 
 /**
  * Created by User on 06.11.2017.
@@ -42,16 +44,19 @@ public class Frameapplication extends Application {
     //GUI KOMPONENTE
 
     Image playicon = new Image("picture/play.png");
+    Image playonselect=  new Image("picture/playOnSelection.png");
     Image pauseicon = new Image("picture/pause.png");
     Image previcon = new Image("picture/prev.png");
     Image nexticon = new Image("picture/next.png");
     Image stopicon = new Image("picture/stop.png");
+    Image cover ;
 
 
 
     ImageView play = new ImageView(playicon);
     ImageView next = new ImageView(nexticon);
     ImageView prev =  new ImageView(previcon);
+    ImageView albumcover = new ImageView(cover);
     Button btn_sideView_back = new Button("<");
 
 
@@ -90,12 +95,15 @@ public class Frameapplication extends Application {
         FlowPane bottompane = new FlowPane();
         StackPane centerpane = new StackPane();
 
+
+
         BorderPane root = new BorderPane();
         root.setTop(toppane);
         root.setBottom(bottompane);
         root.setLeft(leftpane);
         root.setRight(rightpane);
         root.setCenter(centerpane);
+
 
 
         Scene scene = new Scene(root, WIDTH, HEIGHT);
@@ -109,17 +117,41 @@ public class Frameapplication extends Application {
         root.setStyle("-fx-background-color: gold;");
 
 
+        play.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if (!controller.isplaying()) {
+                    play.setImage(playonselect);
+                }
+            }
+        });
+
+        play.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                play.setImage(new Image("picture/play.png"));
+            }
+        });
 
         play.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                if (mp3Player.isPlaying() == false){
-                   play.setImage(pauseicon);
-                   title.setText(mp3Player.getcurrentTrack().getTitle());
-                    album.setText(mp3Player.getcurrentTrack().getAlbum());
-                    artist.setText(mp3Player.getcurrentTrack().getArtist());
+                if (controller.isplaying() == false){
+                    controller.play();
+                    cover = new Image(new ByteArrayInputStream(controller.getCover()));
+                    albumcover = new ImageView(cover);
+                    albumcover.setScaleX(0.3);
+                    albumcover.setScaleY(0.3);
+                    centerpane.getChildren().add(albumcover);
+
+                      play.setImage(pauseicon);
+                    title.setText(controller.title());
+                    album.setText(controller.album());
+                    artist.setText(controller.artist());
+
                 }else{
                     play.setImage(playicon);
+                    controller.pause();
                 }
 
             }

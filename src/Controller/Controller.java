@@ -21,8 +21,29 @@ public class Controller {
         player = new MP3Player();
     }
 
+public String title(){
+        return player.getcurrentTrack().getTitle();
+    }
+    public String album(){
+        return player.getcurrentTrack().getAlbum();
+    }
+    public String artist(){
+        return player.getcurrentTrack().getArtist();
+    }
+
+    public boolean isplaying(){
+        return player.isPlaying();
+    }
+
+    public byte[] Cover(){
+   return     player.getcurrentTrack().getCover();
+    }
+
+
+
+
     public void play(){
-        //track = new Track(PATH);
+        track = new Track(PATH);
        // track = new Track();
         player.play(track);
     }

@@ -3,6 +3,7 @@ package Model;
 
 import com.mpatric.mp3agic.*;
 
+import java.io.ByteArrayInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
