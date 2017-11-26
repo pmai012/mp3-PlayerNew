@@ -168,9 +168,10 @@ public class Track {
 
 
 
-        if (mp3file.hasId3v1Tag()) {
+        this.path = path;
+
+        if (mp3file.hasId3v2Tag()) {
             ID3v2 id3tags = mp3file.getId3v2Tag();
-            this.path = path;
 
             if (id3tags != null) {
                 if (id3tags.getTitle() != null) {
@@ -200,16 +201,46 @@ public class Track {
                 if (id3tags.getYear() != null) {
                     year = id3tags.getYear();
                 }
-            if (id3tags.getAlbumImage() != null) {
-                cover = id3tags.getAlbumImage();
-           }
+                if (id3tags.getAlbumImage() != null) {
+                    cover = id3tags.getAlbumImage();
+                }
                 length = mp3file.getLengthInMilliseconds();
 
 
             }
         }
+            if (mp3file.hasId3v1Tag()) {
+                ID3v1 id3v1tags = mp3file.getId3v1Tag();
+                if (id3v1tags != null) {
+                    if (id3v1tags.getTitle() != null) {
+                        title = id3v1tags.getTitle();
+                    } else {
 
+                        int index = path.lastIndexOf("\\");
+                        title = path.substring(index + 1);
 
+                    }
+
+                    if (id3v1tags.getArtist() != null) {
+                        artist = id3v1tags.getArtist();
+                    }
+
+                    if (id3v1tags.getAlbum() != null) {
+                        album = id3v1tags.getAlbum();
+                    }
+
+                    if (id3v1tags.getGenreDescription() != null) {
+                        genre = id3v1tags.getGenreDescription();
+                    }
+
+                    if (id3v1tags.getComment() != null) {
+                        comment = id3v1tags.getComment();
+                    }
+                    if (id3v1tags.getYear() != null) {
+                        year = id3v1tags.getYear();
+                    }
+                    length = mp3file.getLengthInMilliseconds();
+                }
+        }
     }
-
 }

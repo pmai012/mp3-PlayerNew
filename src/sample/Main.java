@@ -8,7 +8,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
- public class Main extends Application {
+import java.io.IOException;
+
+public class Main extends Application {
 
 
 
@@ -23,7 +25,7 @@ import javafx.stage.Stage;
     }
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
        if (args.length != 0 && args[0].isEmpty() == false && args[0].equals("key")) {
             System.out.println("MusikPlayer");

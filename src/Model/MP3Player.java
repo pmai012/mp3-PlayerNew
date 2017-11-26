@@ -40,7 +40,6 @@ public class MP3Player implements Runnable {
         minim = new SimpleMinim(true);
         playlist = new Playlist();
 
-
     }
 
     /**
@@ -60,9 +59,7 @@ public class MP3Player implements Runnable {
     public void play(Track track) {
         if (playing == false) {
 
-
             this.track = track;
-
             audioPlayer = minim.loadMP3File(track.getPath());
             playing = true;
 

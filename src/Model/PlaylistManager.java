@@ -29,11 +29,11 @@ public class PlaylistManager {
         return null;
     }
 
-    public Playlist getAllTracks() {
+    public Playlist getAllTracks() throws IOException{
 
         Playlist playlist = new Playlist("AllTracks", null);
 
-        playlist = createPlaylist(System.getProperty("user.home").concat("//Music"), playlist );
+        playlist = createPlaylist(System.getProperty("user.home").concat("//Music"), playlist);
         savePlaylist();
         return playlist;
     }
@@ -55,7 +55,7 @@ public class PlaylistManager {
     }
 
 
-    private Playlist createPlaylist(String directoryName, Playlist playlist){
+    private Playlist createPlaylist(String directoryName, Playlist playlist) throws IOException{
             File directory = new File(directoryName);
 
             Writer output = null;
@@ -66,7 +66,7 @@ public class PlaylistManager {
                 for (File file : fList) {
                     if (file.isFile()) {
                         if (file.getName().endsWith(extension)) {
-                            playlist.addTrack(new Track(file.getAbsolutePath()));
+                            playlist.addTrack(new Track(file.getCanonicalPath()));
                         }
                     } else if (file.isDirectory()) {
                         createPlaylist(file.getAbsolutePath(), playlist);

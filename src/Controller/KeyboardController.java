@@ -20,7 +20,7 @@ public class KeyboardController {
         playlistManager = new PlaylistManager();
     }
 
-    public void befehl(String input) {
+    public void befehl(String input) throws IOException {
 
 
         String[] command = input.split(" ");
