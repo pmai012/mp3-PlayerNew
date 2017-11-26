@@ -66,7 +66,7 @@ public class PlaylistManager {
                 for (File file : fList) {
                     if (file.isFile()) {
                         if (file.getName().endsWith(extension)) {
-                            playlist.addTrack(new Track(file.getCanonicalPath()));
+                            playlist.addTrack(new Track(file.getAbsolutePath()));
                         }
                     } else if (file.isDirectory()) {
                         createPlaylist(file.getAbsolutePath(), playlist);

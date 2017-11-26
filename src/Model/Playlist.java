@@ -202,12 +202,19 @@ public class Playlist extends Exception{
      */
     public ArrayList<Track> getQueue(){return queue;}
 
+    /**
+     * Track wird zu Playlist hinzugefügt
+     * @param t wird der Playlist hinzugefügt
+     */
+    public void addTrack(Track t) {
+        tracks.add(t);
+    }
 
     /**
      * Es wird ein Track an die Warteschleife gehalten
      * @param t wird an die playlist gehaengt
      */
-    public void addTrack(Track t) {
+    public void addTracktoQueue(Track t) {
         queue.add(t);
     }
 
