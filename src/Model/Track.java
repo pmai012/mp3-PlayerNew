@@ -2,6 +2,7 @@ package Model;
 
 
 import com.mpatric.mp3agic.*;
+import javafx.beans.value.ChangeListener;
 
 import java.io.ByteArrayInputStream;
 import java.io.FileNotFoundException;
@@ -27,7 +28,7 @@ public class Track {
     private long length = 0;
     private long currenttime = 0;
     private boolean internetpfad = false;
-
+    byte[] cover = null;
 
     /**
      * Gibt zurueck ob es sich um einen Internetpfad handelt oder nicht
@@ -47,8 +48,13 @@ public class Track {
         this.currenttime = currenttime;
     }
 
-    private Mp3File mp3file = null;
-    byte[] cover = null;
+
+
+
+
+
+
+
 
     /**
      * Get Title
@@ -146,6 +152,7 @@ public class Track {
      * @param path Der Pfad des Tracks muss mitgegeben werden
      */
     public void setTrack(String path) {
+        Mp3File mp3file = null;
         try {
             mp3file = new Mp3File(path);
         } catch (IOException e) {

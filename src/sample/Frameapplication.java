@@ -6,6 +6,8 @@ import Model.Playlist;
 import Model.PlaylistManager;
 import Model.Track;
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.Event;
@@ -27,11 +29,14 @@ import javafx.stage.Stage;
 
 import java.io.ByteArrayInputStream;
 
+import static sun.audio.AudioPlayer.player;
+
 
 /**
  * Created by User on 06.11.2017.
  */
 public class Frameapplication extends Application {
+
     final int WIDTH = 1200;
     final int HEIGHT = 620;
     private MP3Player mp3Player = new MP3Player();
@@ -102,7 +107,7 @@ public class Frameapplication extends Application {
         root.setBottom(bottompane);
         root.setLeft(leftpane);
         root.setRight(rightpane);
-        root.setCenter(centerpane);
+   //     root.setCenter(albumcover);
 
 
 
@@ -140,9 +145,11 @@ public class Frameapplication extends Application {
                     controller.play();
                     cover = new Image(new ByteArrayInputStream(controller.getCover()));
                     albumcover = new ImageView(cover);
+
                     albumcover.setScaleX(0.3);
                     albumcover.setScaleY(0.3);
-                    centerpane.getChildren().add(albumcover);
+
+                   // centerpane.getChildren().add(albumcover);
 
                       play.setImage(pauseicon);
                     title.setText(controller.title());
@@ -197,11 +204,14 @@ public class Frameapplication extends Application {
                 {
                     if (itemClicked.equals(t.getTitle()))
                     {
-                        mp3Player.play(t);
+                        controller.play(t.getPath());
+
                     }
                 }
             }
         });
+
+
 
         btn_sideView_back.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override

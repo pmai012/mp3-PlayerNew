@@ -40,13 +40,19 @@ public String title(){
     }
 
 
-
+    public void play(String path){
+        track = new Track(path);
+        // track = new Track();
+        player.play(track);
+    }
 
     public void play(){
         track = new Track(PATH);
        // track = new Track();
         player.play(track);
     }
+
+
 
     public void pause(){
 
