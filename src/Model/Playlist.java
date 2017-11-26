@@ -23,9 +23,22 @@ public class Playlist extends Exception{
     private ArrayList<Track> queue;
     private boolean shuffling = false;
     private String name;
+    private String path;
     boolean repeat = true;
     final String extension = ".m3u";
 
+
+    /**
+     * Der konstruktor benötigt Name und Pfad
+     * @param name Der Name der Playlist. Frei wählbar
+     * @param path Der Pfad ,wo sich die Playlist aufhält
+     */
+    public Playlist(String name, String path) {
+        this.name = name;
+        this.path = path;
+        this.tracks = new ArrayList<Track>();
+        this.queue = new ArrayList<Track>();
+    }
 
     /**
      * Man kann setzen ob die Playlist nach einmaligem Durchspielen von vorne anfängt
@@ -65,15 +78,10 @@ public class Playlist extends Exception{
 }
 
     /**
-     * Der konstruktor benötigt Name und Pfad
-     * @param name Der Name der Playlist. Frei wählbar
-     * @param path Der Pfad ,wo sich die Playlist aufhält
+     * getPath
+     * @return gibt den Pfad der Playlist zurück
      */
-    public Playlist(String name, String path) {
-        this.name = name;
-        this.tracks = new ArrayList<Track>();
-        this.queue = new ArrayList<Track>();
-    }
+    public String getPath(){return this.path;}
 
     /**
      * getName
@@ -186,7 +194,14 @@ public class Playlist extends Exception{
      * getTracks gibt die Playlist zurueck
      * @return Es wird die Warteschlange zurueckgegeben.
      */
-    public ArrayList<Track> getTracks(){return queue;}
+    public ArrayList<Track> getTracks(){return tracks;}
+
+    /**
+     * getTracks gibt die Playlist zurueck
+     * @return Es wird die Warteschlange zurueckgegeben.
+     */
+    public ArrayList<Track> getQueue(){return queue;}
+
 
     /**
      * Es wird ein Track an die Warteschleife gehalten

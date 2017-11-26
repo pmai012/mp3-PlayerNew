@@ -221,7 +221,30 @@ public class Frameapplication extends Application {
             }
         });
 
+        playlistView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                Object itemClicked = playlistView.getSelectionModel().getSelectedItem();
+                ObservableList<String> songs = FXCollections.observableArrayList();
+                for (Playlist p: playlistManager.getPlaylists())
+                {
+                    if (itemClicked.equals(p.getName()))
+                    {
+                        p.loadPlaylist(p.getPath());
 
+                        for (Track t: p.getTracks())
+                        {
+                            songs.add(t.getTitle());
+                        }
+                        p.getTracks().clear();
+                        songView.setItems(songs);
+                        leftpane.getChildren().remove(playlistView);
+                        leftpane.getChildren().add(songView);
+                        leftpane.getChildren().add(btn_sideView_back);
+                    }
+                }
+            }
+        });
 
 
 
