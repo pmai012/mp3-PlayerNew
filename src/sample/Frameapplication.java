@@ -1,16 +1,14 @@
 package sample;
 
 import Controller.Controller;
+import Controller.HandleCollection;
 import Model.MP3Player;
 import Model.Playlist;
 import Model.PlaylistManager;
 import Model.Track;
 import javafx.application.Application;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
@@ -29,16 +27,16 @@ import javafx.stage.Stage;
 
 import java.io.ByteArrayInputStream;
 
-import static sun.audio.AudioPlayer.player;
-
 
 /**
  * Created by User on 06.11.2017.
  */
 public class Frameapplication extends Application {
 
+    HandleCollection handleCollection = new HandleCollection();
+
     final int WIDTH = 1200;
-    final int HEIGHT = 620;
+    final int HEIGHT = 840;
     private MP3Player mp3Player = new MP3Player();
 
     private boolean playing = false;
@@ -75,6 +73,7 @@ public class Frameapplication extends Application {
     ListView songView = new ListView();
     ListView playlistView = new ListView();
 
+    private MouseEvent mouseEvent;
 
 
     public void init() {
@@ -84,6 +83,7 @@ public class Frameapplication extends Application {
     prev.setScaleY(0.1);
     next.setScaleX(0.1);
     next.setScaleY(0.1);
+
     }
 
     @Override
@@ -138,31 +138,10 @@ public class Frameapplication extends Application {
             }
         });
 
-        play.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                if (controller.isplaying() == false){
-                    controller.play();
-                    cover = new Image(new ByteArrayInputStream(controller.getCover()));
-                    albumcover = new ImageView(cover);
 
-                    albumcover.setScaleX(0.3);
-                    albumcover.setScaleY(0.3);
+        play.setOnMouseClicked(handleCollection.play);
 
-                   // centerpane.getChildren().add(albumcover);
 
-                      play.setImage(pauseicon);
-                    title.setText(controller.title());
-                    album.setText(controller.album());
-                    artist.setText(controller.artist());
-
-                }else{
-                    play.setImage(playicon);
-                    controller.pause();
-                }
-
-            }
-        });
 
 
         sideView.setItems(sideViewItems);
