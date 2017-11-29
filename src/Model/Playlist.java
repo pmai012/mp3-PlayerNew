@@ -1,6 +1,6 @@
 package Model;
 
-import javafx.scene.control.Alert;
+import javafx.scene.control.*;
 
 import java.io.*;
 import java.util.*;
