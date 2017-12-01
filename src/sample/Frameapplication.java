@@ -25,7 +25,7 @@ import javafx.scene.layout.*;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 
-import java.io.ByteArrayInputStream;
+//import java.io.ByteArrayInputStream;
 
 
 /**
@@ -52,6 +52,8 @@ public class Frameapplication extends Application {
     Image previcon = new Image("picture/prev.png");
     Image nexticon = new Image("picture/next.png");
     Image stopicon = new Image("picture/stop.png");
+    Image randomicon = new Image("picture/random.png");
+    Image repeaticon = new Image("picture/repeat.png");
     Image cover ;
 
 
@@ -59,8 +61,15 @@ public class Frameapplication extends Application {
     ImageView play = new ImageView(playicon);
     ImageView next = new ImageView(nexticon);
     ImageView prev =  new ImageView(previcon);
+    ImageView random = new ImageView(randomicon);
+    ImageView repeat = new ImageView(repeaticon);
     ImageView albumcover = new ImageView(cover);
     Button btn_sideView_back = new Button("<");
+
+
+
+
+
 
 
     Label title = new Label("Title");
@@ -83,6 +92,10 @@ public class Frameapplication extends Application {
     prev.setScaleY(0.1);
     next.setScaleX(0.1);
     next.setScaleY(0.1);
+    random.setScaleX(0.1);
+    random.setScaleY(0.1);
+    repeat.setScaleX(0.1);
+    repeat.setScaleY(0.1);
 
     }
 
@@ -107,6 +120,7 @@ public class Frameapplication extends Application {
         root.setBottom(bottompane);
         root.setLeft(leftpane);
         root.setRight(rightpane);
+
    //     root.setCenter(albumcover);
 
 
@@ -242,17 +256,19 @@ public class Frameapplication extends Application {
 
 
         //Konfiguration von bottom Pane
-        bottompane.setPadding(new Insets(5));
-        bottompane.setAlignment(Pos.TOP_CENTER);
-        bottompane.setHgap(10);
-        bottompane.setStyle("-fx-background-color: black}{");
 
 
 
+        bottompane.getChildren().add(random);
         bottompane.getChildren().add(prev);
         bottompane.getChildren().add(play);
         bottompane.getChildren().add(next);
+        bottompane.getChildren().add(repeat);
 
+        bottompane.setPadding(new Insets(10));
+        bottompane.setAlignment(Pos.TOP_CENTER);
+        bottompane.setHgap(1);
+        bottompane.setStyle("-fx-background-color: black}{");
 
         //Konfiguration von centerpane
 
