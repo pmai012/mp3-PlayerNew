@@ -63,12 +63,23 @@ public class GUI extends Application implements Observer {
 
 
 
+    /*
     ImageView play = new ImageView(playicon);
     ImageView next = new ImageView(nexticon);
     ImageView prev =  new ImageView(previcon);
     ImageView random = new ImageView(randomicon);
     ImageView repeat = new ImageView(repeaticon);
+    */
     ImageView albumcover = new ImageView();
+
+
+    Button play = new Button("", new ImageView(playicon));
+    Button next = new Button("", new ImageView(nexticon));
+    Button prev = new Button("", new ImageView(previcon));
+    Button random = new Button("", new ImageView(randomicon));
+    Button repeat = new Button("", new ImageView(repeaticon));
+
+
     Button btn_sideView_back = new Button("<");
 
 
@@ -88,16 +99,21 @@ public class GUI extends Application implements Observer {
 
 
     public void init() {
+
+
     play.setScaleX(0.3);
     play.setScaleY(0.3);
-    prev.setScaleX(0.1);
-    prev.setScaleY(0.1);
-    next.setScaleX(0.1);
-    next.setScaleY(0.1);
-    random.setScaleX(0.1);
-    random.setScaleY(0.1);
-    repeat.setScaleX(0.1);
-    repeat.setScaleY(0.1);
+    prev.setScaleX(0.2);
+    prev.setScaleY(0.2);
+    next.setScaleX(0.2);
+    next.setScaleY(0.2);
+    random.setScaleX(0.2);
+    random.setScaleY(0.2);
+    repeat.setScaleX(0.2);
+    repeat.setScaleY(0.2);
+
+
+
     handleCollection = new HandleCollection();
     handleCollection.getController().addObserver(this);
     handleCollection.addObserver(this);
@@ -115,7 +131,7 @@ public class GUI extends Application implements Observer {
         HBox rightpane = new HBox();
        // HBox toprightpane = new HBox();
         TilePane toppane = new TilePane();
-        FlowPane bottompane = new FlowPane();
+        FlowPane bottompane = new FlowPane(); //VBox ?
         StackPane centerpane = new StackPane();
 
         centerpane.getChildren().add(albumcover);
@@ -263,7 +279,7 @@ public class GUI extends Application implements Observer {
 
         bottompane.setPadding(new Insets(10));
         bottompane.setAlignment(Pos.TOP_CENTER);
-        bottompane.setHgap(1);
+
         bottompane.setStyle("-fx-background-color: black}{");
 
         //Konfiguration von centerpane
@@ -324,7 +340,7 @@ public class GUI extends Application implements Observer {
 
 
     if (von.equals("handler")) { //Meldungen vom  Collection handler
-        play.setImage(handleCollection.getCurrentplay());
+        //play.setImage(handleCollection.getCurrentplay()); // muss umgeschrieben werden da play jetzt
 
     }
 
