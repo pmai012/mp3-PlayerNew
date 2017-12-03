@@ -319,7 +319,7 @@ public class GUI extends Application implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-    private String von = (String) arg;
+     String von = (String) arg;
 
 
 
