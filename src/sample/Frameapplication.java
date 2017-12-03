@@ -154,7 +154,7 @@ public class Frameapplication extends Application implements Observer {
             }
         });
 
-
+        //HANDLECOLLECTIONS
         play.setOnMouseClicked(handleCollection.play);
 
 
@@ -320,6 +320,8 @@ public class Frameapplication extends Application implements Observer {
     @Override
     public void update(Observable o, Object arg) {
         title.setText(handleCollection.getController().title());
+        album.setText(handleCollection.getController().album());
+        artist.setText(handleCollection.getController().artist());
 
     }
 }
