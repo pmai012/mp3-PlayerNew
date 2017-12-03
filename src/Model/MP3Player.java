@@ -3,23 +3,28 @@ package Model;
 
 import de.hsrm.mi.eibo.simpleplayer.SimpleAudioPlayer;
 import de.hsrm.mi.eibo.simpleplayer.SimpleMinim;
+import javafx.beans.InvalidationListener;
+
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleObjectProperty;
+
+import java.util.Observable;
 
 /**
  * Created by Pascal, Julian
  */
-public class MP3Player implements Runnable {
+public class MP3Player  {
 
 
     private SimpleMinim minim;
     private SimpleAudioPlayer audioPlayer;
     private Playlist playlist;
     private Track track;
+
     boolean again = true;
 
 
-
     boolean playing = false;
-
 
 
     /**
@@ -32,6 +37,7 @@ public class MP3Player implements Runnable {
     }
 
     ;
+
     public boolean isPlaying() {
         return playing;
     }
@@ -39,6 +45,7 @@ public class MP3Player implements Runnable {
     public MP3Player() {
         minim = new SimpleMinim(true);
         playlist = new Playlist();
+
 
     }
 
@@ -66,6 +73,12 @@ public class MP3Player implements Runnable {
             play();
         }
     }
+
+    public String getTitle() {
+
+        return track.getTitle();
+    }
+
 
     public void play() {
 
@@ -168,10 +181,6 @@ public class MP3Player implements Runnable {
     }
 
 
-    @Override
-    public void run() {
-
-    }
 }
 
 

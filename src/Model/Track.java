@@ -18,7 +18,7 @@ import java.io.IOException;
  */
 public class Track {
     boolean radio = false;
-    private String title;
+    private String title = "unbekannter Titel";
     private String artist = "unbekannter Künstler";
     private String album = "unbekanntes Album";
     private String genre = "unbekanntes Genre";

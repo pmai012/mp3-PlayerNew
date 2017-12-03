@@ -25,15 +25,19 @@ import javafx.scene.layout.*;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 
+import java.util.Observable;
+import java.util.Observer;
+
 //import java.io.ByteArrayInputStream;
 
 
 /**
  * Created by User on 06.11.2017.
  */
-public class Frameapplication extends Application {
+public class Frameapplication extends Application implements Observer {
 
     HandleCollection handleCollection = new HandleCollection();
+
 
     final int WIDTH = 1200;
     final int HEIGHT = 840;
@@ -96,8 +100,9 @@ public class Frameapplication extends Application {
     random.setScaleY(0.1);
     repeat.setScaleX(0.1);
     repeat.setScaleY(0.1);
+    controller.addObserver(this);
 
-    }
+      }
 
     @Override
     public void start(Stage primaryStage) throws Exception  {
@@ -315,12 +320,10 @@ public class Frameapplication extends Application {
     }
 
 
-
-
-
-
-
-
-
+    @Override
+    public void update(Observable o, Object arg) {
+        System.out.println("update");
+        title.setText(controller.title());
+    }
 }
 

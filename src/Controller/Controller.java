@@ -3,12 +3,16 @@ package Controller;
 import Model.MP3Player;
 import Model.PlaylistManager;
 import Model.Track;
+import sample.Frameapplication;
+import java.util.Observable;
+
+import static sample.Frameapplication.*;
 
 
 /**
  * Created by User on 06.11.2017.
  */
-public class Controller {
+public class Controller extends Observable {
     final String PATH = "F:\\GitHub\\mp3-PlayerNew\\src\\music\\02_LoveWillBeWithYou.mp3";
     //final String PATH2 ="/Users/deniz/IdeaProjects/mp3-PlayerNew/src/music/02_LoveWillBeWithYou.mp3";
 
@@ -19,10 +23,13 @@ public class Controller {
     MP3Player player;
     public Controller(){
         player = new MP3Player();
+
+
+
     }
 
 public String title(){
-        return player.getcurrentTrack().getTitle();
+        return player.getTitle();
     }
     public String album(){
         return player.getcurrentTrack().getAlbum();
@@ -41,15 +48,18 @@ public String title(){
 
 
     public void play(String path){
+        notify();
         track = new Track(path);
         // track = new Track();
         player.play(track);
+
     }
 
     public void play(){
         track = new Track(PATH);
        // track = new Track();
         player.play(track);
+
     }
 
 

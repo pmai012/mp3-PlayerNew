@@ -1,6 +1,7 @@
 package Controller;
 
 
+import Model.Track;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.image.Image;
@@ -22,11 +23,15 @@ public class HandleCollection {
 
 
 
+
     public HandleCollection() {
         Buttoninit();
     }
 
 
+    public Controller getController(){
+        return controller;
+    }
     private void Buttoninit() {
         play = new EventHandler<MouseEvent>() {
             @Override
