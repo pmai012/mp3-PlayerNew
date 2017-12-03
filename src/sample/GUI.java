@@ -24,6 +24,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -100,6 +101,7 @@ public class GUI extends Application implements Observer {
     handleCollection = new HandleCollection();
     handleCollection.getController().addObserver(this);
     handleCollection.addObserver(this);
+
       }
 
     @Override
@@ -116,6 +118,7 @@ public class GUI extends Application implements Observer {
         FlowPane bottompane = new FlowPane();
         StackPane centerpane = new StackPane();
 
+        centerpane.getChildren().add(albumcover);
 
 
         BorderPane root = new BorderPane();
@@ -290,9 +293,13 @@ public class GUI extends Application implements Observer {
         leftpane.getChildren().add(sideView);
         bottompane.getChildren().add(volume);
 
+        /**
+         * Albumcover wird angezeigt
+        albumcover.setScaleX(1000);
+        albumcover.setScaleY(1000);
+        root.setCenter(albumcover);
 
-        centerpane.getChildren().add(albumcover);
-
+         **/
 
 
 
@@ -319,6 +326,7 @@ public class GUI extends Application implements Observer {
               albumcover.setImage(handleCollection.getController().getCover());
 
         play.setImage(handleCollection.getCurrentplay());
+
 
     }
 }
