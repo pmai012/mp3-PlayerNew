@@ -319,12 +319,16 @@ public class GUI extends Application implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-    boolean vom_Handler = (boolean) arg;
+    private String von = (String) arg;
 
-    if (vom_Handler) { //Meldungen vom  Collection handler
+
+
+    if (von.equals("handler")) { //Meldungen vom  Collection handler
         play.setImage(handleCollection.getCurrentplay());
 
-    }else { //Meldungen vom Controller
+    }
+
+    if (von.equals("controller")){ //Meldungen vom Controller
         title.setText(handleCollection.getController().getPlayer().getTitle());
         album.setText(handleCollection.getController().getPlayer().getAlbum());
         artist.setText(handleCollection.getController().getPlayer().getArtist());

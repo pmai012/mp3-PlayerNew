@@ -86,7 +86,7 @@ public class HandleCollection extends Observable {
 
     private void updaten(){
         setChanged();
-        notifyObservers(true);
+        notifyObservers("handler");
     }
 
 
