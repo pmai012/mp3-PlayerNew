@@ -75,6 +75,9 @@ public class MP3Player  {
     }
 
     public String getTitle() {
+        if (track.getTitle() == null){
+          return "";
+        }
         return track.getTitle();
     }
 

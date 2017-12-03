@@ -47,7 +47,7 @@ public class Controller extends Observable {
     public void play() {
         player.play(track);
         setChanged();
-        notifyObservers();
+        notifyObservers(false);
 
 
     }
