@@ -52,7 +52,7 @@ public String title(){
         setChanged();
         System.out.println(hasChanged());
         notifyObservers();
-        System.out.println("Observer: " + countObservers());
+
     }
 
     public void play(){
@@ -61,7 +61,7 @@ public String title(){
         player.play(track);
         setChanged();
         notifyObservers();
-        System.out.println("Observer: " + countObservers());
+
 
     }
 

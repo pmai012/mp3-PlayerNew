@@ -106,6 +106,7 @@ public class Frameapplication extends Application implements Observer {
         playlistManager.searchPlaylists(System.getProperty("user.home").concat("//Music"));
         Playlist allSongs = playlistManager.getAllTracks();
         handleCollection.getController().addObserver(this);
+        handleCollection.addObserver(this);
         //Fenstereinstellungen
 
         HBox leftpane = new HBox();
@@ -138,14 +139,7 @@ public class Frameapplication extends Application implements Observer {
         root.setStyle("-fx-background-color: gold;");
 
 
-        play.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                if (!handleCollection.getController().isplaying()) {
-                    play.setImage(playonselect);
-                }
-            }
-        });
+
 
         play.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
@@ -155,6 +149,7 @@ public class Frameapplication extends Application implements Observer {
         });
 
         //HANDLECOLLECTIONS
+        play.setOnMouseEntered(handleCollection.playonenter);
         play.setOnMouseClicked(handleCollection.play);
 
 
@@ -322,6 +317,8 @@ public class Frameapplication extends Application implements Observer {
         title.setText(handleCollection.getController().title());
         album.setText(handleCollection.getController().album());
         artist.setText(handleCollection.getController().artist());
+
+        play.setImage(handleCollection.getCurrentplay());
 
     }
 }
