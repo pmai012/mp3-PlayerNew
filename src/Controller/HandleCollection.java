@@ -7,6 +7,7 @@ import javafx.event.EventHandler;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import sample.Frameapplication;
 
 import java.io.ByteArrayInputStream;
 import java.util.EventListener;
@@ -25,8 +26,9 @@ public class HandleCollection {
 
 
     public HandleCollection() {
-        Buttoninit();
+                Buttoninit();
     }
+
 
 
     public Controller getController(){

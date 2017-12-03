@@ -24,8 +24,6 @@ public class Controller extends Observable {
     public Controller(){
         player = new MP3Player();
 
-
-
     }
 
 public String title(){
@@ -48,17 +46,22 @@ public String title(){
 
 
     public void play(String path){
-        notify();
-        track = new Track(path);
+         track = new Track(path);
         // track = new Track();
         player.play(track);
-
+        setChanged();
+        System.out.println(hasChanged());
+        notifyObservers();
+        System.out.println("Observer: " + countObservers());
     }
 
     public void play(){
         track = new Track(PATH);
        // track = new Track();
         player.play(track);
+        setChanged();
+        notifyObservers();
+        System.out.println("Observer: " + countObservers());
 
     }
 

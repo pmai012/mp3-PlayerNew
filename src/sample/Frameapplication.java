@@ -47,7 +47,7 @@ public class Frameapplication extends Application implements Observer {
 
     PlaylistManager playlistManager = new PlaylistManager();
 
-    Controller controller = new Controller();
+
     //GUI KOMPONENTE
 
     Image playicon = new Image("picture/play.png");
@@ -69,9 +69,6 @@ public class Frameapplication extends Application implements Observer {
     ImageView repeat = new ImageView(repeaticon);
     ImageView albumcover = new ImageView(cover);
     Button btn_sideView_back = new Button("<");
-
-
-
 
 
 
@@ -100,7 +97,7 @@ public class Frameapplication extends Application implements Observer {
     random.setScaleY(0.1);
     repeat.setScaleX(0.1);
     repeat.setScaleY(0.1);
-    controller.addObserver(this);
+
 
       }
 
@@ -108,7 +105,7 @@ public class Frameapplication extends Application implements Observer {
     public void start(Stage primaryStage) throws Exception  {
         playlistManager.searchPlaylists(System.getProperty("user.home").concat("//Music"));
         Playlist allSongs = playlistManager.getAllTracks();
-
+        handleCollection.getController().addObserver(this);
         //Fenstereinstellungen
 
         HBox leftpane = new HBox();
@@ -144,7 +141,7 @@ public class Frameapplication extends Application implements Observer {
         play.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                if (!controller.isplaying()) {
+                if (!handleCollection.getController().isplaying()) {
                     play.setImage(playonselect);
                 }
             }
@@ -202,7 +199,7 @@ public class Frameapplication extends Application implements Observer {
                 {
                     if (itemClicked.equals(t.getTitle()))
                     {
-                        controller.play(t.getPath());
+                        handleCollection.getController().play(t.getPath());
 
                     }
                 }
@@ -322,8 +319,8 @@ public class Frameapplication extends Application implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        System.out.println("update");
-        title.setText(controller.title());
+        title.setText(handleCollection.getController().title());
+
     }
 }
 
