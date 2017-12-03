@@ -321,11 +321,10 @@ public class GUI extends Application implements Observer {
     public void update(Observable o, Object arg) {
     boolean vom_Handler = (boolean) arg;
 
-    if (vom_Handler) {
+    if (vom_Handler) { //Meldungen vom  Collection handler
         play.setImage(handleCollection.getCurrentplay());
-        System.out.println("Taste");
 
-    }else {
+    }else { //Meldungen vom Controller
         title.setText(handleCollection.getController().getPlayer().getTitle());
         album.setText(handleCollection.getController().getPlayer().getAlbum());
         artist.setText(handleCollection.getController().getPlayer().getArtist());
