@@ -3,10 +3,12 @@ package Controller;
 import Model.MP3Player;
 import Model.PlaylistManager;
 import Model.Track;
-import sample.Frameapplication;
+import javafx.scene.image.Image;
+
+
+import java.io.ByteArrayInputStream;
 import java.util.Observable;
 
-import static sample.Frameapplication.*;
 
 
 /**
@@ -19,45 +21,30 @@ public class Controller extends Observable {
     //os.name : "Mac OS X" | "Linux" | ("Windows" (?))
 
     PlaylistManager playlistManager;
-    Track track ;
+    Track track = new Track(PATH);
     MP3Player player;
-    public Controller(){
+
+    public Controller() {
         player = new MP3Player();
 
     }
 
-public String title(){
-        return player.getTitle();
-    }
-    public String album(){
-        return player.getcurrentTrack().getAlbum();
-    }
-    public String artist(){
-        return player.getcurrentTrack().getArtist();
+    public MP3Player getPlayer() {
+        return player;
     }
 
-    public boolean isplaying(){
+    public boolean isplaying() {
         return player.isPlaying();
     }
 
-    public byte[] Cover(){
-   return     player.getcurrentTrack().getCover();
-    }
 
-
-    public void play(String path){
-         track = new Track(path);
-        // track = new Track();
-        player.play(track);
-        setChanged();
-        System.out.println(hasChanged());
-        notifyObservers();
+    public void play(String path) {
+        track = new Track(path);
+        play();
 
     }
 
-    public void play(){
-        track = new Track(PATH);
-       // track = new Track();
+    public void play() {
         player.play(track);
         setChanged();
         notifyObservers();
@@ -66,29 +53,18 @@ public String title(){
     }
 
 
-
-    public void pause(){
+    public void pause() {
 
         player.pause();
     }
 
-    public String getTitle(){
-        return track.getTitle();
+    public Image getCover() {
+        return new Image(new ByteArrayInputStream(track.getCover()));
     }
 
-    public String getArtist(){
-        return track.getArtist();
-    }
-
-    public String getAlbum(){
-
-        return track.getAlbum();
-    }
-
-    public void volume(float lautstaerke){
+    public void volume(float lautstaerke) {
         player.volume(lautstaerke);
     }
-public byte[] getCover(){
-        return track.getCover();
 }
-}
+
+

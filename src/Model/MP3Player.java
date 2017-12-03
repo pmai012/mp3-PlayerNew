@@ -75,8 +75,15 @@ public class MP3Player  {
     }
 
     public String getTitle() {
-
         return track.getTitle();
+    }
+
+    public String getAlbum() {
+        return track.getAlbum();
+    }
+
+    public String getArtist() {
+        return track.getArtist();
     }
 
 
@@ -89,6 +96,7 @@ public class MP3Player  {
         }
         System.out.println(track.getTitle() + " wird gespielt ");
         playing = true;
+
         audioPlayer.play();
         if (again) {
             audioPlayer.loop();

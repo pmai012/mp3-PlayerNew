@@ -36,7 +36,7 @@ import java.util.Observer;
  */
 public class Frameapplication extends Application implements Observer {
 
-    HandleCollection handleCollection = new HandleCollection();
+    HandleCollection handleCollection;
 
 
     final int WIDTH = 1200;
@@ -58,7 +58,7 @@ public class Frameapplication extends Application implements Observer {
     Image stopicon = new Image("picture/stop.png");
     Image randomicon = new Image("picture/random.png");
     Image repeaticon = new Image("picture/repeat.png");
-    Image cover ;
+
 
 
 
@@ -67,7 +67,7 @@ public class Frameapplication extends Application implements Observer {
     ImageView prev =  new ImageView(previcon);
     ImageView random = new ImageView(randomicon);
     ImageView repeat = new ImageView(repeaticon);
-    ImageView albumcover = new ImageView(cover);
+    ImageView albumcover = new ImageView();
     Button btn_sideView_back = new Button("<");
 
 
@@ -97,16 +97,16 @@ public class Frameapplication extends Application implements Observer {
     random.setScaleY(0.1);
     repeat.setScaleX(0.1);
     repeat.setScaleY(0.1);
-
-
+    handleCollection = new HandleCollection();
+    handleCollection.getController().addObserver(this);
+    handleCollection.addObserver(this);
       }
 
     @Override
     public void start(Stage primaryStage) throws Exception  {
         playlistManager.searchPlaylists(System.getProperty("user.home").concat("//Music"));
         Playlist allSongs = playlistManager.getAllTracks();
-        handleCollection.getController().addObserver(this);
-        handleCollection.addObserver(this);
+
         //Fenstereinstellungen
 
         HBox leftpane = new HBox();
@@ -141,14 +141,10 @@ public class Frameapplication extends Application implements Observer {
 
 
 
-        play.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                play.setImage(new Image("picture/play.png"));
-            }
-        });
+
 
         //HANDLECOLLECTIONS
+        play.setOnMouseExited(handleCollection.playonexit);
         play.setOnMouseEntered(handleCollection.playonenter);
         play.setOnMouseClicked(handleCollection.play);
 
@@ -295,6 +291,8 @@ public class Frameapplication extends Application implements Observer {
         bottompane.getChildren().add(volume);
 
 
+        centerpane.getChildren().add(albumcover);
+
 
 
 
@@ -314,9 +312,11 @@ public class Frameapplication extends Application implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        title.setText(handleCollection.getController().title());
-        album.setText(handleCollection.getController().album());
-        artist.setText(handleCollection.getController().artist());
+
+             title.setText(handleCollection.getController().getPlayer().getTitle());
+             album.setText(handleCollection.getController().getPlayer().getAlbum());
+             artist.setText(handleCollection.getController().getPlayer().getArtist());
+              albumcover.setImage(handleCollection.getController().getCover());
 
         play.setImage(handleCollection.getCurrentplay());
 

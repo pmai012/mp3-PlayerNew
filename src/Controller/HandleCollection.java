@@ -17,44 +17,14 @@ import java.util.Observable;
  * Created by User on 22.11.2017.
  */
 public class HandleCollection extends Observable {
-
-
-
-    public EventHandler<MouseEvent> play = new EventHandler<MouseEvent>() {
-        @Override
-        public void handle(MouseEvent event) {
-            if (controller.isplaying() == false) {
-                controller.play();
-                cover = new Image(new ByteArrayInputStream(controller.getCover()));
-                //centerpane.getChildren().add(albumcover);
-
-
-            } else {
-                controller.pause();
-            }
-            updaten();
-        }
-    };
-    public EventHandler<MouseEvent> playonenter = new EventHandler<MouseEvent>() {
-        @Override
-        public void handle(MouseEvent event) {
-            if (!getController().isplaying()) {
-                currentplay = playonselect;
-            }
-            updaten();
-        }
-
-};
-
-
-
-
     Controller controller = new Controller();
-    Image cover = null;
+
+
 
     Image playicon = new Image("picture/play.png");
     Image playonselect=  new Image("picture/playOnSelection.png");
     Image pauseicon = new Image("picture/pause.png");
+    Image pauseonselect = new Image("picture/pauseOnSelection.png");
     Image previcon = new Image("picture/prev.png");
     Image nexticon = new Image("picture/next.png");
     Image stopicon = new Image("picture/stop.png");
@@ -62,6 +32,53 @@ public class HandleCollection extends Observable {
     Image repeaticon = new Image("picture/repeat.png");
 
     Image currentplay;
+
+    public EventHandler<MouseEvent> play = new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent event) {
+            if (controller.isplaying() == false) {
+                controller.play();
+
+                currentplay = pauseicon;
+                //centerpane.getChildren().add(albumcover);
+
+
+            } else {
+                controller.pause();
+                currentplay = playicon;
+            }
+            updaten();
+        }
+    };
+    public EventHandler<MouseEvent> playonenter = new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent event) {
+            if (!controller.isplaying()) {
+                currentplay = playonselect;
+            } else {
+                currentplay = pauseonselect;
+            }
+            updaten();
+        }
+
+};
+
+    public EventHandler<MouseEvent> playonexit = new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent event) {
+            if (!controller.isplaying()) {
+                currentplay = playicon;
+            }else {
+                currentplay = pauseicon;
+            }
+            updaten();
+        }
+    };
+
+
+
+
+
 
     /**
      * Der Konstruktor
