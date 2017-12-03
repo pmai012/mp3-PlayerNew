@@ -51,7 +51,7 @@ public class Main extends Application {
        //     return;
 
         }
-            Application.launch(Frameapplication.class, args);
+            Application.launch(GUI.class, args);
 
     }
 }

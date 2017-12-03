@@ -34,7 +34,7 @@ import java.util.Observer;
 /**
  * Created by User on 06.11.2017.
  */
-public class Frameapplication extends Application implements Observer {
+public class GUI extends Application implements Observer {
 
     HandleCollection handleCollection;
 

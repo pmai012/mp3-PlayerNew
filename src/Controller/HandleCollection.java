@@ -1,16 +1,10 @@
 package Controller;
 
 
-import Model.Track;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import sample.Frameapplication;
 
-import java.io.ByteArrayInputStream;
-import java.util.EventListener;
 import java.util.Observable;
 
 /**
