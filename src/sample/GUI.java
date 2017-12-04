@@ -52,7 +52,7 @@ public class GUI extends Application implements Observer {
     //GUI KOMPONENTE
 
     Image playicon = new Image("picture/play.png");
-    Image playonselect=  new Image("picture/playOnSelection.png");
+    Image playonselect = new Image("picture/playOnSelection.png");
     Image pauseicon = new Image("picture/pause.png");
     Image previcon = new Image("picture/prev.png");
     Image nexticon = new Image("picture/next.png");
@@ -61,11 +61,8 @@ public class GUI extends Application implements Observer {
     Image repeaticon = new Image("picture/repeat.png");
 
 
-
-
-    /*
-    ImageView play = new ImageView(playicon);
-    ImageView next = new ImageView(nexticon);
+    ImageView playiview = new ImageView(playicon);
+    /*ImageView next = new ImageView(nexticon);
     ImageView prev =  new ImageView(previcon);
     ImageView random = new ImageView(randomicon);
     ImageView repeat = new ImageView(repeaticon);
@@ -73,7 +70,7 @@ public class GUI extends Application implements Observer {
     ImageView albumcover = new ImageView();
 
 
-    Button play = new Button("", new ImageView(playicon));
+    Button play = new Button("", playiview);
     Button next = new Button("", new ImageView(nexticon));
     Button prev = new Button("", new ImageView(previcon));
     Button random = new Button("", new ImageView(randomicon));
@@ -83,14 +80,12 @@ public class GUI extends Application implements Observer {
     Button btn_sideView_back = new Button("<");
 
 
-
-
     Label title = new Label("Title");
     //Label supertitle = new Label(" MEINE MUSIK | STORE | RADIO | MEHR |");
     Label artist = new Label("Artist");
     Label album = new Label("Album");
     Slider volume = new Slider();
-    ObservableList<String> sideViewItems = FXCollections.observableArrayList ("Songs", "Playlists");
+    ObservableList<String> sideViewItems = FXCollections.observableArrayList("Songs", "Playlists");
     ListView sideView = new ListView();
     ListView songView = new ListView();
     ListView playlistView = new ListView();
@@ -101,27 +96,26 @@ public class GUI extends Application implements Observer {
     public void init() {
 
 
-    play.setScaleX(0.3);
-    play.setScaleY(0.3);
-    prev.setScaleX(0.2);
-    prev.setScaleY(0.2);
-    next.setScaleX(0.2);
-    next.setScaleY(0.2);
-    random.setScaleX(0.2);
-    random.setScaleY(0.2);
-    repeat.setScaleX(0.2);
-    repeat.setScaleY(0.2);
+        play.setScaleX(0.3);
+        play.setScaleY(0.3);
+        prev.setScaleX(0.2);
+        prev.setScaleY(0.2);
+        next.setScaleX(0.2);
+        next.setScaleY(0.2);
+        random.setScaleX(0.2);
+        random.setScaleY(0.2);
+        repeat.setScaleX(0.2);
+        repeat.setScaleY(0.2);
 
 
+        handleCollection = new HandleCollection();
+        handleCollection.getController().addObserver(this);
+        handleCollection.addObserver(this);
 
-    handleCollection = new HandleCollection();
-    handleCollection.getController().addObserver(this);
-    handleCollection.addObserver(this);
-
-      }
+    }
 
     @Override
-    public void start(Stage primaryStage) throws Exception  {
+    public void start(Stage primaryStage) throws Exception {
         playlistManager.searchPlaylists(System.getProperty("user.home").concat("//Music"));
         Playlist allSongs = playlistManager.getAllTracks();
 
@@ -129,7 +123,7 @@ public class GUI extends Application implements Observer {
 
         HBox leftpane = new HBox();
         HBox rightpane = new HBox();
-       // HBox toprightpane = new HBox();
+        // HBox toprightpane = new HBox();
         TilePane toppane = new TilePane();
         FlowPane bottompane = new FlowPane(); //VBox ?
         StackPane centerpane = new StackPane();
@@ -143,8 +137,7 @@ public class GUI extends Application implements Observer {
         root.setLeft(leftpane);
         root.setRight(rightpane);
 
-   //     root.setCenter(albumcover);
-
+        //     root.setCenter(albumcover);
 
 
         Scene scene = new Scene(root, WIDTH, HEIGHT);
@@ -154,20 +147,14 @@ public class GUI extends Application implements Observer {
         primaryStage.setMinWidth(200);
         primaryStage.setTitle("3Player");
 
-        root.setPadding(new Insets(20,0,0,0));
+        root.setPadding(new Insets(20, 0, 0, 0));
         root.setStyle("-fx-background-color: gold;");
-
-
-
-
 
 
         //HANDLECOLLECTIONS
         play.setOnMouseExited(handleCollection.playonexit);
         play.setOnMouseEntered(handleCollection.playonenter);
-        play.setOnMouseClicked(handleCollection.play);
-
-
+        play.setOnAction(handleCollection.play);
 
 
         sideView.setItems(sideViewItems);
@@ -175,25 +162,21 @@ public class GUI extends Application implements Observer {
             @Override
             public void handle(MouseEvent event) {
                 Object itemClicked = sideView.getSelectionModel().getSelectedItem();
-                if (itemClicked.equals("Songs"))
-                {
+                if (itemClicked.equals("Songs")) {
                     leftpane.getChildren().remove(sideView);
                     leftpane.getChildren().add(btn_sideView_back);
                     ObservableList<String> songs = FXCollections.observableArrayList();
-                    for (Track t: allSongs.getTracks())
-                    {
-                     songs.add(t.getTitle());
+                    for (Track t : allSongs.getTracks()) {
+                        songs.add(t.getTitle());
                     }
                     songView.setItems(songs);
                     leftpane.getChildren().add(songView);
                 }
-                if (itemClicked.equals("Playlists"))
-                {
+                if (itemClicked.equals("Playlists")) {
                     leftpane.getChildren().remove(sideView);
                     leftpane.getChildren().add(btn_sideView_back);
                     ObservableList<String> playlists = FXCollections.observableArrayList();
-                    for (Playlist p: playlistManager.getPlaylists())
-                    {
+                    for (Playlist p : playlistManager.getPlaylists()) {
                         playlists.add(p.getName());
                     }
                     playlistView.setItems(playlists);
@@ -205,17 +188,15 @@ public class GUI extends Application implements Observer {
             @Override
             public void handle(MouseEvent event) {
                 Object itemClicked = songView.getSelectionModel().getSelectedItem();
-                for (Track t: allSongs.getTracks())
-                {
-                    if (itemClicked.equals(t.getTitle()))
-                    {
+                for (Track t : allSongs.getTracks()) {
+                    if (itemClicked.equals(t.getTitle())) {
                         handleCollection.getController().play(t.getPath());
+
 
                     }
                 }
             }
         });
-
 
 
         btn_sideView_back.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -231,14 +212,11 @@ public class GUI extends Application implements Observer {
             public void handle(MouseEvent event) {
                 Object itemClicked = playlistView.getSelectionModel().getSelectedItem();
                 ObservableList<String> songs = FXCollections.observableArrayList();
-                for (Playlist p: playlistManager.getPlaylists())
-                {
-                    if (itemClicked.equals(p.getName()))
-                    {
+                for (Playlist p : playlistManager.getPlaylists()) {
+                    if (itemClicked.equals(p.getName())) {
                         p.loadPlaylist(p.getPath());
 
-                        for (Track t: p.getTracks())
-                        {
+                        for (Track t : p.getTracks()) {
                             songs.add(t.getTitle());
                         }
                         p.getTracks().clear();
@@ -252,23 +230,12 @@ public class GUI extends Application implements Observer {
         });
 
 
-
-
-
-
-
-
-
-       // play.setOnAction(this);
-      //  next.setOnAction(this);
-      //  prev.setOnAction(this);
-
-
-
+        // play.setOnAction(this);
+        //  next.setOnAction(this);
+        //  prev.setOnAction(this);
 
 
         //Konfiguration von bottom Pane
-
 
 
         bottompane.getChildren().add(random);
@@ -311,17 +278,11 @@ public class GUI extends Application implements Observer {
 
         /**
          * Albumcover wird angezeigt
-        albumcover.setScaleX(1000);
-        albumcover.setScaleY(1000);
-        root.setCenter(albumcover);
+         albumcover.setScaleX(1000);
+         albumcover.setScaleY(1000);
+         root.setCenter(albumcover);
 
          **/
-
-
-
-
-
-
 
 
         centerpane.setStyle("-fx-background-color: gold;");
@@ -335,25 +296,25 @@ public class GUI extends Application implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-     String von = (String) arg;
+        String von = (String) arg;
+
+
+        //Meldungen vom  Collection handler
 
 
 
-    if (von.equals("handler")) { //Meldungen vom  Collection handler
-        //play.setImage(handleCollection.getCurrentplay()); // muss umgeschrieben werden da play jetzt
-
-    }
-
-    if (von.equals("controller")){ //Meldungen vom Controller
-        title.setText(handleCollection.getController().getPlayer().getTitle());
-        album.setText(handleCollection.getController().getPlayer().getAlbum());
-        artist.setText(handleCollection.getController().getPlayer().getArtist());
-        albumcover.setImage(handleCollection.getController().getCover());
+        if (von.equals("controller")) { //Meldungen vom Controller
+            title.setText(handleCollection.getController().getPlayer().getTitle());
+            album.setText(handleCollection.getController().getPlayer().getAlbum());
+            artist.setText(handleCollection.getController().getPlayer().getArtist());
+            albumcover.setImage(handleCollection.getController().getCover());
 
 
-    }
 
+        }
 
+        playiview.setImage(handleCollection.getCurrentplay());
+        System.out.println(von);
     }
 }
 

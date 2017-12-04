@@ -1,16 +1,18 @@
 package Controller;
 
 
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 
 import java.util.Observable;
+import java.util.Observer;
 
 /**
  * Created by User on 22.11.2017.
  */
-public class HandleCollection extends Observable {
+public class HandleCollection extends Observable  {
     Controller controller = new Controller();
 
 
@@ -27,9 +29,9 @@ public class HandleCollection extends Observable {
 
     Image currentplay;
 
-    public EventHandler<MouseEvent> play = new EventHandler<MouseEvent>() {
+    public EventHandler<ActionEvent> play = new EventHandler<ActionEvent>() {
         @Override
-        public void handle(MouseEvent event) {
+        public void handle(ActionEvent event) {
             if (controller.isplaying() == false) {
                 controller.play();
 
@@ -78,13 +80,16 @@ public class HandleCollection extends Observable {
      * Der Konstruktor
      */
     public HandleCollection() {
-        currentplay = playicon;    }
+        currentplay = playicon;
+
+    }
 
     public Image getCurrentplay(){
         return currentplay;
+
     }
 
-    private void updaten(){
+    public void updaten(){
         setChanged();
         notifyObservers("handler");
     }
@@ -92,6 +97,7 @@ public class HandleCollection extends Observable {
 
 
     public Controller getController(){
+
         return controller;
     }
 
