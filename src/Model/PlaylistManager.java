@@ -17,7 +17,7 @@ public class PlaylistManager {
         allTacksPlaylist = new File(System.getProperty("user.home").concat("//Music") + "/AllTracks.m3u");
         this.playlists = new ArrayList<>();
         contents = new ArrayList<String>();
-        contents.add("EXTM3U");
+        contents.add("#EXTM3U");
     }
 
     public List<Playlist> findPlaylist(String name) {
@@ -33,8 +33,8 @@ public class PlaylistManager {
 
         Playlist playlist = new Playlist("AllTracks", null);
 
-        playlist = createPlaylist(System.getProperty("user.home").concat("//Music"), playlist);
-        savePlaylist();
+        playlist = searchMP3(System.getProperty("user.home").concat("//Music"), playlist);
+        savePlaylist(allTacksPlaylist);
         return playlist;
     }
 
@@ -53,9 +53,11 @@ public class PlaylistManager {
     public void updatePlaylist(Playlist actPlaylist) {
 
     }
+    public void createEmptyPlaylist(File playlist){
+        savePlaylist(playlist);
+    }
 
-
-    private Playlist createPlaylist(String directoryName, Playlist playlist) throws IOException{
+    private Playlist searchMP3(String directoryName, Playlist playlist) throws IOException{
             File directory = new File(directoryName);
 
             Writer output = null;
@@ -69,7 +71,7 @@ public class PlaylistManager {
                             playlist.addTrack(new Track(file.getAbsolutePath()));
                         }
                     } else if (file.isDirectory()) {
-                        createPlaylist(file.getAbsolutePath(), playlist);
+                        searchMP3(file.getAbsolutePath(), playlist);
                     }
                 }
 
@@ -84,10 +86,10 @@ public class PlaylistManager {
             }
         return playlist;
     }
-    private void savePlaylist(){
+    private void savePlaylist(File playlist){
         Writer output = null;
         try {
-            output = new BufferedWriter(new FileWriter(allTacksPlaylist));
+            output = new BufferedWriter(new FileWriter(playlist));
             for (String content : contents) {
                 if (content != null) {
                     output.write(content);

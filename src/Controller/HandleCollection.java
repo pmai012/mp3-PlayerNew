@@ -3,17 +3,24 @@ package Controller;
 
 import Model.MP3Player;
 import Model.PlaylistManager;
+import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import sample.GUI;
+import sample.addPlaylistView;
 
+import javax.swing.*;
 import java.io.ByteArrayInputStream;
 import java.util.Observable;
 
@@ -22,8 +29,8 @@ import java.util.Observable;
  * Created by User on 22.11.2017.
  */
 public class HandleCollection extends Observable {
-    Controller controller = new Controller();
-
+    MP3Player player = new MP3Player();
+    addPlaylistView addPlaylistView = new addPlaylistView();
 
     Image playicon = new Image("picture/play.png");
     Image playonselect = new Image("picture/playOnSelection.png");
@@ -150,19 +157,11 @@ public class HandleCollection extends Observable {
     public EventHandler<MouseEvent> addPlaylist = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent event) {
-            Label info = new Label("Wie soll Ihre Playlist heißen?");
-            TextField textField = new TextField();
-            StackPane secondaryLayout = new StackPane();
-            secondaryLayout.getChildren().add(info);
-            secondaryLayout.getChildren().add(textField);
-
-            Scene secondScene = new Scene(secondaryLayout, 250, 100);
-            Stage newWindow = new Stage();
-            newWindow.resizableProperty().setValue(false);
-            newWindow.setTitle("Playlist hinzufügen");
-            newWindow.setScene(secondScene);
-
-            newWindow.show();
+            try {
+                addPlaylistView.start(new Stage());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     };
     public void currentupdater() {
