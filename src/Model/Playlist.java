@@ -218,6 +218,7 @@ public class Playlist extends Exception{
      */
     public void setCurrentTrack(int Number){
         currentTrack = getTrack(Number);
+        index = Number;
     }
     /**
      * Es wird ein Track an die Warteschleife gehalten
