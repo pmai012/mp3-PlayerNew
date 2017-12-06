@@ -58,7 +58,7 @@ public class GUI extends Application implements Observer {
     Image stopicon = new Image("picture/stop.png");
     Image randomicon = new Image("picture/random.png");
     Image repeaticon = new Image("picture/repeat.png");
-
+    Image addicon = new Image("picture/addButton.png");
 
     ImageView playiview = new ImageView(playicon);
     /*ImageView next = new ImageView(nexticon);
