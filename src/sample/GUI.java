@@ -58,7 +58,6 @@ public class GUI extends Application implements Observer {
     Image stopicon = new Image("picture/stop.png");
     Image randomicon = new Image("picture/random.png");
     Image repeaticon = new Image("picture/repeat.png");
-    Image addicon = new Image("picture/addButton.png");
 
 
     ImageView playiview = new ImageView(playicon);
@@ -138,7 +137,7 @@ public class GUI extends Application implements Observer {
         root.setLeft(leftpane);
         root.setRight(rightpane);
 
-          root.setCenter(centerpane);
+       //   root.setCenter(centerpane);
 
 
         Scene scene = new Scene(root, WIDTH, HEIGHT);
@@ -158,7 +157,9 @@ public class GUI extends Application implements Observer {
         play.setOnAction(handleCollection.play);
         next.setOnAction(handleCollection.next);
         prev.setOnAction(handleCollection.back);
+        random.setOnAction(handleCollection.shuffle);
         volume.valueProperty().addListener(handleCollection.volume);
+        volume.setValue(0.5);
         btn_addPlaylist.setOnMouseClicked(handleCollection.addPlaylist);
 
 
@@ -211,7 +212,6 @@ public class GUI extends Application implements Observer {
                 }
             }
         });
-
 
 
         btn_sideView_back.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -328,6 +328,9 @@ public class GUI extends Application implements Observer {
         }
 
 
+        if (von.equals("merge")){
+
+        }
         handleCollection.currentupdater();
 
         playiview.setImage(handleCollection.getCurrentplay());
