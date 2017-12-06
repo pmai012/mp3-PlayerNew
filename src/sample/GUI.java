@@ -69,10 +69,10 @@ public class GUI extends Application implements Observer {
 
 
     Button play = new Button("");
-    Button next = new Button("", new ImageView(nexticon));
-    Button prev = new Button("", new ImageView(previcon));
-    Button random = new Button("", new ImageView(randomicon));
-    Button repeat = new Button("", new ImageView(repeaticon));
+    Button next = new Button("");
+    Button prev = new Button("");
+    Button random = new Button("");
+    Button repeat = new Button("");
 
 
     Button btn_sideView_back = new Button("<");
