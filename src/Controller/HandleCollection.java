@@ -68,8 +68,11 @@ public class HandleCollection extends Observable  {
         @Override
         public void handle(ActionEvent event) {
 
-            if (controller.getPlayer().getCurrentTime() <=controller.getPlayer().getcurrentTrack().getLength()*TOLERANZ ){
+
+         if (controller.getPlayer().getCurrentTime() <= 3000){
+
                 controller.getPlayer().skipBack();
+
 
             }else {
                 controller.getPlayer().repeatSong();

@@ -33,6 +33,7 @@ public class MP3Player {
 
 
     public long getCurrentTime() {
+        currentTime = audioPlayer.position();
         return currentTime;
     }
 
@@ -112,6 +113,7 @@ public class MP3Player {
 
     public void repeatSong(){
         pause();
+
         currentTime = 0;
         play();
     }
@@ -124,7 +126,7 @@ public class MP3Player {
         if (currenttrack != null) {
 
             audioPlayer = minim.loadMP3File(currenttrack.getPath());
-            System.out.println(currentTime);
+
 
         System.out.println(currenttrack.getTitle() + " wird gespielt ");
         playing = true;

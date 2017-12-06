@@ -301,6 +301,7 @@ public class GUI extends Application implements Observer {
     }
 
     public void stop() {
+        System.exit(1);
     }
 
 
