@@ -48,7 +48,7 @@ public class KeyboardController {
 
                     title = title + command[command.length - 1];
                     Track pfad = new Track(title);
-                    player.play(pfad);
+                      player.play(pfad);
                 }
             }
 

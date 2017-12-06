@@ -26,7 +26,16 @@ public class Track {
     private String path = null;
     private String year = "unbekanntes Jahr";
     private long length = 0;
-    private long currenttime = 0;
+
+    /**
+     * Gibt die Länge des Tracks zurueck
+     * @return Laenge des Tracks als long
+     */
+    public long getLength() {
+        return length;
+    }
+
+
     private boolean internetpfad = false;
     byte[] cover = null;
 
@@ -40,23 +49,8 @@ public class Track {
 
 
 
-    public long getCurrenttime() {
-        return currenttime;
-    }
 
-    public void setCurrenttime(long currenttime) {
-        this.currenttime = currenttime;
-    }
-
-
-
-
-
-
-
-
-
-    /**
+   /**
      * Get Title
      * @return gibt den Titel des Tracks als String zurueck
      */

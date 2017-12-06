@@ -13,9 +13,10 @@ import java.util.Observable;
 /**
  * Created by Pascal, Julian
  */
-public class MP3Player  {
+public class MP3Player {
 
 
+    private long currentTime = 0;
     private SimpleMinim minim;
     private SimpleAudioPlayer audioPlayer;
 
@@ -27,9 +28,14 @@ public class MP3Player  {
     private Track currenttrack;
 
     boolean again = true;
-
-
     boolean playing = false;
+
+
+
+    public long getCurrentTime() {
+        return currentTime;
+    }
+
 
 
     /**
@@ -68,6 +74,11 @@ public class MP3Player  {
     }
 
 
+    /**
+     * Diese Methode braucht ein Track.
+     * @param track
+     */
+
     public void play(Track track) {
         if (playing == false) {
 
@@ -80,8 +91,8 @@ public class MP3Player  {
     }
 
     public String getTitle() {
-        if (currenttrack.getTitle() == null){
-          return "";
+        if (currenttrack.getTitle() == null) {
+            return "";
         }
         return currenttrack.getTitle();
     }
@@ -94,33 +105,46 @@ public class MP3Player  {
         return currenttrack.getArtist();
     }
 
-    public void setTrack(int number){
+    public void setTrack(int number) {
         playlist.setCurrentTrack(number);
     }
 
+
+    public void repeatSong(){
+        pause();
+        currentTime = 0;
+        play();
+    }
     public void play() {
 
+        if (getcurrentTrack() == null){
+           return;
+       }
 
         if (currenttrack != null) {
+
             audioPlayer = minim.loadMP3File(currenttrack.getPath());
-            audioPlayer.cue((int) currenttrack.getCurrenttime());
-        }
+            System.out.println(currentTime);
+
         System.out.println(currenttrack.getTitle() + " wird gespielt ");
         playing = true;
 
-        audioPlayer.play();
-        if (again) {
+
+        audioPlayer.play((int) currentTime);
+
+     /*   if (again) {
             audioPlayer.loop();
 
-        }
-
+        }*/
+    }
 
     }
 
 
     public void pause() {
 
-        currenttrack.setCurrenttime(audioPlayer.position());
+        currentTime = audioPlayer.position();
+
         audioPlayer.pause();
         playing = false;
 
@@ -163,13 +187,15 @@ public class MP3Player  {
         audioPlayer.setBalance(value);
     }
 
-public void setCurrentNumber(int number){
+    public void setCurrentNumber(int number) {
+
+
         playlist.setCurrentTrack(number);
         stop();
-        currenttrack =  playlist.getCurrentTrackTrack();
+        currenttrack = playlist.getCurrentTrackTrack();
+        currentTime = 0;
 
-
-}
+    }
 
     public boolean isShuffle() {
         return playlist.isShuffling();

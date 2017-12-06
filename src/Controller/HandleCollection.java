@@ -14,6 +14,7 @@ import java.util.Observable;
  */
 public class HandleCollection extends Observable  {
     Controller controller = new Controller();
+    final double TOLERANZ = 0.05;
 
 
 
@@ -34,6 +35,11 @@ public class HandleCollection extends Observable  {
     public EventHandler<ActionEvent> play = new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent event) {
+
+            if (controller.getPlayer().getcurrentTrack() == null){
+                return;
+            }
+
             if (!controller.isplaying()) {
                 controller.play();
 
@@ -54,6 +60,21 @@ public class HandleCollection extends Observable  {
         public void handle(ActionEvent event) {
             controller.getPlayer().skip();
 
+            updaten();
+        }
+    };
+
+    public EventHandler<ActionEvent> back = new EventHandler<ActionEvent>() {
+        @Override
+        public void handle(ActionEvent event) {
+
+            if (controller.getPlayer().getCurrentTime() <=controller.getPlayer().getcurrentTrack().getLength()*TOLERANZ ){
+                controller.getPlayer().skipBack();
+
+            }else {
+                controller.getPlayer().repeatSong();
+
+            }
             updaten();
         }
     };

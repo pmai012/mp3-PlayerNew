@@ -157,6 +157,8 @@ public class GUI extends Application implements Observer {
         play.setOnMouseEntered(handleCollection.playonenter);
         play.setOnAction(handleCollection.play);
         next.setOnAction(handleCollection.next);
+        prev.setOnAction(handleCollection.back);
+
 
 
         sideView.setItems(sideViewItems);
@@ -310,21 +312,22 @@ public class GUI extends Application implements Observer {
         //Meldungen vom  Collection handler
 
         if (von.equals("handler")){
-            handleCollection.currentupdater();
+            songView.getSelectionModel().select(handleCollection.getController().getPlayer().getPlaylist().getIndex());
         }
 
 
-        if (von.equals("controller")) { //Meldungen vom Controller
+        if (von.equals("controller" )|| von.equals("handler")) { //Meldungen vom Controller
             title.setText(handleCollection.getController().getPlayer().getTitle());
             album.setText(handleCollection.getController().getPlayer().getAlbum());
             artist.setText(handleCollection.getController().getPlayer().getArtist());
-            albumcover.setImage(handleCollection.getController().getCover());
+            albumcover.setImage(handleCollection.getController().getCover()); //albumcover gibt das Cover aus
 
 
 
 
         }
-        songView.getSelectionModel().select(handleCollection.getController().getPlayer().getPlaylist().getIndex());
+        handleCollection.currentupdater();
+
         playiview.setImage(handleCollection.getCurrentplay());
 
     }

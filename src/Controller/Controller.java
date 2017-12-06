@@ -52,7 +52,12 @@ public class Controller extends Observable {
     }
 
     public void play() {
+
+
         player.play();
+
+
+
         setChanged();
         notifyObservers("controller");
 
