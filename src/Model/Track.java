@@ -18,13 +18,13 @@ import java.io.IOException;
  */
 public class Track {
     boolean radio = false;
-    private String title = "unbekannter Titel";
-    private String artist = "unbekannter Künstler";
-    private String album = "unbekanntes Album";
-    private String genre = "unbekanntes Genre";
-    private String comment = "";
-    private String path = null;
-    private String year = "unbekanntes Jahr";
+    private String title ;
+    private String artist;
+    private String album ;
+    private String genre ;
+    private String comment ;
+    private String path ;
+    private String year ;
     private long length = 0;
 
     /**
@@ -173,7 +173,8 @@ public class Track {
                 } else {
 
                     int index = path.lastIndexOf("\\");
-                    title = path.substring(index + 1);
+                    title = path.substring(index+1);
+
 
                 }
 
@@ -203,15 +204,16 @@ public class Track {
 
             }
         }
-            if (mp3file.hasId3v1Tag()) {
+       /*    if (mp3file.hasId3v1Tag()) {
                 ID3v1 id3v1tags = mp3file.getId3v1Tag();
                 if (id3v1tags != null) {
-                    if (id3v1tags.getTitle() != null) {
+                    if (id3v1tags.getTitle() != null ) {
                         title = id3v1tags.getTitle();
                     } else {
 
                         int index = path.lastIndexOf("\\");
-                        title = path.substring(index + 1);
+                        title = path.substring(index+1);
+
 
                     }
 
@@ -235,6 +237,7 @@ public class Track {
                     }
                     length = mp3file.getLengthInMilliseconds();
                 }
-        }
+        } */
+
     }
 }

@@ -34,13 +34,7 @@ public class MP3Player  extends Observable  {
     boolean again = true;
     boolean playing = false;
 
-    Timer timer = new Timer() ;
-    TimerTask timerTask = new TimerTask() {
-        @Override
-        public void run() {
-            currentTime = audioPlayer.position();
-        }
-    };
+
 
 
     public long getCurrentTime() {
@@ -149,7 +143,7 @@ public class MP3Player  extends Observable  {
 
         audioPlayer.play((int) currentTime);
 
-        timer.schedule(timerTask, 0, 1000);
+
 
      /*   if (again) {
             audioPlayer.loop();
@@ -174,7 +168,7 @@ public class MP3Player  extends Observable  {
     public void stop() {
         minim.stop();
         currenttrack = null;
-        timer.cancel();
+
     }
 
 

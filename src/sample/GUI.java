@@ -135,7 +135,7 @@ public class GUI extends Application implements Observer {
         root.setLeft(leftpane);
         root.setRight(rightpane);
 
-          root.setCenter(centerpane);
+       //   root.setCenter(centerpane);
 
 
         Scene scene = new Scene(root, WIDTH, HEIGHT);
@@ -155,6 +155,7 @@ public class GUI extends Application implements Observer {
         play.setOnAction(handleCollection.play);
         next.setOnAction(handleCollection.next);
         prev.setOnAction(handleCollection.back);
+        random.setOnAction(handleCollection.shuffle);
         volume.valueProperty().addListener(handleCollection.volume);
 
 
@@ -321,6 +322,9 @@ public class GUI extends Application implements Observer {
         }
 
 
+        if (von.equals("merge")){
+
+        }
         handleCollection.currentupdater();
 
         playiview.setImage(handleCollection.getCurrentplay());
