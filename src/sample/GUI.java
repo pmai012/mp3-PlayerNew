@@ -23,6 +23,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -57,6 +58,7 @@ public class GUI extends Application implements Observer {
     Image stopicon = new Image("picture/stop.png");
     Image randomicon = new Image("picture/random.png");
     Image repeaticon = new Image("picture/repeat.png");
+    Image addicon = new Image("picture/addButton.png");
 
 
     ImageView playiview = new ImageView(playicon);
@@ -73,9 +75,11 @@ public class GUI extends Application implements Observer {
     Button prev = new Button("", new ImageView(previcon));
     Button random = new Button("", new ImageView(randomicon));
     Button repeat = new Button("", new ImageView(repeaticon));
-
+    Button btn_addPlaylist = new Button("Playlist hinzufügen", new ImageView(addicon));
 
     Button btn_sideView_back = new Button("<");
+
+
 
 
     Label title = new Label("Title");
@@ -116,8 +120,7 @@ public class GUI extends Application implements Observer {
     public void start(Stage primaryStage) throws Exception {
         playlistManager.searchPlaylists(System.getProperty("user.home").concat("//Music"));
         Playlist allSongs = playlistManager.getAllTracks();
-
-
+        sideView.setItems(sideViewItems);
         //Fenstereinstellungen
 
         HBox leftpane = new HBox();
@@ -156,6 +159,8 @@ public class GUI extends Application implements Observer {
         next.setOnAction(handleCollection.next);
         prev.setOnAction(handleCollection.back);
         volume.valueProperty().addListener(handleCollection.volume);
+        btn_addPlaylist.setOnMouseClicked(handleCollection.addPlaylist);
+
 
 
 
@@ -180,6 +185,7 @@ public class GUI extends Application implements Observer {
                 if (itemClicked.equals("Playlists")) {
                     leftpane.getChildren().remove(sideView);
                     leftpane.getChildren().add(btn_sideView_back);
+                    leftpane.getChildren().add(btn_addPlaylist);
                     ObservableList<String> playlists = FXCollections.observableArrayList();
                     for (Playlist p : playlistManager.getPlaylists()) {
                         playlists.add(p.getName());
@@ -205,6 +211,7 @@ public class GUI extends Application implements Observer {
                 }
             }
         });
+
 
 
         btn_sideView_back.setOnMouseClicked(new EventHandler<MouseEvent>() {

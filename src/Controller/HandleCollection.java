@@ -7,8 +7,12 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 
 import java.io.ByteArrayInputStream;
 import java.util.Observable;
@@ -17,12 +21,8 @@ import java.util.Observable;
 /**
  * Created by User on 22.11.2017.
  */
-public class HandleCollection extends Observable  {
-      final double TOLERANZ = 0.05;
-    PlaylistManager playlistManager;
-    MP3Player player;
-
-
+public class HandleCollection extends Observable {
+    Controller controller = new Controller();
 
 
     Image playicon = new Image("picture/play.png");
@@ -147,8 +147,24 @@ public class HandleCollection extends Observable  {
             updaten();
         }
     };
+    public EventHandler<MouseEvent> addPlaylist = new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent event) {
+            Label info = new Label("Wie soll Ihre Playlist heißen?");
+            TextField textField = new TextField();
+            StackPane secondaryLayout = new StackPane();
+            secondaryLayout.getChildren().add(info);
+            secondaryLayout.getChildren().add(textField);
 
+            Scene secondScene = new Scene(secondaryLayout, 250, 100);
+            Stage newWindow = new Stage();
+            newWindow.resizableProperty().setValue(false);
+            newWindow.setTitle("Playlist hinzufügen");
+            newWindow.setScene(secondScene);
 
+            newWindow.show();
+        }
+    };
     public void currentupdater() {
     if (isplaying()){
         currentplay = pauseicon;
