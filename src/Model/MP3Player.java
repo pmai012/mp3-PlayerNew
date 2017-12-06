@@ -1,6 +1,7 @@
 package Model;
 
 
+import ddf.minim.AudioListener;
 import de.hsrm.mi.eibo.simpleplayer.SimpleAudioPlayer;
 import de.hsrm.mi.eibo.simpleplayer.SimpleMinim;
 import javafx.beans.InvalidationListener;
@@ -9,11 +10,14 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
 
 import java.util.Observable;
+import java.util.Observer;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Created by Pascal, Julian
  */
-public class MP3Player  extends Observable{
+public class MP3Player  extends Observable  {
 
 
     private long currentTime = 0;
@@ -30,6 +34,13 @@ public class MP3Player  extends Observable{
     boolean again = true;
     boolean playing = false;
 
+    Timer timer = new Timer() ;
+    TimerTask timerTask = new TimerTask() {
+        @Override
+        public void run() {
+            currentTime = audioPlayer.position();
+        }
+    };
 
 
     public long getCurrentTime() {
@@ -59,6 +70,8 @@ public class MP3Player  extends Observable{
     public MP3Player() {
         minim = new SimpleMinim(true);
         playlist = new Playlist();
+
+
 
 
     }
@@ -136,6 +149,8 @@ public class MP3Player  extends Observable{
 
         audioPlayer.play((int) currentTime);
 
+        timer.schedule(timerTask, 0, 1000);
+
      /*   if (again) {
             audioPlayer.loop();
 
@@ -159,6 +174,7 @@ public class MP3Player  extends Observable{
     public void stop() {
         minim.stop();
         currenttrack = null;
+        timer.cancel();
     }
 
 
@@ -240,7 +256,6 @@ public class MP3Player  extends Observable{
         again = on;
 
     }
-
 
 }
 

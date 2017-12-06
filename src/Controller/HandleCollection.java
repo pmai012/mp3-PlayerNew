@@ -41,9 +41,10 @@ public class HandleCollection extends Observable  {
     public ChangeListener<Number> volume = new ChangeListener<Number>() {
         @Override
         public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-
-            float wert = newValue.intValue() /100;
-           getPlayer().volume(wert);
+            float wert = (((float)newValue.intValue())/100);
+        System.out.println(wert);
+            /*float wert = newValue.intValue() /100;*/
+            player.volume(wert);
         }
     };
 

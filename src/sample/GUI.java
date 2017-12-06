@@ -127,8 +127,7 @@ public class GUI extends Application implements Observer {
         FlowPane bottompane = new FlowPane(); //VBox ?
         StackPane centerpane = new StackPane();
 
-        centerpane.getChildren().add(albumcover);
-
+       centerpane.getChildren().add(albumcover);
 
         BorderPane root = new BorderPane();
         root.setTop(toppane);
@@ -136,7 +135,7 @@ public class GUI extends Application implements Observer {
         root.setLeft(leftpane);
         root.setRight(rightpane);
 
-        //     root.setCenter(albumcover);
+          root.setCenter(centerpane);
 
 
         Scene scene = new Scene(root, WIDTH, HEIGHT);
@@ -311,15 +310,14 @@ public class GUI extends Application implements Observer {
 
         //Meldungen vom  Collection handler
 
-        if (von.equals("handler")){
-            songView.getSelectionModel().select(handleCollection.getPlayer().getPlaylist().getIndex());
-        }
+
 
         if (von.equals("player")){
             title.setText(handleCollection.getPlayer().getTitle());
             album.setText(handleCollection.getPlayer().getAlbum());
             artist.setText(handleCollection.getPlayer().getArtist());
             albumcover.setImage(handleCollection.getCover());
+            songView.getSelectionModel().select(handleCollection.getPlayer().getPlaylist().getIndex());
         }
 
 
