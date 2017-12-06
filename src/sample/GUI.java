@@ -309,6 +309,9 @@ public class GUI extends Application implements Observer {
 
         //Meldungen vom  Collection handler
 
+        if (von.equals("handler")){
+            handleCollection.currentupdater();
+        }
 
 
         if (von.equals("controller")) { //Meldungen vom Controller
@@ -316,11 +319,12 @@ public class GUI extends Application implements Observer {
             album.setText(handleCollection.getController().getPlayer().getAlbum());
             artist.setText(handleCollection.getController().getPlayer().getArtist());
             albumcover.setImage(handleCollection.getController().getCover());
-            handleCollection.currentupdater();
+
+
 
 
         }
-
+        songView.getSelectionModel().select(handleCollection.getController().getPlayer().getPlaylist().getIndex());
         playiview.setImage(handleCollection.getCurrentplay());
 
     }

@@ -17,6 +17,8 @@ import java.util.*;
 7  */
 public class Playlist extends Exception{
 
+
+
     private int index = 0;
     private Track currentTrack = null;
     private ArrayList<Track> tracks;
@@ -28,6 +30,13 @@ public class Playlist extends Exception{
     final String extension = ".m3u";
 
 
+    /**
+     * Gibt index zurueck
+     * @return gbit den momentanen index zurueck
+     */
+    public int getIndex() {
+        return index;
+    }
     /**
      * Der konstruktor benötigt Name und Pfad
      * @param name Der Name der Playlist. Frei wählbar
