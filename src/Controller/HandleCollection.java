@@ -1,11 +1,16 @@
 package Controller;
 
 
+import Model.MP3Player;
+import Model.PlaylistManager;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 
+import java.io.ByteArrayInputStream;
 import java.util.Observable;
 
 
@@ -13,9 +18,9 @@ import java.util.Observable;
  * Created by User on 22.11.2017.
  */
 public class HandleCollection extends Observable  {
-    Controller controller = new Controller();
-    final double TOLERANZ = 0.05;
-
+      final double TOLERANZ = 0.05;
+    PlaylistManager playlistManager;
+    MP3Player player;
 
 
 
@@ -32,23 +37,43 @@ public class HandleCollection extends Observable  {
 
     Image currentplay;
 
+
+    public ChangeListener<Number> volume = new ChangeListener<Number>() {
+        @Override
+        public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+
+            float wert = newValue.intValue() /100;
+           getPlayer().volume(wert);
+        }
+    };
+
+    public ChangeListener<Number> position = new ChangeListener<Number>() {
+        @Override
+        public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+
+            //Position!
+
+        }
+    };
+
+
     public EventHandler<ActionEvent> play = new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent event) {
 
-            if (controller.getPlayer().getcurrentTrack() == null){
+            if (getPlayer().getcurrentTrack() == null){
                 return;
             }
 
-            if (!controller.isplaying()) {
-                controller.play();
+            if (!isplaying()) {
+                play();
 
                 currentplay = pauseicon;
                 //centerpane.getChildren().add(albumcover);
 
 
             } else {
-                controller.pause();
+                pause();
                 currentplay = playicon;
             }
             updaten();
@@ -58,7 +83,7 @@ public class HandleCollection extends Observable  {
     public EventHandler<ActionEvent> next = new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent event) {
-            controller.getPlayer().skip();
+           player.skip();
 
             updaten();
         }
@@ -69,13 +94,13 @@ public class HandleCollection extends Observable  {
         public void handle(ActionEvent event) {
 
 
-         if (controller.getPlayer().getCurrentTime() <= 3000){
+         if (player.getCurrentTime() <= 3000){
 
-                controller.getPlayer().skipBack();
+             player.skipBack();
 
 
             }else {
-                controller.getPlayer().repeatSong();
+              player.repeatSong();
 
             }
             updaten();
@@ -97,7 +122,7 @@ public class HandleCollection extends Observable  {
     public EventHandler<MouseEvent> playonenter = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent event) {
-            if (!controller.isplaying()) {
+            if (!isplaying()) {
                 currentplay = playonselect;
             } else {
                 currentplay = pauseonselect;
@@ -113,7 +138,7 @@ public class HandleCollection extends Observable  {
     public EventHandler<MouseEvent> playonexit = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent event) {
-            if (!controller.isplaying()) {
+            if (!isplaying()) {
                 currentplay = playicon;
             } else {
                 currentplay = pauseicon;
@@ -124,18 +149,58 @@ public class HandleCollection extends Observable  {
 
 
     public void currentupdater() {
-    if (controller.isplaying()){
+    if (isplaying()){
         currentplay = pauseicon;
         } else {
         currentplay = playicon;
     }
     }
 
+    public MP3Player getPlayer() {
+        return player;
+    }
+
+    public boolean isplaying() {
+        return player.isPlaying();
+    }
+
+
+    public void play(String path) {
+        //track = new Track(path);
+        play();
+
+    }
+
+    public void play() {
+
+
+        player.play();
+
+
+
+        setChanged();
+        notifyObservers("controller");
+
+
+    }
+
+
+    public void pause() {
+
+        player.pause();
+    }
+
+    public Image getCover() {
+        return new Image(new ByteArrayInputStream(player.getcurrentTrack().getCover()));
+    }
+
+
 
     /**
      * Der Konstruktor
      */
     public HandleCollection() {
+        player = new MP3Player();
         currentplay = playicon;
     }
 
@@ -152,10 +217,7 @@ public class HandleCollection extends Observable  {
     }
 
 
-    public Controller getController() {
 
-        return controller;
-    }
 
 
 

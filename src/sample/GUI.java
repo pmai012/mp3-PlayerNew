@@ -1,6 +1,5 @@
 package sample;
 
-import Controller.Controller;
 import Controller.HandleCollection;
 import Model.MP3Player;
 import Model.Playlist;
@@ -24,7 +23,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -109,8 +107,8 @@ public class GUI extends Application implements Observer {
 
 
         handleCollection = new HandleCollection();
-        handleCollection.getController().addObserver(this);
         handleCollection.addObserver(this);
+        handleCollection.getPlayer().addObserver(this);
 
     }
 
@@ -158,6 +156,7 @@ public class GUI extends Application implements Observer {
         play.setOnAction(handleCollection.play);
         next.setOnAction(handleCollection.next);
         prev.setOnAction(handleCollection.back);
+        volume.valueProperty().addListener(handleCollection.volume);
 
 
 
@@ -170,7 +169,7 @@ public class GUI extends Application implements Observer {
                     leftpane.getChildren().remove(sideView);
                     leftpane.getChildren().add(btn_sideView_back);
                     ObservableList<String> songs = FXCollections.observableArrayList();
-                    MP3Player player = handleCollection.getController().getPlayer();
+                    MP3Player player = handleCollection.getPlayer();
 
                     player.setPlaylist(allSongs);
                     for (Track t : allSongs.getTracks()) {
@@ -195,12 +194,12 @@ public class GUI extends Application implements Observer {
             @Override
             public void handle(MouseEvent event) {
                 Object itemClicked = songView.getSelectionModel().getSelectedItem();
-                MP3Player player = handleCollection.getController().getPlayer();
+                MP3Player player = handleCollection.getPlayer();
                 for (Track t : player.getPlaylist().getTracks()) {
                     if (itemClicked.equals(t.getTitle())) {
                         player.setCurrentNumber(songView.getSelectionModel().getSelectedIndex());
                        System.out.println(songView.getSelectionModel().getSelectedIndex());
-                         handleCollection.getController().play();
+                         handleCollection.play();
 
 
                     }
@@ -313,20 +312,17 @@ public class GUI extends Application implements Observer {
         //Meldungen vom  Collection handler
 
         if (von.equals("handler")){
-            songView.getSelectionModel().select(handleCollection.getController().getPlayer().getPlaylist().getIndex());
+            songView.getSelectionModel().select(handleCollection.getPlayer().getPlaylist().getIndex());
+        }
+
+        if (von.equals("player")){
+            title.setText(handleCollection.getPlayer().getTitle());
+            album.setText(handleCollection.getPlayer().getAlbum());
+            artist.setText(handleCollection.getPlayer().getArtist());
+            albumcover.setImage(handleCollection.getCover());
         }
 
 
-        if (von.equals("controller" )|| von.equals("handler")) { //Meldungen vom Controller
-            title.setText(handleCollection.getController().getPlayer().getTitle());
-            album.setText(handleCollection.getController().getPlayer().getAlbum());
-            artist.setText(handleCollection.getController().getPlayer().getArtist());
-            albumcover.setImage(handleCollection.getController().getCover()); //albumcover gibt das Cover aus
-
-
-
-
-        }
         handleCollection.currentupdater();
 
         playiview.setImage(handleCollection.getCurrentplay());

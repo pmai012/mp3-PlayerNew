@@ -13,7 +13,7 @@ import java.util.Observable;
 /**
  * Created by Pascal, Julian
  */
-public class MP3Player {
+public class MP3Player  extends Observable{
 
 
     private long currentTime = 0;
@@ -47,6 +47,8 @@ public class MP3Player {
     public Track getcurrentTrack() {
         return currenttrack;
     }
+
+
 
     ;
 
@@ -139,7 +141,8 @@ public class MP3Player {
 
         }*/
     }
-
+        setChanged();
+        notifyObservers("player");
     }
 
 
@@ -197,6 +200,9 @@ public class MP3Player {
         currenttrack = playlist.getCurrentTrackTrack();
         currentTime = 0;
 
+        setChanged();
+        notifyObservers("player");
+
     }
 
     public boolean isShuffle() {
@@ -220,6 +226,7 @@ public class MP3Player {
         currenttrack = playlist.skipback();
         audioPlayer = minim.loadMP3File(currenttrack.getPath());
         play();
+
     }
 
     public void shuffle(boolean on) {
