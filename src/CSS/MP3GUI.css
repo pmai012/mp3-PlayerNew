@@ -1,0 +1,74 @@
+
+
+
+ .buttons {
+ 	
+ 	-fx-background-color: transparent;
+ 	-fx-background-radius: 20px;
+ 
+ }
+
+
+.buttonPlay {
+    -fx-graphic: url("../picture/play.png");
+ }
+
+
+ .buttonPlay:hover {
+    -fx-graphic: url("../picture/playOnSelection.png");
+ }
+
+
+ .buttonPlay:pressed {
+    -fx-graphic: url("../picture/pause.png");
+ }
+
+
+ .buttonNext {
+    -fx-graphic: url("../picture/next.png");
+ }
+
+
+.buttonNext:hover {
+    -fx-graphic: url("../picture/nextOnSelection.png");
+}
+
+
+.buttonPrev {
+    -fx-graphic: url("../picture/prev.png");
+}
+
+
+.buttonPrev:hover {
+    -fx-graphic: url("../picture/prevOnSelection.png");
+}
+
+
+.buttonRandom {
+    -fx-graphic: url("../picture/random.png");
+}
+
+
+.buttonRandom:hover {
+    -fx-graphic: url("../picture/randomOnSelection.png");
+}
+
+
+.buttonRepeat {
+    -fx-graphic: url("../picture/repeat.png");
+}
+
+
+.buttonRepeat:hover {
+    -fx-graphic: url("../picture/repeatOnSelection.png");
+}
+
+
+
+.cover {
+    -fx-pref-height: 500px;
+    -fx-pref-width: 500px;
+    -fx-max-height: 500px;
+    -fx-max-width: 500px;
+
+}

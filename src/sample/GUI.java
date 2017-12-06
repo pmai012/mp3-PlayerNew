@@ -68,7 +68,7 @@ public class GUI extends Application implements Observer {
     ImageView albumcover = new ImageView();
 
 
-    Button play = new Button("", playiview);
+    Button play = new Button("");
     Button next = new Button("", new ImageView(nexticon));
     Button prev = new Button("", new ImageView(previcon));
     Button random = new Button("", new ImageView(randomicon));
@@ -127,7 +127,7 @@ public class GUI extends Application implements Observer {
         FlowPane bottompane = new FlowPane(); //VBox ?
         StackPane centerpane = new StackPane();
 
-       centerpane.getChildren().add(albumcover);
+
 
         BorderPane root = new BorderPane();
         root.setTop(toppane);
@@ -135,10 +135,11 @@ public class GUI extends Application implements Observer {
         root.setLeft(leftpane);
         root.setRight(rightpane);
 
-          root.setCenter(centerpane);
+        root.setCenter(centerpane);
 
 
         Scene scene = new Scene(root, WIDTH, HEIGHT);
+        scene.getStylesheets().add("CSS/MP3GUI.css");
         primaryStage.setScene(scene);
         //primaryStage.initStyle(StageStyle.TRANSPARENT);
         primaryStage.setMinHeight(200);
@@ -147,6 +148,17 @@ public class GUI extends Application implements Observer {
 
         root.setPadding(new Insets(20, 0, 0, 0));
         root.setStyle("-fx-background-color: gold;");
+
+
+
+        play.getStyleClass().addAll("buttons", "buttonPlay");
+        next.getStyleClass().addAll("buttons", "buttonNext");
+        prev.getStyleClass().addAll("buttons", "buttonPrev");
+        random.getStyleClass().addAll("buttons", "buttonRandom");
+        repeat.getStyleClass().addAll("buttons", "buttonRepeat");
+        btn_sideView_back.getStyleClass().addAll("buttons");
+
+        centerpane.getStyleClass().addAll("cover");
 
 
         //HANDLECOLLECTIONS
@@ -284,6 +296,8 @@ public class GUI extends Application implements Observer {
         leftpane.getChildren().add(sideView);
         bottompane.getChildren().add(volume);
 
+        centerpane.getChildren().add(albumcover);
+
         /**
          * Albumcover wird angezeigt
          albumcover.setScaleX(1000);
@@ -293,7 +307,7 @@ public class GUI extends Application implements Observer {
          **/
 
 
-        centerpane.setStyle("-fx-background-color: gold;");
+        //centerpane.setStyle("-fx-background-color: gold;");
 
         primaryStage.show();
     }
