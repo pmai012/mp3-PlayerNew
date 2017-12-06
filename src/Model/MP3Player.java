@@ -170,7 +170,9 @@ public class MP3Player  extends Observable  {
         currenttrack = null;
 
     }
-
+public float getVolume(){
+        return audioPlayer.getVolume();
+}
 
     public void volume(float value) {
 

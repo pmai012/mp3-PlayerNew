@@ -157,6 +157,7 @@ public class GUI extends Application implements Observer {
         prev.setOnAction(handleCollection.back);
         random.setOnAction(handleCollection.shuffle);
         volume.valueProperty().addListener(handleCollection.volume);
+        volume.setValue(0.5);
 
 
 

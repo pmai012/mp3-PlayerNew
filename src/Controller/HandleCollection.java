@@ -40,7 +40,7 @@ public class HandleCollection extends Observable {
         @Override
         public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
             float wert = (((float) newValue.intValue()) / 100);
-            System.out.println(wert);
+
             /*float wert = newValue.intValue() /100;*/
             player.volume(wert);
         }
