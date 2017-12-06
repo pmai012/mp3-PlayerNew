@@ -207,9 +207,18 @@ public class Playlist extends Exception{
      * @param t wird der Playlist hinzugefügt
      */
     public void addTrack(Track t) {
+        queue.add(t);
         tracks.add(t);
     }
 
+
+    /**
+     * Nimmt den Track an einer bestimmten postition zum current track
+     * @param Number Postition des Tracks
+     */
+    public void setCurrentTrack(int Number){
+        currentTrack = getTrack(Number);
+    }
     /**
      * Es wird ein Track an die Warteschleife gehalten
      * @param t wird an die playlist gehaengt
@@ -230,7 +239,9 @@ public class Playlist extends Exception{
         queue.set(index+1,t);
     }
 
-
+    public Track getTrack(int Number){
+        return queue.get(Number);
+    }
     /**
      * loadPlaylist
      *

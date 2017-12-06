@@ -119,6 +119,7 @@ public class GUI extends Application implements Observer {
         playlistManager.searchPlaylists(System.getProperty("user.home").concat("//Music"));
         Playlist allSongs = playlistManager.getAllTracks();
 
+
         //Fenstereinstellungen
 
         HBox leftpane = new HBox();
@@ -155,6 +156,7 @@ public class GUI extends Application implements Observer {
         play.setOnMouseExited(handleCollection.playonexit);
         play.setOnMouseEntered(handleCollection.playonenter);
         play.setOnAction(handleCollection.play);
+        next.setOnAction(handleCollection.next);
 
 
         sideView.setItems(sideViewItems);
@@ -166,6 +168,9 @@ public class GUI extends Application implements Observer {
                     leftpane.getChildren().remove(sideView);
                     leftpane.getChildren().add(btn_sideView_back);
                     ObservableList<String> songs = FXCollections.observableArrayList();
+                    MP3Player player = handleCollection.getController().getPlayer();
+
+                    player.setPlaylist(allSongs);
                     for (Track t : allSongs.getTracks()) {
                         songs.add(t.getTitle());
                     }
@@ -188,9 +193,12 @@ public class GUI extends Application implements Observer {
             @Override
             public void handle(MouseEvent event) {
                 Object itemClicked = songView.getSelectionModel().getSelectedItem();
-                for (Track t : allSongs.getTracks()) {
+                MP3Player player = handleCollection.getController().getPlayer();
+                for (Track t : player.getPlaylist().getTracks()) {
                     if (itemClicked.equals(t.getTitle())) {
-                        handleCollection.getController().play(t.getPath());
+                        player.setCurrentNumber(songView.getSelectionModel().getSelectedIndex());
+                       System.out.println(songView.getSelectionModel().getSelectedIndex());
+                         handleCollection.getController().play();
 
 
                     }
@@ -308,13 +316,13 @@ public class GUI extends Application implements Observer {
             album.setText(handleCollection.getController().getPlayer().getAlbum());
             artist.setText(handleCollection.getController().getPlayer().getArtist());
             albumcover.setImage(handleCollection.getController().getCover());
-
+            handleCollection.currentupdater();
 
 
         }
 
         playiview.setImage(handleCollection.getCurrentplay());
-        System.out.println(von);
+
     }
 }
 

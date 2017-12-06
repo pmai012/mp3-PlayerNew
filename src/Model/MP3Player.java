@@ -18,8 +18,13 @@ public class MP3Player  {
 
     private SimpleMinim minim;
     private SimpleAudioPlayer audioPlayer;
+
+    public Playlist getPlaylist() {
+        return playlist;
+    }
+
     private Playlist playlist;
-    private Track track;
+    private Track currenttrack;
 
     boolean again = true;
 
@@ -33,7 +38,7 @@ public class MP3Player  {
      * @return aktueller Track.
      */
     public Track getcurrentTrack() {
-        return track;
+        return currenttrack;
     }
 
     ;
@@ -57,7 +62,7 @@ public class MP3Player  {
     public void loadPlaylist(String path) {
 
         playlist.loadPlaylist(path);
-        track = playlist.getCurrentTrackTrack();
+        currenttrack = playlist.getCurrentTrackTrack();
 
 
     }
@@ -66,7 +71,7 @@ public class MP3Player  {
     public void play(Track track) {
         if (playing == false) {
 
-            this.track = track;
+            this.currenttrack = track;
             audioPlayer = minim.loadMP3File(track.getPath());
             playing = true;
 
@@ -75,29 +80,32 @@ public class MP3Player  {
     }
 
     public String getTitle() {
-        if (track.getTitle() == null){
+        if (currenttrack.getTitle() == null){
           return "";
         }
-        return track.getTitle();
+        return currenttrack.getTitle();
     }
 
     public String getAlbum() {
-        return track.getAlbum();
+        return currenttrack.getAlbum();
     }
 
     public String getArtist() {
-        return track.getArtist();
+        return currenttrack.getArtist();
     }
 
+    public void setTrack(int number){
+        playlist.setCurrentTrack(number);
+    }
 
     public void play() {
 
 
-        if (track != null) {
-            audioPlayer = minim.loadMP3File(track.getPath());
-            audioPlayer.cue((int) track.getCurrenttime());
+        if (currenttrack != null) {
+            audioPlayer = minim.loadMP3File(currenttrack.getPath());
+            audioPlayer.cue((int) currenttrack.getCurrenttime());
         }
-        System.out.println(track.getTitle() + " wird gespielt ");
+        System.out.println(currenttrack.getTitle() + " wird gespielt ");
         playing = true;
 
         audioPlayer.play();
@@ -112,7 +120,7 @@ public class MP3Player  {
 
     public void pause() {
 
-        track.setCurrenttime(audioPlayer.position());
+        currenttrack.setCurrenttime(audioPlayer.position());
         audioPlayer.pause();
         playing = false;
 
@@ -121,7 +129,7 @@ public class MP3Player  {
 
     public void stop() {
         minim.stop();
-        track = null;
+        currenttrack = null;
     }
 
 
@@ -155,6 +163,13 @@ public class MP3Player  {
         audioPlayer.setBalance(value);
     }
 
+public void setCurrentNumber(int number){
+        playlist.setCurrentTrack(number);
+        stop();
+        currenttrack =  playlist.getCurrentTrackTrack();
+
+
+}
 
     public boolean isShuffle() {
         return playlist.isShuffling();
@@ -167,15 +182,15 @@ public class MP3Player  {
 
     public void skip() {
         minim.stop();
-        track = playlist.skip();
-        audioPlayer = minim.loadMP3File(track.getPath());
+        currenttrack = playlist.skip();
+        audioPlayer = minim.loadMP3File(currenttrack.getPath());
         play();
     }
 
     public void skipBack() {
         minim.stop();
-        track = playlist.skipback();
-        audioPlayer = minim.loadMP3File(track.getPath());
+        currenttrack = playlist.skipback();
+        audioPlayer = minim.loadMP3File(currenttrack.getPath());
         play();
     }
 

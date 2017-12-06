@@ -7,7 +7,7 @@ import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 
 import java.util.Observable;
-import java.util.Observer;
+
 
 /**
  * Created by User on 22.11.2017.
@@ -17,8 +17,10 @@ public class HandleCollection extends Observable  {
 
 
 
+
+
     Image playicon = new Image("picture/play.png");
-    Image playonselect=  new Image("picture/playOnSelection.png");
+    Image playonselect = new Image("picture/playOnSelection.png");
     Image pauseicon = new Image("picture/pause.png");
     Image pauseonselect = new Image("picture/pauseOnSelection.png");
     Image previcon = new Image("picture/prev.png");
@@ -32,7 +34,7 @@ public class HandleCollection extends Observable  {
     public EventHandler<ActionEvent> play = new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent event) {
-            if (controller.isplaying() == false) {
+            if (!controller.isplaying()) {
                 controller.play();
 
                 currentplay = pauseicon;
@@ -46,6 +48,27 @@ public class HandleCollection extends Observable  {
             updaten();
         }
     };
+
+    public EventHandler<ActionEvent> next = new EventHandler<ActionEvent>() {
+        @Override
+        public void handle(ActionEvent event) {
+            controller.getPlayer().skip();
+
+            updaten();
+        }
+    };
+
+
+    /*
+    public EventHandler<MouseEvent> onactive = new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent event) {
+          Image bild = (Image) event.getSource();
+
+
+        }
+    };*/
+
     public EventHandler<MouseEvent> playonenter = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent event) {
@@ -57,14 +80,17 @@ public class HandleCollection extends Observable  {
             updaten();
         }
 
-};
+    };
+
+
+
 
     public EventHandler<MouseEvent> playonexit = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent event) {
             if (!controller.isplaying()) {
                 currentplay = playicon;
-            }else {
+            } else {
                 currentplay = pauseicon;
             }
             updaten();
@@ -72,8 +98,13 @@ public class HandleCollection extends Observable  {
     };
 
 
-
-
+    public void currentupdater() {
+    if (controller.isplaying()){
+        currentplay = pauseicon;
+        } else {
+        currentplay = playicon;
+    }
+    }
 
 
     /**
@@ -81,25 +112,26 @@ public class HandleCollection extends Observable  {
      */
     public HandleCollection() {
         currentplay = playicon;
+    }
+
+    public Image getCurrentplay() {
+            return currentplay;
 
     }
 
-    public Image getCurrentplay(){
-        return currentplay;
+    public void updaten() {
 
-    }
-
-    public void updaten(){
         setChanged();
         notifyObservers("handler");
+
     }
 
 
-
-    public Controller getController(){
+    public Controller getController() {
 
         return controller;
     }
+
 
 
 }
