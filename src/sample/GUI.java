@@ -49,23 +49,10 @@ public class GUI extends Application implements Observer {
 
     //GUI KOMPONENTE
 
-    Image playicon = new Image("picture/play.png");
-    Image playonselect = new Image("picture/playOnSelection.png");
-    Image pauseicon = new Image("picture/pause.png");
-    Image previcon = new Image("picture/prev.png");
-    Image nexticon = new Image("picture/next.png");
-    Image stopicon = new Image("picture/stop.png");
-    Image randomicon = new Image("picture/random.png");
-    Image repeaticon = new Image("picture/repeat.png");
 
+    Image cover = new Image("picture/placeholderCover.png");
 
-    ImageView playiview = new ImageView(playicon);
-    /*ImageView next = new ImageView(nexticon);
-    ImageView prev =  new ImageView(previcon);
-    ImageView random = new ImageView(randomicon);
-    ImageView repeat = new ImageView(repeaticon);
-    */
-    ImageView albumcover = new ImageView();
+    ImageView albumcover = new ImageView(cover);
 
 
     Button play = new Button("");
@@ -78,7 +65,6 @@ public class GUI extends Application implements Observer {
 
 
     Label title = new Label("Title");
-    //Label supertitle = new Label(" MEINE MUSIK | STORE | RADIO | MEHR |");
     Label artist = new Label("Artist");
     Label album = new Label("Album");
     Slider volume = new Slider();
@@ -133,8 +119,7 @@ public class GUI extends Application implements Observer {
         root.setBottom(bottompane);
         root.setLeft(leftpane);
         root.setRight(rightpane);
-
-       //   root.setCenter(centerpane);
+        root.setCenter(centerpane);
 
 
         Scene scene = new Scene(root, WIDTH, HEIGHT);
@@ -145,15 +130,21 @@ public class GUI extends Application implements Observer {
         primaryStage.setMinWidth(200);
         primaryStage.setTitle("3Player");
 
-        root.setPadding(new Insets(20, 0, 0, 0));
-        root.setStyle("-fx-background-color: gold;");
+        root.setStyle("-fx-background-color: #151515");
+        root.getStyleClass().addAll("root");
+        root.setPadding(new Insets(30, 0, 0, 0));
+
 
         play.getStyleClass().addAll("buttons", "buttonPlay");
         next.getStyleClass().addAll("buttons", "buttonNext");
         prev.getStyleClass().addAll("buttons", "buttonPrev");
         random.getStyleClass().addAll("buttons", "buttonRandom");
         repeat.getStyleClass().addAll("buttons", "buttonRepeat");
-        btn_sideView_back.getStyleClass().addAll("buttons");
+        btn_sideView_back.getStyleClass().addAll("buttons","text");
+
+        title.getStyleClass().addAll("text");
+        artist.getStyleClass().addAll("text");
+        album.getStyleClass().addAll("text");
 
         centerpane.getStyleClass().addAll("cover");
 
@@ -293,13 +284,13 @@ public class GUI extends Application implements Observer {
         leftpane.getChildren().add(sideView);
         bottompane.getChildren().add(volume);
 
-        /**
-         * Albumcover wird angezeigt
-         albumcover.setScaleX(1000);
-         albumcover.setScaleY(1000);
+        /*
+         albumcover.setScaleX(0.5);
+         albumcover.setScaleY(0.5);
+         */
          root.setCenter(albumcover);
 
-         **/
+
 
 
         centerpane.setStyle("-fx-background-color: gold;");

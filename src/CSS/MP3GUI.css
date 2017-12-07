@@ -1,5 +1,14 @@
 
 
+.root {
+    -fx-background-color: dimgrey;
+}
+
+.text {
+    -fx-text-fill: whitesmoke;
+}
+
+
 
  .buttons {
  	
@@ -69,9 +78,9 @@
 
 
 .cover {
-    -fx-pref-height: 500px;
-    -fx-pref-width: 500px;
-    -fx-max-height: 500px;
-    -fx-max-width: 500px;
+    -fx-pref-height: 50%;
+    -fx-pref-width: 50%;
+    -fx-max-height: 50%;
+    -fx-max-width: 50%;
 
 }

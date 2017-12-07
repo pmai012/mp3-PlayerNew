@@ -32,7 +32,7 @@ public class HandleCollection extends Observable {
     final double TOLERANZ = 0.05;
     PlaylistManager playlistManager;
     MP3Player player;
-    addPlaylistView addPlaylistView = new addPlaylistView();
+    addPlaylistView addPlaylistView = new addPlaylistView(); //WIEDER EINRÜCKEN EXCEPTIONS
 
 
     Image playicon = new Image("picture/play.png");
@@ -134,7 +134,7 @@ public class HandleCollection extends Observable {
         @Override
         public void handle(MouseEvent event) {
             try {
-                addPlaylistView.start(new Stage());
+                addPlaylistView.start(new Stage()); //WIEDER EINRÜCKEN EXCEPTIONS
             } catch (Exception e) {
                 e.printStackTrace();
             }
