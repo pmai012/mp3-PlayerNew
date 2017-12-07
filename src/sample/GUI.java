@@ -74,7 +74,6 @@ public class GUI extends Application implements Observer {
     Button random = new Button("");
     Button repeat = new Button("");
 
-
     Button btn_sideView_back = new Button("<");
 
 
