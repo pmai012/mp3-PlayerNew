@@ -127,7 +127,7 @@ public class GUI extends Application implements Observer {
         FlowPane bottompane = new FlowPane(); //VBox ?
         StackPane centerpane = new StackPane();
 
-
+       centerpane.getChildren().add(albumcover);
 
         BorderPane root = new BorderPane();
         root.setTop(toppane);
@@ -135,7 +135,7 @@ public class GUI extends Application implements Observer {
         root.setLeft(leftpane);
         root.setRight(rightpane);
 
-        root.setCenter(centerpane);
+       //   root.setCenter(centerpane);
 
 
         Scene scene = new Scene(root, WIDTH, HEIGHT);
@@ -149,8 +149,6 @@ public class GUI extends Application implements Observer {
         root.setPadding(new Insets(20, 0, 0, 0));
         root.setStyle("-fx-background-color: gold;");
 
-
-
         play.getStyleClass().addAll("buttons", "buttonPlay");
         next.getStyleClass().addAll("buttons", "buttonNext");
         prev.getStyleClass().addAll("buttons", "buttonPrev");
@@ -160,14 +158,14 @@ public class GUI extends Application implements Observer {
 
         centerpane.getStyleClass().addAll("cover");
 
-
         //HANDLECOLLECTIONS
-        play.setOnMouseExited(handleCollection.playonexit);
-        play.setOnMouseEntered(handleCollection.playonenter);
+
         play.setOnAction(handleCollection.play);
         next.setOnAction(handleCollection.next);
         prev.setOnAction(handleCollection.back);
+        random.setOnAction(handleCollection.shuffle);
         volume.valueProperty().addListener(handleCollection.volume);
+        volume.setValue(0.5);
 
 
 
@@ -296,8 +294,6 @@ public class GUI extends Application implements Observer {
         leftpane.getChildren().add(sideView);
         bottompane.getChildren().add(volume);
 
-        centerpane.getChildren().add(albumcover);
-
         /**
          * Albumcover wird angezeigt
          albumcover.setScaleX(1000);
@@ -307,7 +303,7 @@ public class GUI extends Application implements Observer {
          **/
 
 
-        //centerpane.setStyle("-fx-background-color: gold;");
+        centerpane.setStyle("-fx-background-color: gold;");
 
         primaryStage.show();
     }
@@ -335,9 +331,11 @@ public class GUI extends Application implements Observer {
         }
 
 
-        handleCollection.currentupdater();
+        if (von.equals("merge")){
 
-        playiview.setImage(handleCollection.getCurrentplay());
+        }
+        handleCollection.currentupdater();
+        play.getStyleClass().addAll("buttons", handleCollection.getCurrentplay());
 
     }
 }

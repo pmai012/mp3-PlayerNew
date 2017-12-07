@@ -17,7 +17,7 @@ import java.util.TimerTask;
 /**
  * Created by Pascal, Julian
  */
-public class MP3Player  extends Observable  {
+public class MP3Player  extends Observable implements Observer  {
 
 
     private long currentTime = 0;
@@ -93,7 +93,7 @@ public class MP3Player  extends Observable  {
         if (playing == false) {
 
             this.currenttrack = track;
-            audioPlayer = minim.loadMP3File(track.getPath());
+
             playing = true;
 
             play();
@@ -145,10 +145,7 @@ public class MP3Player  extends Observable  {
 
 
 
-     /*   if (again) {
-            audioPlayer.loop();
 
-        }*/
     }
         setChanged();
         notifyObservers("player");
@@ -253,6 +250,10 @@ public float getVolume(){
 
     }
 
+    @Override
+    public void update(Observable o, Object arg) {
+        o.equals(audioPlayer);
+    }
 }
 
 

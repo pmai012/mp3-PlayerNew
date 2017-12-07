@@ -13,6 +13,9 @@
     -fx-graphic: url("../picture/play.png");
  }
 
+.buttonPause {
+    -fx-graphic: url("../picture/pause.png");
+ }
 
  .buttonPlay:hover {
     -fx-graphic: url("../picture/playOnSelection.png");

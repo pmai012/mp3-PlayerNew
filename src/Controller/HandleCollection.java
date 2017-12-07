@@ -45,7 +45,7 @@ public class HandleCollection extends Observable {
     Image randomicon = new Image("picture/random.png");
     Image repeaticon = new Image("picture/repeat.png");
 
-    Image currentplay;
+    String currentplay;
 
 
     public ChangeListener<Number> volume = new ChangeListener<Number>() {
@@ -79,13 +79,13 @@ public class HandleCollection extends Observable {
             if (!isplaying()) {
                 play();
 
-                currentplay = pauseicon;
-                //centerpane.getChildren().add(albumcover);
+            currentplay ="buttonPause";
 
 
             } else {
                 pause();
-                currentplay = playicon;
+                currentplay = "buttonPlay";
+
             }
             updaten();
         }
@@ -130,31 +130,6 @@ public class HandleCollection extends Observable {
         }
     };*/
 
-    public EventHandler<MouseEvent> playonenter = new EventHandler<MouseEvent>() {
-        @Override
-        public void handle(MouseEvent event) {
-            if (!isplaying()) {
-                currentplay = playonselect;
-            } else {
-                currentplay = pauseonselect;
-            }
-            updaten();
-        }
-
-    };
-
-
-    public EventHandler<MouseEvent> playonexit = new EventHandler<MouseEvent>() {
-        @Override
-        public void handle(MouseEvent event) {
-            if (!isplaying()) {
-                currentplay = playicon;
-            } else {
-                currentplay = pauseicon;
-            }
-            updaten();
-        }
-    };
     public EventHandler<MouseEvent> addPlaylist = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent event) {
@@ -187,9 +162,9 @@ public class HandleCollection extends Observable {
 
     public void currentupdater() {
         if (isplaying()) {
-            currentplay = pauseicon;
+            currentplay = "buttonPause";
         } else {
-            currentplay = playicon;
+            currentplay = "buttonPlay";
         }
     }
 
@@ -236,10 +211,10 @@ public class HandleCollection extends Observable {
      */
     public HandleCollection() {
         player = new MP3Player();
-        currentplay = playicon;
+        currentplay = "buttonPlay";
     }
 
-    public Image getCurrentplay() {
+    public String getCurrentplay() {
         return currentplay;
 
     }

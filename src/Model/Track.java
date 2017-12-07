@@ -203,8 +203,8 @@ public class Track {
 
 
             }
-        }
-       /*    if (mp3file.hasId3v1Tag()) {
+        }else {
+           if (mp3file.hasId3v1Tag()) {
                 ID3v1 id3v1tags = mp3file.getId3v1Tag();
                 if (id3v1tags != null) {
                     if (id3v1tags.getTitle() != null ) {
@@ -237,7 +237,7 @@ public class Track {
                     }
                     length = mp3file.getLengthInMilliseconds();
                 }
-        } */
-
+        }
+        }
     }
 }
