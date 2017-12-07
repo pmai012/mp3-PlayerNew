@@ -77,6 +77,7 @@ public class MP3Player  extends Observable implements Observer  {
      */
     public void loadPlaylist(String path) {
 
+
         playlist.loadPlaylist(path);
         currenttrack = playlist.getCurrentTrackTrack();
 
@@ -253,6 +254,11 @@ public float getVolume(){
     @Override
     public void update(Observable o, Object arg) {
         o.equals(audioPlayer);
+    }
+
+
+    public void clear() {
+    playlist.clear();
     }
 }
 

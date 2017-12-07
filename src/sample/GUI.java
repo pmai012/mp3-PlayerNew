@@ -189,6 +189,10 @@ public class GUI extends Application implements Observer {
                 }
             }
         });
+
+        /**
+         * Song aus Songs abspielen
+         */
         songView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -215,6 +219,10 @@ public class GUI extends Application implements Observer {
             }
         });
 
+
+        /**
+         * Playlist aussuchen und abspielen
+         */
         playlistView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -223,15 +231,20 @@ public class GUI extends Application implements Observer {
                 for (Playlist p : playlistManager.getPlaylists()) {
                     if (itemClicked.equals(p.getName())) {
                         p.loadPlaylist(p.getPath());
+                        handleCollection.getPlayer().clear();
+                        handleCollection.getPlayer().loadPlaylist(p.getPath());
 
-                        for (Track t : p.getTracks()) {
+
+                        for (Track t : handleCollection.getPlayer().getPlaylist().getTracks()) {
                             songs.add(t.getTitle());
+
                         }
-                        p.getTracks().clear();
+                        handleCollection.getPlayer().getPlaylist().getTracks().clear();
+                       // p.getTracks().clear();
                         songView.setItems(songs);
                         leftpane.getChildren().remove(playlistView);
                         leftpane.getChildren().add(songView);
-                        leftpane.getChildren().add(btn_sideView_back);
+//                        leftpane.getChildren().add(btn_sideView_back);
                     }
                 }
             }

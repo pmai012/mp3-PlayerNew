@@ -53,8 +53,8 @@ public class HandleCollection extends Observable {
         public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
             float wert = (((float) newValue.intValue()) / 100);
 
-            /*float wert = newValue.intValue() /100;*/
-            player.volume(wert);
+
+       //     player.volume(wert);
         }
     };
 
@@ -188,7 +188,7 @@ public class HandleCollection extends Observable {
 
         player.play();
 
-
+        currentupdater();
         setChanged();
         notifyObservers("controller");
 
@@ -199,6 +199,9 @@ public class HandleCollection extends Observable {
     public void pause() {
 
         player.pause();
+        currentupdater();
+        setChanged();
+        notifyObservers("controller");
     }
 
     public Image getCover() {

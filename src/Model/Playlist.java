@@ -50,6 +50,14 @@ public class Playlist extends Exception{
     }
 
     /**
+     * löscht die aktuelle Playlist
+     */
+    public void clear(){
+      queue = new ArrayList<Track>();
+      tracks = new ArrayList<Track>();
+    }
+
+    /**
      * Man kann setzen ob die Playlist nach einmaligem Durchspielen von vorne anfängt
      * @param repeat true es wiederholt sich,, false es wiederholt sich nicht
      */
