@@ -1,7 +1,7 @@
 package sample;
 
 import Controller.HandleCollection;
-import Controller.TreeTracks;
+import Controller.PlaylistView;
 import Model.MP3Player;
 import Model.Playlist;
 import Model.PlaylistManager;
@@ -71,7 +71,7 @@ public class GUI extends Application implements Observer {
     ListView songView = new ListView();
     ListView playlistView = new ListView();
     Playlist allSongs;
-    TreeTracks versuch = new TreeTracks();
+    PlaylistView versuch = new PlaylistView();
 
 
     private MouseEvent mouseEvent;
@@ -108,9 +108,9 @@ public class GUI extends Application implements Observer {
 
         //Fenstereinstellungen
 
-        HBox leftpane = new HBox();
-        HBox rightpane = new HBox();
-        // HBox toprightpane = new HBox();
+       HBox leftpane = new HBox();
+
+        HBox toprightpane = new HBox();
         TilePane toppane = new TilePane();
         FlowPane bottompane = new FlowPane(); //VBox ?
         StackPane centerpane = new StackPane();
@@ -121,7 +121,7 @@ public class GUI extends Application implements Observer {
         root.setTop(toppane);
         root.setBottom(bottompane);
         root.setLeft(leftpane);
-        root.setRight(rightpane);
+        root.setRight(versuch);
     //    root.setCenter(centerpane);
 
 
@@ -317,7 +317,7 @@ public class GUI extends Application implements Observer {
 
 
 //TEst
-        rightpane.getChildren().add(versuch);
+       // rightpane.getChildren().add(versuch);
 
         centerpane.setStyle("-fx-background-color: gold;");
 
