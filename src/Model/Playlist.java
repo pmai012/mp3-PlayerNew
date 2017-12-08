@@ -90,8 +90,7 @@ public class Playlist extends Exception{
      * Der defaultkonstruktor hat keinen Pfad und keinen Namen
      */
     public Playlist(){
-    this.tracks = new ArrayList<Track>();
-    this.queue = new ArrayList<Track>();
+    clear();
 }
 
     /**

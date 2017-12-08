@@ -1,6 +1,7 @@
 package sample;
 
 import Controller.HandleCollection;
+import Controller.TreeTracks;
 import Model.MP3Player;
 import Model.Playlist;
 import Model.PlaylistManager;
@@ -14,14 +15,11 @@ import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Slider;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 
 import java.util.Observable;
@@ -72,6 +70,9 @@ public class GUI extends Application implements Observer {
     ListView sideView = new ListView();
     ListView songView = new ListView();
     ListView playlistView = new ListView();
+    Playlist allSongs;
+    TreeTracks versuch = new TreeTracks();
+
 
     private MouseEvent mouseEvent;
 
@@ -95,12 +96,14 @@ public class GUI extends Application implements Observer {
         handleCollection.addObserver(this);
         handleCollection.getPlayer().addObserver(this);
 
+
+
     }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         playlistManager.searchPlaylists(System.getProperty("user.home").concat("//Music"));
-        Playlist allSongs = playlistManager.getAllTracks();
+        allSongs = playlistManager.getAllTracks();
 
 
         //Fenstereinstellungen
@@ -156,6 +159,7 @@ public class GUI extends Application implements Observer {
         random.setOnAction(handleCollection.shuffle);
         volume.valueProperty().addListener(handleCollection.volume);
         volume.setValue(0.5);
+
 
 
 
@@ -246,7 +250,7 @@ public class GUI extends Application implements Observer {
                             System.out.println("-"+ t.getTitle());
 
                         }
-                   //     handleCollection.getPlayer().getPlaylist().getTracks().clear();
+
                        // p.getTracks().clear();
                         songView.setItems(songs);
                         leftpane.getChildren().remove(playlistView);
@@ -312,6 +316,8 @@ public class GUI extends Application implements Observer {
 
 
 
+//TEst
+        rightpane.getChildren().add(versuch);
 
         centerpane.setStyle("-fx-background-color: gold;");
 
