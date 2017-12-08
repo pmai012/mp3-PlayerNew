@@ -45,4 +45,8 @@ public class AddPlaylistController {
             view.stop();
         }
     };
+
+
+
+
 }

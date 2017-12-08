@@ -79,7 +79,7 @@ public class MP3Player  extends Observable implements Observer  {
 
 
         playlist.loadPlaylist(path);
-        currenttrack = playlist.getCurrentTrackTrack();
+        currenttrack = playlist.getTrack(0);
 
 
     }
@@ -127,6 +127,7 @@ public class MP3Player  extends Observable implements Observer  {
         currentTime = 0;
         play();
     }
+
     public void play() {
 
         if (getcurrentTrack() == null){
@@ -228,6 +229,7 @@ public float getVolume(){
         minim.stop();
         currenttrack = playlist.skip();
         audioPlayer = minim.loadMP3File(currenttrack.getPath());
+        currentTime = 0;
         play();
     }
 
@@ -235,6 +237,7 @@ public float getVolume(){
         minim.stop();
         currenttrack = playlist.skipback();
         audioPlayer = minim.loadMP3File(currenttrack.getPath());
+        currentTime = 0;
         play();
 
     }

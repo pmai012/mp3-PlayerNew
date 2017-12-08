@@ -267,6 +267,9 @@ public class Playlist extends Exception{
      */
     public void loadPlaylist(String path) {
 
+        queue = new ArrayList<Track>();
+        tracks = new ArrayList<Track>();
+
         if (!path.endsWith(extension)){
 
             return;
