@@ -2,13 +2,48 @@
 
 .root {
     -fx-background-color: dimgrey;
+    -fx-padding: 0 0 0 0;
 }
+
 
 .text {
     -fx-text-fill: whitesmoke;
+    -fx-font-size: 14px;
+
+}
+
+.title {
+    -fx-font-size: 20px;
+}
+
+.bottompane {
+    -fx-padding: 50 10 10 10;
+    -fx-background-color: black;
+    -fx-background-size: auto auto;
+
 }
 
 
+.toppane {
+    -fx-background-color: black;
+    -fx-padding: 10 0 10 0;
+
+}
+
+.rightpane {
+    -fx-background-color: black;
+}
+
+
+.centerpane {
+    -fx-pref-height: 50%;
+    -fx-pref-width: 50%;
+    -fx-max-height: 400px;
+    -fx-max-width: 400px;
+    -fx-scale-x: 0;
+    -fx-scale-y: 0;
+
+}
 
  .buttons {
  	
@@ -77,10 +112,3 @@
 
 
 
-.cover {
-    -fx-pref-height: 50%;
-    -fx-pref-width: 50%;
-    -fx-max-height: 50%;
-    -fx-max-width: 50%;
-
-}

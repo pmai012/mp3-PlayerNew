@@ -80,16 +80,16 @@ public class GUI extends Application implements Observer {
     public void init() {
 
 
-        play.setScaleX(0.3);
-        play.setScaleY(0.3);
-        prev.setScaleX(0.2);
-        prev.setScaleY(0.2);
-        next.setScaleX(0.2);
-        next.setScaleY(0.2);
-        random.setScaleX(0.2);
-        random.setScaleY(0.2);
-        repeat.setScaleX(0.2);
-        repeat.setScaleY(0.2);
+        play.setScaleX(0.2);
+        play.setScaleY(0.2);
+        prev.setScaleX(0.1);
+        prev.setScaleY(0.1);
+        next.setScaleX(0.1);
+        next.setScaleY(0.1);
+        random.setScaleX(0.1);
+        random.setScaleY(0.1);
+        repeat.setScaleX(0.1);
+        repeat.setScaleY(0.1);
 
 
         handleCollection = new HandleCollection();
@@ -108,11 +108,11 @@ public class GUI extends Application implements Observer {
 
         //Fenstereinstellungen
 
-       HBox leftpane = new HBox();
+       VBox leftpane = new VBox();
 
-        HBox toprightpane = new HBox();
+        VBox toprightpane = new VBox(10);
         TilePane toppane = new TilePane();
-        FlowPane bottompane = new FlowPane(); //VBox ?
+        HBox bottompane = new HBox(); //HBox ?
         StackPane centerpane = new StackPane();
         versuch = new PlaylistView();
         versuch.handleCollectionreferenz(handleCollection);
@@ -124,6 +124,7 @@ public class GUI extends Application implements Observer {
         root.setTop(toppane);
         root.setBottom(bottompane);
         root.setLeft(versuch);
+
 
         //root.setRight(versuch);
     //    root.setCenter(centerpane);
@@ -139,8 +140,11 @@ public class GUI extends Application implements Observer {
 
         root.setStyle("-fx-background-color: #151515");
         root.getStyleClass().addAll("root");
-        root.setPadding(new Insets(30, 0, 0, 0));
+        root.setPadding(new Insets(30, 0, 30, 0));
 
+        centerpane.getStyleClass().addAll("cover");
+        bottompane.getStyleClass().addAll("bottompane");
+        toppane.getStyleClass().addAll("toppane");
 
         play.getStyleClass().addAll("buttons", "buttonPlay");
         next.getStyleClass().addAll("buttons", "buttonNext");
@@ -152,7 +156,7 @@ public class GUI extends Application implements Observer {
         artist.getStyleClass().addAll("text");
         album.getStyleClass().addAll("text");
 
-        centerpane.getStyleClass().addAll("cover");
+
 
         //HANDLECOLLECTIONS
 
@@ -178,23 +182,21 @@ public class GUI extends Application implements Observer {
         bottompane.getChildren().add(play);
         bottompane.getChildren().add(next);
         bottompane.getChildren().add(repeat);
+        bottompane.getChildren().add(volume);
 
-        bottompane.setPadding(new Insets(10));
-        bottompane.setAlignment(Pos.TOP_CENTER);
-
-        bottompane.setStyle("-fx-background-color: black}{");
+        //bottompane.setPadding(new Insets(0, 0, 20, 0));
+        bottompane.setAlignment(Pos.BASELINE_CENTER);
 
         //Konfiguration von centerpane
 
         //display = new ImageView("Album.png");
         //centerpane.getChildren().add(display);
 
-
         //Konfiguration von toppane
 
         //Konfiguration von bottom Pane
-        //toppane.setPadding(new Insets(6));
-        toppane.setAlignment(Pos.TOP_CENTER);
+        toppane.setPadding(new Insets(6));
+        toppane.setAlignment(Pos.CENTER);
         toppane.setOrientation(Orientation.VERTICAL);
         //toppane.setOpacity(0);
 
@@ -208,15 +210,11 @@ public class GUI extends Application implements Observer {
         centerpane.getChildren().add(supertitle);
         */
 
-
-
-        bottompane.getChildren().add(volume);
-
         /*
          albumcover.setScaleX(0.5);
          albumcover.setScaleY(0.5);
          */
-        // root.setCenter(albumcover);
+         root.setCenter(albumcover);
 
 
 
