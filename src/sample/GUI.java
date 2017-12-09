@@ -114,6 +114,7 @@ public class GUI extends Application implements Observer {
         TilePane toppane = new TilePane();
         FlowPane bottompane = new FlowPane(); //VBox ?
         StackPane centerpane = new StackPane();
+        versuch = new PlaylistView();
 
        centerpane.getChildren().add(albumcover);
 
@@ -121,6 +122,7 @@ public class GUI extends Application implements Observer {
         root.setTop(toppane);
         root.setBottom(bottompane);
         root.setLeft(leftpane);
+
         root.setRight(versuch);
     //    root.setCenter(centerpane);
 
@@ -304,6 +306,7 @@ public class GUI extends Application implements Observer {
         supertitle.setUnderline(true);
         centerpane.getChildren().add(supertitle);
         */
+
 
         leftpane.getChildren().add(sideView);
         bottompane.getChildren().add(volume);
