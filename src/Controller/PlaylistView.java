@@ -14,7 +14,10 @@ import javafx.scene.layout.HBox;
 
 import java.io.IOException;
 
-public class PlaylistView extends HBox{
+import java.util.Observable;
+import java.util.Observer;
+
+public class PlaylistView extends  HBox implements Observer {
     Button btn_sideView_back = new Button("<");
     PlaylistManager playlistManager = new PlaylistManager();
     HandleCollection handleCollection;
@@ -24,8 +27,12 @@ public class PlaylistView extends HBox{
     ListView playlistView = new ListView();
     Playlist allSongs;
 
+    public void handleCollectionreferenz(HandleCollection ref){
+        this.handleCollection = ref;
+    }
+
     public PlaylistView(){
-        handleCollection =  new HandleCollection();
+
         btn_sideView_back.getStyleClass().addAll("buttons","text");
         playlistManager.searchPlaylists(System.getProperty("user.home").concat("//Music"));
         try {
@@ -145,5 +152,8 @@ public class PlaylistView extends HBox{
     }
 
 
-
+    @Override
+    public void update(Observable o, Object arg) {
+        songView.getSelectionModel().select(handleCollection.getPlayer().getPlaylist().getIndex());
+    }
 }
