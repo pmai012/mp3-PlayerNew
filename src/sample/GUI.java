@@ -79,7 +79,7 @@ public class GUI extends Application implements Observer {
 
     public void init() {
 
-
+    /*
         play.setScaleX(0.2);
         play.setScaleY(0.2);
         prev.setScaleX(0.1);
@@ -90,7 +90,7 @@ public class GUI extends Application implements Observer {
         random.setScaleY(0.1);
         repeat.setScaleX(0.1);
         repeat.setScaleY(0.1);
-
+    */
 
         handleCollection = new HandleCollection();
         handleCollection.addObserver(this);
@@ -112,7 +112,7 @@ public class GUI extends Application implements Observer {
 
         VBox toprightpane = new VBox(10);
         TilePane toppane = new TilePane();
-        HBox bottompane = new HBox(); //HBox ?
+        HBox bottompane = new HBox(80); //HBox ?
         StackPane centerpane = new StackPane();
         versuch = new PlaylistView();
         versuch.handleCollectionreferenz(handleCollection);
@@ -185,7 +185,7 @@ public class GUI extends Application implements Observer {
         bottompane.getChildren().add(volume);
 
         //bottompane.setPadding(new Insets(0, 0, 20, 0));
-        bottompane.setAlignment(Pos.BASELINE_CENTER);
+        bottompane.setAlignment(Pos.CENTER);
 
         //Konfiguration von centerpane
 
