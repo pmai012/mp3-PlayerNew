@@ -110,5 +110,12 @@
     -fx-graphic: url("../picture/repeatOnSelection.png");
 }
 
+.buttonAddPlaylist {
+    -fx-graphic: url("../picture/addPlaylist.png");
+}
+.buttonAddPlaylist:hover {
+    -fx-graphic: url("../picture/addPlaylistOnSelection.png");
+}
+
 
 

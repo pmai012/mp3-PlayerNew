@@ -1,15 +1,12 @@
 package sample;
 
 import Controller.HandleCollection;
-import Controller.PlaylistView;
 import Model.MP3Player;
 import Model.Playlist;
 import Model.PlaylistManager;
-import Model.Track;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
@@ -118,7 +115,7 @@ public class GUI extends Application implements Observer {
         versuch.handleCollectionreferenz(handleCollection);
         handleCollection.addObserver(versuch);
 
-       centerpane.getChildren().add(albumcover);
+        centerpane.getChildren().add(albumcover);
 
         BorderPane root = new BorderPane();
         root.setTop(toppane);
@@ -166,6 +163,7 @@ public class GUI extends Application implements Observer {
         random.setOnAction(handleCollection.shuffle);
         volume.valueProperty().addListener(handleCollection.volume);
         volume.setValue(0.5);
+
 
 
 

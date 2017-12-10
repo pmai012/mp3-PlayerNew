@@ -131,16 +131,15 @@ public class HandleCollection extends Observable {
         }
     };*/
 
-    public EventHandler<MouseEvent> addPlaylist = new EventHandler<MouseEvent>() {
-        @Override
-        public void handle(MouseEvent event) {
-            try {
-                addPlaylistView.start(new Stage()); //WIEDER EINRÜCKEN EXCEPTIONS
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+    public void addPlaylist()
+    {
+        try {
+            addPlaylistView.start(new Stage()); //WIEDER EINRÜCKEN EXCEPTIONS
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-    };
+    }
+
 
 
     public EventHandler<ActionEvent> shuffle = new EventHandler<ActionEvent>() {

@@ -1,5 +1,6 @@
-package Controller;
+package sample;
 
+import Controller.HandleCollection;
 import Model.MP3Player;
 import Model.Playlist;
 import Model.PlaylistManager;
@@ -19,6 +20,7 @@ import java.util.Observer;
 
 public class PlaylistView extends  HBox implements Observer {
     Button btn_sideView_back = new Button("<");
+    Button btn_addPlaylist = new Button();
     PlaylistManager playlistManager = new PlaylistManager();
     HandleCollection handleCollection;
     ObservableList<String> sideViewItems = FXCollections.observableArrayList("Songs", "Playlists");
@@ -34,6 +36,7 @@ public class PlaylistView extends  HBox implements Observer {
     public PlaylistView(){
 
         btn_sideView_back.getStyleClass().addAll("buttons","text");
+        btn_addPlaylist.getStyleClass().addAll("buttons", "buttonAddPlaylist");
         playlistManager.searchPlaylists(System.getProperty("user.home").concat("//Music"));
         try {
             allSongs = playlistManager.getAllTracks();
@@ -71,6 +74,7 @@ public class PlaylistView extends  HBox implements Observer {
                 if (itemClicked.equals("Playlists")) {
                     getChildren().remove(sideView);
                     getChildren().add(btn_sideView_back);
+                    getChildren().add(btn_addPlaylist);
                     ObservableList<String> playlists = FXCollections.observableArrayList();
                     for (Playlist p : playlistManager.getPlaylists()) {
                         playlists.add(p.getName());
@@ -93,8 +97,6 @@ public class PlaylistView extends  HBox implements Observer {
                     if (itemClicked.equals(t.getTitle())) {
                         player.setCurrentNumber(songView.getSelectionModel().getSelectedIndex());
                         handleCollection.play();
-
-
                     }
                 }
             }
@@ -107,6 +109,12 @@ public class PlaylistView extends  HBox implements Observer {
                 handleCollection.getPlayer().clear();
                 getChildren().clear();
                 getChildren().add(sideView);
+            }
+        });
+        btn_addPlaylist.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                handleCollection.addPlaylist();
             }
         });
 
