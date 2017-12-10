@@ -10,6 +10,7 @@ import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 
@@ -28,6 +29,7 @@ public class PlaylistView extends  HBox implements Observer {
     ListView songView = new ListView();
     ListView playlistView = new ListView();
     Playlist allSongs;
+    Playlist activePlaylist;
 
     public void handleCollectionreferenz(HandleCollection ref){
         this.handleCollection = ref;
@@ -46,9 +48,6 @@ public class PlaylistView extends  HBox implements Observer {
 
         btn_sideView_back.getStyleClass().addAll("buttons","text");
 
-
-
-
         sideView.setItems(sideViewItems);
         sideView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -66,8 +65,9 @@ public class PlaylistView extends  HBox implements Observer {
                         songs.add(t.getTitle());
 
                     }
-
+                    if (songView.getItems().isEmpty()){
                     songView.setItems(songs);
+                    }
                     getChildren().add(songView);
                 }
                 //Playlisten werden aufgelistet
@@ -101,6 +101,18 @@ public class PlaylistView extends  HBox implements Observer {
                 }
             }
         });
+        songView.setOnDragOver(new EventHandler<DragEvent>() {
+            @Override
+            public void handle(final DragEvent event) {
+                handleCollection.songViewMouseDragOver(event);
+            }
+        });
+        songView.setOnDragDropped(new EventHandler<DragEvent>() {
+            @Override
+            public void handle(DragEvent event) {
+                handleCollection.songViewMouseDragDropped(event, songView.getItems(), activePlaylist);
+            }
+        });
 
 
         btn_sideView_back.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -128,16 +140,15 @@ public class PlaylistView extends  HBox implements Observer {
                 Object itemClicked = playlistView.getSelectionModel().getSelectedItem();
                 ObservableList<String> songs = FXCollections.observableArrayList();
                 for (Playlist p : playlistManager.getPlaylists()){
-
-
                     //Playlist auswählen
                     if (itemClicked.equals(p.getName())) {
                         handleCollection.getPlayer().getPlaylist().clear();
                         handleCollection.getPlayer().loadPlaylist(p.getPath());
-
+                        activePlaylist = p;
 
                         for (Track t : handleCollection.getPlayer().getPlaylist().getTracks()) {
                             songs.add(t.getTitle());
+                            activePlaylist.getTracks().add(t);
                             System.out.println("-"+ t.getTitle());
 
                         }
