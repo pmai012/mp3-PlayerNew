@@ -222,7 +222,11 @@ public float getVolume(){
 
 
     public void setPlaylist(Playlist actPlaylist) {
-        this.playlist = actPlaylist;
+    Playlist neu = new Playlist();
+    for(int i = 0; i < actPlaylist.getTracks().size(); i++){
+        neu.addTrack(actPlaylist.getTrack(i));
+    }
+    this.playlist = neu;
     }
 
     public void skip() {

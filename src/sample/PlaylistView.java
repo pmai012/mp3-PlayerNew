@@ -60,12 +60,14 @@ public class PlaylistView extends  HBox implements Observer {
                     getChildren().add(btn_sideView_back);
                     ObservableList<String> songs = FXCollections.observableArrayList();
                     handleCollection.getPlayer().setPlaylist(allSongs);
-                    System.out.println("ERSTER SONG: "+ allSongs.getTrack(0).getTitle());
 
-                    for (Track t : handleCollection.getPlayer().getPlaylist().getTracks()) {
-                        songs.add(t.getTitle());
 
+
+                    for (int i = 0; i < handleCollection.getPlayer().getPlaylist().getTracks().size(); i++){
+                        songs.add(handleCollection.getPlayer().getPlaylist().getTrack(i).getTitle());
+                        System.out.println(handleCollection.getPlayer().getPlaylist().getTrack(i).getTitle());
                     }
+
 
                     songView.setItems(songs);
                     getChildren().add(songView);
