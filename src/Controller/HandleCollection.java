@@ -65,8 +65,9 @@ public class HandleCollection extends Observable {
         public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
             float wert = (((float) newValue.intValue()) / 100);
 
-
-        player.volume(wert);
+            if (player.getcurrentTrack() != null) {
+                player.volume(wert);
+            }
         }
     };
 
@@ -91,7 +92,7 @@ public class HandleCollection extends Observable {
             if (!isplaying()) {
                 play();
 
-            currentplay ="buttonPause";
+                currentplay = "buttonPause";
 
 
             } else {
@@ -142,15 +143,13 @@ public class HandleCollection extends Observable {
         }
     };*/
 
-    public void addPlaylist()
-    {
+    public void addPlaylist() {
         try {
             addPlaylistView.start(new Stage()); //WIEDER EINRÜCKEN EXCEPTIONS
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
 
 
     public EventHandler<ActionEvent> shuffle = new EventHandler<ActionEvent>() {
@@ -181,6 +180,7 @@ public class HandleCollection extends Observable {
             e.consume();
         }
     }
+
     public void songViewMouseDragDropped(final DragEvent e, ObservableList<String> songs, Playlist actPlaylist) {
         final Dragboard db = e.getDragboard();
         boolean success = false;
