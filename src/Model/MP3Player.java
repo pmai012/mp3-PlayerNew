@@ -247,9 +247,9 @@ public float getVolume(){
     }
 
     public void shuffle(boolean on) {
-        if (on) {
+
             playlist.shuffle(on);
-        }
+
 
     }
 

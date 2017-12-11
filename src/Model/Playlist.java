@@ -7,22 +7,24 @@ import java.util.*;
 
 
 /**
- 2  * Die Playlist Klasse.
- 3  * Diese laed und verwaltet die rueckgabe der Tracks.
- 4  *
- 5
+ * 2  * Die Playlist Klasse.
+ * 3  * Diese laed und verwaltet die rueckgabe der Tracks.
+ * 4  *
+ * 5
+ *
  * @author Julian
-6
+ *         6
  * @version 1.0
-7  */
-public class Playlist extends Exception{
-
+ *          7
+ */
+public class Playlist extends Exception {
 
 
     private int index = 0;
     private Track currentTrack = null;
     private ArrayList<Track> tracks;
     private ArrayList<Track> queue;
+
     private boolean shuffling = false;
     private String name;
     private String path;
@@ -32,13 +34,24 @@ public class Playlist extends Exception{
 
     /**
      * Gibt index zurueck
+     *
      * @return gbit den momentanen index zurueck
      */
     public int getIndex() {
+
+        if (shuffling == true) {
+            for (int i = 0; i < tracks.size(); i++) {
+                if (tracks.get(i).getTitle().equals(currentTrack.getTitle())) {
+                    return i;
+                }
+            }
+        }
         return index;
     }
+
     /**
      * Der konstruktor benötigt Name und Pfad
+     *
      * @param name Der Name der Playlist. Frei wählbar
      * @param path Der Pfad ,wo sich die Playlist aufhält
      */
@@ -48,18 +61,21 @@ public class Playlist extends Exception{
         this.tracks = new ArrayList<Track>();
         this.queue = new ArrayList<Track>();
 
+
     }
+
 
     /**
      * löscht die aktuelle Playlist
      */
-    public void clear(){
-      queue = new ArrayList<Track>();
-      tracks = new ArrayList<Track>();
+    public void clear() {
+        queue = new ArrayList<Track>();
+        tracks = new ArrayList<Track>();
     }
 
     /**
      * Man kann setzen ob die Playlist nach einmaligem Durchspielen von vorne anfängt
+     *
      * @param repeat true es wiederholt sich,, false es wiederholt sich nicht
      */
     public void setRepeat(boolean repeat) {
@@ -69,6 +85,7 @@ public class Playlist extends Exception{
 
     /**
      * Aktueller stand ob es sich wiederholt
+     *
      * @return true es wiederholt sich, false es wieerholt sich nicht
      */
     public boolean isRepeat() {
@@ -76,11 +93,10 @@ public class Playlist extends Exception{
     }
 
 
-
-
     /**
      * isshuffling
      * Gibt zurueck ob der Shuffling Modus aktiviert wurde
+     *
      * @return Gibt zurück ob der shuffling Modus aktiviert ist
      */
     public boolean isShuffling() {
@@ -90,18 +106,22 @@ public class Playlist extends Exception{
     /**
      * Der defaultkonstruktor hat keinen Pfad und keinen Namen
      */
-    public Playlist(){
-    clear();
-}
+    public Playlist() {
+        clear();
+    }
 
     /**
      * getPath
+     *
      * @return gibt den Pfad der Playlist zurück
      */
-    public String getPath(){return this.path;}
+    public String getPath() {
+        return this.path;
+    }
 
     /**
      * getName
+     *
      * @return gibt den Namen der aktuellen Playlist zurueck
      */
     public String getName() {
@@ -111,16 +131,18 @@ public class Playlist extends Exception{
 
     /**
      * getCurrentTrack
+     *
      * @return gibt den aktuellen Track zurueck
      */
-    public Track getCurrentTrackTrack(){
-    return currentTrack;
+    public Track getCurrentTrackTrack() {
+        return currentTrack;
     }
 
 
     /**
      * skip
      * Springt zum naechsten Song.
+     *
      * @return gibt dden naechsten Song zurueck, sollte mkein Trck mehr vorhanden sein, wird Null zurueckgegeben.ist
      * repeat aktiviert gibt er den ersten Song wieder zuruck
      */
@@ -130,7 +152,7 @@ public class Playlist extends Exception{
             currentTrack = queue.get(index);
             return currentTrack;
         }
-        if (repeat){
+        if (repeat) {
             index = 0;
             currentTrack = queue.get(index);
             return currentTrack;
@@ -143,15 +165,15 @@ public class Playlist extends Exception{
      *
      * @return Gibt den vorherigen Track wieder. ist keiner vorhanden mehr gibt er null zurueck
      * Ist repeat aktiviert gibt er den letzten Song wieder
-     * */
+     */
     public Track skipback() {
         index--;
         if (index > -1) {
             currentTrack = queue.get(index);
             return currentTrack;
         }
-        if (repeat){
-            index = queue.size()-1;
+        if (repeat) {
+            index = queue.size() - 1;
             currentTrack = queue.get(index);
             return currentTrack;
         }
@@ -162,7 +184,7 @@ public class Playlist extends Exception{
      * Merge mischt die playlist angepasst nach shuffle. Wenn shuffle aktiviert ist wird die Playlist zufaellig gemischt.
      * Der aktuelle Track  bleibt jedoch gleich. Dadurch kann man waehrend des Musik hören mischen.
      */
-    public void merge(){
+    public void merge() {
 
         queue = new ArrayList<Track>();
         for (int i = 0; i < tracks.size(); i++) {
@@ -173,13 +195,13 @@ public class Playlist extends Exception{
         if (shuffling == true) {
             int s;
 
-            for (int i = 0; i < queue.size(); i++){
+            for (int i = 0; i < queue.size(); i++) {
 
                 if (i != index) {
 
                     do {
                         s = s = i + (int) (Math.random() * (queue.size() - i));
-                        }
+                    }
                     while (s == index);
 
 
@@ -195,13 +217,17 @@ public class Playlist extends Exception{
 
     /**
      * Shuffelt die Playlist. und mischt sie im zweifel neu
+     *
      * @param on true = shuffle aktiviert, false = shuffle deaktiviert
      */
     public void shuffle(boolean on) {
+        if (shuffling == true) {
+            index = getIndex();
+        }
+        shuffling = on;
 
 
-            shuffling = on;
-            merge();
+        merge();
 
 
     }
@@ -209,18 +235,25 @@ public class Playlist extends Exception{
 
     /**
      * getTracks gibt die Playlist zurueck
+     *
      * @return Es wird die Warteschlange zurueckgegeben.
      */
-    public ArrayList<Track> getTracks(){return tracks;}
+    public ArrayList<Track> getTracks() {
+        return tracks;
+    }
 
     /**
      * getTracks gibt die Playlist zurueck
+     *
      * @return Es wird die Warteschlange zurueckgegeben.
      */
-    public ArrayList<Track> getQueue(){return queue;}
+    public ArrayList<Track> getQueue() {
+        return queue;
+    }
 
     /**
      * Track wird zu Playlist hinzugefügt
+     *
      * @param t wird der Playlist hinzugefügt
      */
     public void addTrack(Track t) {
@@ -231,14 +264,17 @@ public class Playlist extends Exception{
 
     /**
      * Nimmt den Track an einer bestimmten postition zum current track
+     *
      * @param Number Postition des Tracks
      */
-    public void setCurrentTrack(int Number){
+    public void setCurrentTrack(int Number) {
         currentTrack = getTrack(Number);
         index = Number;
     }
+
     /**
      * Es wird ein Track an die Warteschleife gehalten
+     *
      * @param t wird an die playlist gehaengt
      */
     public void addTracktoQueue(Track t) {
@@ -247,19 +283,21 @@ public class Playlist extends Exception{
 
     /**
      * Es wird ein Song als naechtes eingehaengt. Nach dem aktuellen Song wuerde dieser Song sepielt werden.
+     *
      * @param t Der Track welcher als naechstes gespielt werden soll.
      */
     public void addnextTrack(Track t) {
         queue.add(null);
-        for (int i =queue.size()-1 ; i > index+1; i--){
-        queue.set(i,queue.get(i-1));
+        for (int i = queue.size() - 1; i > index + 1; i--) {
+            queue.set(i, queue.get(i - 1));
         }
-        queue.set(index+1,t);
+        queue.set(index + 1, t);
     }
 
-    public Track getTrack(int Number){
-        return queue.get(Number);
+    public Track getTrack(int Number) {
+        return tracks.get(Number);
     }
+
     /**
      * loadPlaylist
      *
@@ -270,7 +308,7 @@ public class Playlist extends Exception{
         queue = new ArrayList<Track>();
         tracks = new ArrayList<Track>();
 
-        if (!path.endsWith(extension)){
+        if (!path.endsWith(extension)) {
 
             return;
         }
@@ -284,12 +322,10 @@ public class Playlist extends Exception{
             while ((zeile = datei.readLine()) != null) // liest zeilenweise aus Datei
             {
                 if (next == true) {
-                    String trackpath =  zeile;
-
+                    String trackpath = zeile;
 
 
                     tracks.add(new Track(trackpath));
-
 
 
                     next = false;
@@ -309,14 +345,13 @@ public class Playlist extends Exception{
             }
 
 
-
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-       merge();
+        merge();
         currentTrack = queue.get(0);
 
     }

@@ -95,6 +95,10 @@
     -fx-graphic: url("../picture/random.png");
 }
 
+.buttonRandomOnPress{
+ -fx-graphic: url("../picture/randomOnSelection.png");
+}
+
 
 .buttonRandom:hover {
     -fx-graphic: url("../picture/randomOnSelection.png");
@@ -116,6 +120,8 @@
 .buttonAddPlaylist:hover {
     -fx-graphic: url("../picture/addPlaylistOnSelection.png");
 }
+
+
 
 
 

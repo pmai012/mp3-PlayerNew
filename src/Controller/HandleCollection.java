@@ -155,15 +155,17 @@ public class HandleCollection extends Observable {
     public EventHandler<ActionEvent> shuffle = new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent event) {
-            if (player.isShuffle()) {
-                player.shuffle(false);
-            } else {
-                player.shuffle(true);
-            }
+          //Damit der Wert übergeben wird und man ab er aktuellen position weiter süielen kann!
+
+           player.shuffle(!player.isShuffle());
+
+
             setChanged();
             notifyObservers("merge");
 
             updaten();
+
+
         }
     };
 
@@ -243,7 +245,19 @@ public class HandleCollection extends Observable {
     }
 
     public Image getCover() {
-        return new Image(new ByteArrayInputStream(player.getcurrentTrack().getCover()));
+        Image cover = null;
+        try{
+             cover = new Image(new ByteArrayInputStream(player.getcurrentTrack().getCover()));
+        }catch (java.lang.NullPointerException e){
+
+        }
+
+
+        if (cover == null){
+            return new Image("picture/placeholderCover.png");
+        }else {
+            return cover;
+        }
     }
 
 

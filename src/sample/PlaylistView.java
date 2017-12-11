@@ -64,7 +64,7 @@ public class PlaylistView extends  HBox implements Observer {
                     for (int i = 0; i < handleCollection.getPlayer().getPlaylist().getTracks().size(); i++){
 
                         songs.add(handleCollection.getPlayer().getPlaylist().getTrack(i).getTitle());
-                        System.out.println(handleCollection.getPlayer().getPlaylist().getTrack(i).getTitle());
+
                     }
 
 
@@ -87,6 +87,9 @@ public class PlaylistView extends  HBox implements Observer {
                 }
             }
         });
+
+
+
 
         /**
          * Song aus "Songs" abspielen
@@ -179,7 +182,12 @@ public class PlaylistView extends  HBox implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        songView.getSelectionModel().select(handleCollection.getPlayer().getPlaylist().getIndex());
+
+       songView.getSelectionModel().select(handleCollection.getPlayer().getPlaylist().getIndex());
+
+         if (handleCollection.getPlayer().isShuffle() == true) {
+           songView.scrollTo(handleCollection.getPlayer().getPlaylist().getIndex());
+       }
     }
 }
 /*

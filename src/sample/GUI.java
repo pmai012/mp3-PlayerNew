@@ -66,9 +66,8 @@ public class GUI extends Application implements Observer {
     ObservableList<String> sideViewItems = FXCollections.observableArrayList("Songs", "Playlists");
     ListView sideView = new ListView();
     ListView songView = new ListView();
-    ListView playlistView = new ListView();
     Playlist allSongs;
-    PlaylistView versuch = new PlaylistView();
+    PlaylistView playlistview = new PlaylistView();
 
 
     private MouseEvent mouseEvent;
@@ -100,9 +99,9 @@ public class GUI extends Application implements Observer {
         HBox bottompane = new HBox(80); //HBox ?
         StackPane centerpane = new StackPane();
 
-        versuch = new PlaylistView();
-        versuch.handleCollectionreferenz(handleCollection);
-        handleCollection.addObserver(versuch);
+        playlistview = new PlaylistView();
+        playlistview.handleCollectionreferenz(handleCollection);
+        handleCollection.addObserver(playlistview);
 
         centerpane.getChildren().add(albumcover);
         albumcover.setFitWidth(400);
@@ -111,7 +110,7 @@ public class GUI extends Application implements Observer {
         BorderPane root = new BorderPane();
         root.setTop(toppane);
         root.setBottom(bottompane);
-        root.setLeft(versuch);
+        root.setLeft(playlistview);
 
 
         //root.setRight(versuch);
@@ -231,15 +230,24 @@ public class GUI extends Application implements Observer {
             album.setText(handleCollection.getPlayer().getAlbum());
             artist.setText(handleCollection.getPlayer().getArtist());
             albumcover.setImage(handleCollection.getCover());
-            songView.getSelectionModel().select(handleCollection.getPlayer().getPlaylist().getIndex());
-        }
-
-
-        if (von.equals("merge")){
 
         }
+
+
+
+            if (handleCollection.getPlayer().isShuffle()) {
+                random.getStyleClass().addAll("buttons", "buttonRandomOnPress");
+            }
+
+            if(handleCollection.getPlayer().isShuffle() == false){
+
+                random.getStyleClass().addAll("buttons", "buttonRandom");
+            }
+        System.out.println(handleCollection.getPlayer().isShuffle());
+
         handleCollection.currentupdater();
         play.getStyleClass().addAll("buttons", handleCollection.getCurrentplay());
+
 
     }
 }
