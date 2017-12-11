@@ -51,7 +51,10 @@ public class PlaylistManager {
     }
 
     public void updatePlaylist(Playlist actPlaylist) {
-
+        writeContent(actPlaylist);
+        File old = new File(System.getProperty("user.home").concat("//Music") + "/" + actPlaylist.getName());
+        old.delete();
+        savePlaylist(new File(System.getProperty("user.home").concat("//Music") + "/" + actPlaylist.getName()));
     }
     public void createEmptyPlaylist(File playlist){
         savePlaylist(playlist);
@@ -74,17 +77,20 @@ public class PlaylistManager {
                         searchMP3(file.getAbsolutePath(), playlist);
                     }
                 }
-
-                for (Track t: playlist.getTracks())
-                {StringBuffer songInfo = new StringBuffer("#EXTINF:");
-                 songInfo.append(t.getArtist());
-                 songInfo.append(" - ");
-                 songInfo.append(t.getTitle());
-                 contents.add(songInfo.toString());
-                 contents.add(t.getPath());
-                }
+                writeContent(playlist);
             }
         return playlist;
+    }
+    private void writeContent(Playlist playlist)
+    {
+        for (Track t: playlist.getTracks())
+        {StringBuffer songInfo = new StringBuffer("#EXTINF:");
+            songInfo.append(t.getArtist());
+            songInfo.append(" - ");
+            songInfo.append(t.getTitle());
+            contents.add(songInfo.toString());
+            contents.add(t.getPath());
+        }
     }
     private void savePlaylist(File playlist){
         Writer output = null;
