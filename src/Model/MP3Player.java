@@ -220,7 +220,7 @@ public float getVolume(){
         return playlist.isShuffling();
     }
 
-
+//Jetzt gehts
     public void setPlaylist(Playlist actPlaylist) {
     Playlist neu = new Playlist();
     for(int i = 0; i < actPlaylist.getTracks().size(); i++){
