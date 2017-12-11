@@ -66,7 +66,7 @@ public class HandleCollection extends Observable {
             float wert = (((float) newValue.intValue()) / 100);
 
 
-       //     player.volume(wert);
+        player.volume(wert);
         }
     };
 

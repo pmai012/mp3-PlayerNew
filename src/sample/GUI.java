@@ -33,8 +33,8 @@ public class GUI extends Application implements Observer {
     HandleCollection handleCollection;
 
 
-    final int WIDTH = 1000;
-    final int HEIGHT = 650;
+    final int WIDTH = 940;
+    final int HEIGHT = 720;
     private MP3Player mp3Player = new MP3Player();
 
     private boolean playing = false;
