@@ -92,7 +92,7 @@ public class GUI extends Application implements Observer {
 
         //Fenstereinstellungen
 
-       VBox leftpane = new VBox();
+        VBox leftpane = new VBox();
 
         VBox toprightpane = new VBox(10);
         TilePane toppane = new TilePane();
