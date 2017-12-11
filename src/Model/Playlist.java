@@ -47,6 +47,7 @@ public class Playlist extends Exception{
         this.path = path;
         this.tracks = new ArrayList<Track>();
         this.queue = new ArrayList<Track>();
+
     }
 
     /**
