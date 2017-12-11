@@ -67,9 +67,9 @@ public class PlaylistView extends  HBox implements Observer {
                         System.out.println(handleCollection.getPlayer().getPlaylist().getTrack(i).getTitle());
                     }
 
-                   // if (songView.getItems().isEmpty()){
+
                     songView.setItems(songs);
-                //    }
+
                     getChildren().add(songView);
 
                 }

@@ -33,8 +33,8 @@ public class GUI extends Application implements Observer {
     HandleCollection handleCollection;
 
 
-    final int WIDTH = 1200;
-    final int HEIGHT = 840;
+    final int WIDTH = 1000;
+    final int HEIGHT = 650;
     private MP3Player mp3Player = new MP3Player();
 
     private boolean playing = false;
@@ -76,18 +76,7 @@ public class GUI extends Application implements Observer {
 
     public void init() {
 
-    /*
-        play.setScaleX(0.2);
-        play.setScaleY(0.2);
-        prev.setScaleX(0.1);
-        prev.setScaleY(0.1);
-        next.setScaleX(0.1);
-        next.setScaleY(0.1);
-        random.setScaleX(0.1);
-        random.setScaleY(0.1);
-        repeat.setScaleX(0.1);
-        repeat.setScaleY(0.1);
-    */
+
 
         handleCollection = new HandleCollection();
         handleCollection.addObserver(this);
@@ -102,7 +91,6 @@ public class GUI extends Application implements Observer {
         playlistManager.searchPlaylists(System.getProperty("user.home").concat("//Music"));
         allSongs = playlistManager.getAllTracks();
 
-
         //Fenstereinstellungen
 
        VBox leftpane = new VBox();
@@ -111,11 +99,14 @@ public class GUI extends Application implements Observer {
         TilePane toppane = new TilePane();
         HBox bottompane = new HBox(80); //HBox ?
         StackPane centerpane = new StackPane();
+
         versuch = new PlaylistView();
         versuch.handleCollectionreferenz(handleCollection);
         handleCollection.addObserver(versuch);
 
         centerpane.getChildren().add(albumcover);
+        albumcover.setFitWidth(400);
+        albumcover.setFitHeight(400);
 
         BorderPane root = new BorderPane();
         root.setTop(toppane);
@@ -208,19 +199,16 @@ public class GUI extends Application implements Observer {
         centerpane.getChildren().add(supertitle);
         */
 
-        /*
-         albumcover.setScaleX(0.5);
-         albumcover.setScaleY(0.5);
-         */
+
+         centerpane.setScaleX(0.5);
+         centerpane.setScaleY(0.5);
+
          root.setCenter(albumcover);
 
 
 
 //TEst
        // rightpane.getChildren().add(versuch);
-
-        centerpane.setStyle("-fx-background-color: gold;");
-
         primaryStage.show();
     }
 
