@@ -8,6 +8,7 @@ import javafx.beans.InvalidationListener;
 
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -17,18 +18,21 @@ import java.util.TimerTask;
 /**
  * Created by Pascal, Julian
  */
-public class MP3Player  extends Observable  {
+public class MP3Player extends Observable {
 
 
     private long currentTime = 0;
     private SimpleMinim minim;
     private SimpleAudioPlayer audioPlayer;
+
     public Playlist getPlaylist() {
         return playlist;
     }
 
+
     private Playlist playlist;
     private Track currenttrack;
+
 
     Thread timewatch = new Thread(new Timewatch());
 
@@ -36,12 +40,10 @@ public class MP3Player  extends Observable  {
     boolean playing = false;
 
 
-
     public long getCurrentTime() {
         currentTime = audioPlayer.position();
         return currentTime;
     }
-
 
 
     /**
@@ -54,7 +56,6 @@ public class MP3Player  extends Observable  {
     }
 
 
-
     ;
 
     public boolean isPlaying() {
@@ -64,8 +65,6 @@ public class MP3Player  extends Observable  {
     public MP3Player() {
         minim = new SimpleMinim(true);
         playlist = new Playlist();
-
-
 
 
     }
@@ -87,6 +86,7 @@ public class MP3Player  extends Observable  {
 
     /**
      * Diese Methode braucht ein Track.
+     *
      * @param track
      */
 
@@ -121,7 +121,7 @@ public class MP3Player  extends Observable  {
     }
 
 
-    public void repeatSong(){
+    public void repeatSong() {
         pause();
 
         currentTime = 0;
@@ -130,27 +130,24 @@ public class MP3Player  extends Observable  {
 
     public void play() {
 
-        if (getcurrentTrack() == null){
-           return;
-       }
+        if (getcurrentTrack() == null) {
+            return;
+        }
 
         if (currenttrack != null) {
 
             audioPlayer = minim.loadMP3File(currenttrack.getPath());
 
 
-        System.out.println(currenttrack.getTitle() + " wird gespielt ");
-        playing = true;
+            System.out.println(currenttrack.getTitle() + " wird gespielt ");
+            playing = true;
 
 
-        audioPlayer.play((int) currentTime);
-
-        //  timewatch.start();
-
+            audioPlayer.play((int) currentTime);
+            timewatch.start();
 
 
-
-    }
+        }
         setChanged();
         notifyObservers("player");
     }
@@ -173,9 +170,10 @@ public class MP3Player  extends Observable  {
 
 
     }
-public float getVolume(){
+
+    public float getVolume() {
         return audioPlayer.getVolume();
-}
+    }
 
     public void volume(float value) {
 
@@ -224,13 +222,13 @@ public float getVolume(){
         return playlist.isShuffling();
     }
 
-//Jetzt gehts
+    //Jetzt gehts
     public void setPlaylist(Playlist actPlaylist) {
-    Playlist neu = new Playlist();
-    for(int i = 0; i < actPlaylist.getTracks().size(); i++){
-        neu.addTrack(actPlaylist.getTrack(i));
-    }
-    this.playlist = neu;
+        Playlist neu = new Playlist();
+        for (int i = 0; i < actPlaylist.getTracks().size(); i++) {
+            neu.addTrack(actPlaylist.getTrack(i));
+        }
+        this.playlist = neu;
     }
 
     public void skip() {
@@ -252,7 +250,7 @@ public float getVolume(){
 
     public void shuffle(boolean on) {
 
-            playlist.shuffle(on);
+        playlist.shuffle(on);
 
 
     }
@@ -263,28 +261,35 @@ public float getVolume(){
     }
 
 
-
     public void clear() {
-    playlist.clear();
+        playlist.clear();
     }
 
 
-private class Timewatch implements Runnable{
+    private class Timewatch implements Runnable {
+        private final long INTERVAL = 500;
 
-    @Override
-    public void run() {
-      while (audioPlayer.position() < currenttrack.getLength()){
+        @Override
+        public void run() {
 
-          currentTime = audioPlayer.position();
-          System.out.println(currentTime);
-      }
+            while (audioPlayer.isPlaying()) {
 
-      if (again){
-          currentTime = 0;
-          play();
-      }
+                try {
+                    Thread.sleep(INTERVAL);
+                    currentTime = audioPlayer.position();
+                    setChanged();
+                    notifyObservers();
+
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+        }
+
+
     }
-}
 }
 
 

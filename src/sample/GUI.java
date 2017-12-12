@@ -58,7 +58,6 @@ public class GUI extends Application implements Observer {
 
     Button btn_sideView_back = new Button("<");
 
-
     Label title = new Label("Title");
     Label artist = new Label("Artist");
     Label album = new Label("Album");
