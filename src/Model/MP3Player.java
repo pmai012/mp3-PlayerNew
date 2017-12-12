@@ -17,13 +17,12 @@ import java.util.TimerTask;
 /**
  * Created by Pascal, Julian
  */
-public class MP3Player  extends Observable implements Observer  {
+public class MP3Player  extends Observable  {
 
 
     private long currentTime = 0;
     private SimpleMinim minim;
     private SimpleAudioPlayer audioPlayer;
-
     public Playlist getPlaylist() {
         return playlist;
     }
@@ -31,9 +30,10 @@ public class MP3Player  extends Observable implements Observer  {
     private Playlist playlist;
     private Track currenttrack;
 
+    Thread timewatch = new Thread(new Timewatch());
+
     boolean again = true;
     boolean playing = false;
-
 
 
 
@@ -145,6 +145,8 @@ public class MP3Player  extends Observable implements Observer  {
 
         audioPlayer.play((int) currentTime);
 
+        //  timewatch.start();
+
 
 
 
@@ -167,6 +169,8 @@ public class MP3Player  extends Observable implements Observer  {
     public void stop() {
         minim.stop();
         currenttrack = null;
+        timewatch.interrupt();
+
 
     }
 public float getVolume(){
@@ -258,16 +262,32 @@ public float getVolume(){
 
     }
 
-    @Override
-    public void update(Observable o, Object arg) {
-        o.equals(audioPlayer);
-    }
 
 
     public void clear() {
     playlist.clear();
     }
+
+
+private class Timewatch implements Runnable{
+
+    @Override
+    public void run() {
+      while (audioPlayer.position() < currenttrack.getLength()){
+
+          currentTime = audioPlayer.position();
+          System.out.println(currentTime);
+      }
+
+      if (again){
+          currentTime = 0;
+          play();
+      }
+    }
 }
+}
+
+
 
 
 
