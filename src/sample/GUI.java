@@ -113,7 +113,7 @@ public class GUI extends Application implements Observer {
 
 
         //root.setRight(versuch);
-    //    root.setCenter(centerpane);
+    //root.setCenter(centerpane);
 
 
         Scene scene = new Scene(root, WIDTH, HEIGHT);
@@ -131,6 +131,7 @@ public class GUI extends Application implements Observer {
         centerpane.getStyleClass().addAll("cover");
         controlpane.getStyleClass().addAll("controlpane");
         toppane.getStyleClass().addAll("toppane");
+        bottompane.getStyleClass().addAll("bottompane");
 
         play.getStyleClass().addAll("buttons", "buttonPlay");
         next.getStyleClass().addAll("buttons", "buttonNext");
@@ -142,7 +143,7 @@ public class GUI extends Application implements Observer {
         artist.getStyleClass().addAll("text");
         album.getStyleClass().addAll("text");
 
-
+        timeline.getStyleClass().addAll("sliderTl");
 
         //HANDLECOLLECTIONS
 
