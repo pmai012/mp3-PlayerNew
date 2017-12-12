@@ -82,11 +82,11 @@ public class PlaylistView extends HBox implements Observer {
                 for (int i = 0; i < handleCollection.getPlayer().getPlaylist().getTracks().size(); i++){
 
                     songs.add(handleCollection.getPlayer().getPlaylist().getTrack(i).getTitle());
-                    System.out.println(handleCollection.getPlayer().getPlaylist().getTrack(i).getTitle());
+
                 }
 
                 songView.setItems(songs);
-                vbox.getChildren().add(songView);
+//                vbox.getChildren().add(songView);
             }
         });
         playlistButton.setOnMouseClicked(new EventHandler<MouseEvent>() {

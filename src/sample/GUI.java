@@ -152,7 +152,8 @@ public class GUI extends Application implements Observer {
         prev.setOnAction(handleCollection.back);
         random.setOnAction(handleCollection.shuffle);
         volume.valueProperty().addListener(handleCollection.volume);
-        volume.setValue(0.5);
+        volume.setValue(50);
+        timeline.valueProperty().addListener(handleCollection.position);
 
         //timeline.setMax(1000);
         //timeline.setBlockIncrement(1000);
@@ -217,6 +218,9 @@ public class GUI extends Application implements Observer {
     public void update(Observable o, Object arg) {
         String von = (String) arg;
 
+        if (arg == null){
+            von="null";
+        }
 
         //Meldungen vom  Collection handler
 

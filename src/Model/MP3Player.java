@@ -22,8 +22,10 @@ public class MP3Player extends Observable {
 
 
     private long currentTime = 0;
+
     private SimpleMinim minim;
     private SimpleAudioPlayer audioPlayer;
+
 
     public Playlist getPlaylist() {
         return playlist;
@@ -34,10 +36,9 @@ public class MP3Player extends Observable {
     private Track currenttrack;
 
 
-    Thread timewatch = new Thread(new Timewatch());
 
     boolean again = true;
-    boolean playing = false;
+
 
 
     public long getCurrentTime() {
@@ -56,10 +57,23 @@ public class MP3Player extends Observable {
     }
 
 
-    ;
+    /**
+     * Setzt die Zeit an die Stelle
+     * @param currentTime
+     */
+    public void setCurrentTime(long currentTime) {
+        if (audioPlayer.isPlaying()){
+            pause();
+          this.currentTime = currentTime;
+          play();
+        }
+    }
 
     public boolean isPlaying() {
-        return playing;
+        if (audioPlayer == null){
+            return false;
+        }
+        return audioPlayer.isPlaying();
     }
 
     public MP3Player() {
@@ -91,11 +105,10 @@ public class MP3Player extends Observable {
      */
 
     public void play(Track track) {
-        if (playing == false) {
+        if (audioPlayer.isPlaying() == false) {
 
             this.currenttrack = track;
 
-            playing = true;
 
             play();
         }
@@ -130,6 +143,7 @@ public class MP3Player extends Observable {
 
     public void play() {
 
+
         if (getcurrentTrack() == null) {
             return;
         }
@@ -140,11 +154,11 @@ public class MP3Player extends Observable {
 
 
             System.out.println(currenttrack.getTitle() + " wird gespielt ");
-            playing = true;
+
 
 
             audioPlayer.play((int) currentTime);
-            timewatch.start();
+
 
 
         }
@@ -158,7 +172,7 @@ public class MP3Player extends Observable {
         currentTime = audioPlayer.position();
 
         audioPlayer.pause();
-        playing = false;
+
 
 
     }
@@ -166,7 +180,7 @@ public class MP3Player extends Observable {
     public void stop() {
         minim.stop();
         currenttrack = null;
-        timewatch.interrupt();
+
 
 
     }
@@ -274,6 +288,8 @@ public class MP3Player extends Observable {
 
             while (audioPlayer.isPlaying()) {
 
+
+
                 try {
                     Thread.sleep(INTERVAL);
                     currentTime = audioPlayer.position();
@@ -285,6 +301,13 @@ public class MP3Player extends Observable {
                 }
 
             }
+
+            if (again){
+                skipBack();
+            }else{
+                skip();
+            }
+
 
         }
 

@@ -74,11 +74,14 @@ public class HandleCollection extends Observable {
     public ChangeListener<Number> position = new ChangeListener<Number>() {
         @Override
         public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-
-            //Position!
-
+     float prozent = newValue.floatValue();
+     prozent = prozent/100;
+     System.out.println(prozent);
+       player.setCurrentTime((long) (player.getcurrentTrack().getLength()*prozent));
         }
     };
+
+
 
 
     public EventHandler<ActionEvent> play = new EventHandler<ActionEvent>() {
