@@ -62,6 +62,7 @@ public class GUI extends Application implements Observer {
     Label artist = new Label("Artist");
     Label album = new Label("Album");
     Slider volume = new Slider();
+    Slider timeline = new Slider();
     ObservableList<String> sideViewItems = FXCollections.observableArrayList("Songs", "Playlists");
     ListView sideView = new ListView();
     ListView songView = new ListView();
@@ -74,12 +75,9 @@ public class GUI extends Application implements Observer {
 
     public void init() {
 
-
-
         handleCollection = new HandleCollection();
         handleCollection.addObserver(this);
         handleCollection.getPlayer().addObserver(this);
-
 
 
     }
@@ -95,7 +93,9 @@ public class GUI extends Application implements Observer {
 
         VBox toprightpane = new VBox(10);
         TilePane toppane = new TilePane();
-        HBox bottompane = new HBox(80); //HBox ?
+        VBox bottompane = new VBox(5);
+        HBox controlpane = new HBox(80);
+        HBox pogresspane = new HBox();
         StackPane centerpane = new StackPane();
 
         playlistview = new PlaylistView();
@@ -129,7 +129,7 @@ public class GUI extends Application implements Observer {
         root.setPadding(new Insets(30, 0, 30, 0));
 
         centerpane.getStyleClass().addAll("cover");
-        bottompane.getStyleClass().addAll("bottompane");
+        controlpane.getStyleClass().addAll("controlpane");
         toppane.getStyleClass().addAll("toppane");
 
         play.getStyleClass().addAll("buttons", "buttonPlay");
@@ -153,8 +153,8 @@ public class GUI extends Application implements Observer {
         volume.valueProperty().addListener(handleCollection.volume);
         volume.setValue(0.5);
 
-
-
+        //timeline.setMax(1000);
+        //timeline.setBlockIncrement(1000);
 
         // play.setOnAction(this);
         //  next.setOnAction(this);
@@ -163,21 +163,22 @@ public class GUI extends Application implements Observer {
 
         //Konfiguration von bottom Pane
 
+        bottompane.getChildren().add(pogresspane);
+        bottompane.getChildren().add(controlpane);
 
-        bottompane.getChildren().add(random);
-        bottompane.getChildren().add(prev);
-        bottompane.getChildren().add(play);
-        bottompane.getChildren().add(next);
-        bottompane.getChildren().add(repeat);
-        bottompane.getChildren().add(volume);
+        pogresspane.setAlignment(Pos.CENTER);
+        pogresspane.getChildren().add(timeline);
 
-        //bottompane.setPadding(new Insets(0, 0, 20, 0));
-        bottompane.setAlignment(Pos.CENTER);
+        controlpane.getChildren().add(random);
+        controlpane.getChildren().add(prev);
+        controlpane.getChildren().add(play);
+        controlpane.getChildren().add(next);
+        controlpane.getChildren().add(repeat);
+        controlpane.getChildren().add(volume);
+        //controlpane.setPadding(new Insets(0, 0, 20, 0));
+        controlpane.setAlignment(Pos.CENTER);
 
         //Konfiguration von centerpane
-
-        //display = new ImageView("Album.png");
-        //centerpane.getChildren().add(display);
 
         //Konfiguration von toppane
 
@@ -196,10 +197,6 @@ public class GUI extends Application implements Observer {
         supertitle.setUnderline(true);
         centerpane.getChildren().add(supertitle);
         */
-
-
-         centerpane.setScaleX(0.5);
-         centerpane.setScaleY(0.5);
 
          root.setCenter(albumcover);
 
