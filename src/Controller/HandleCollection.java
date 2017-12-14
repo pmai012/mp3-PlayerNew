@@ -5,36 +5,21 @@ import Model.MP3Player;
 import Model.Playlist;
 import Model.PlaylistManager;
 import Model.Track;
-import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Pos;
-import javafx.scene.Node;
-import javafx.scene.Scene;
-import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
-import javafx.scene.layout.StackPane;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-import sample.GUI;
 import sample.addPlaylistView;
 
-import javax.swing.*;
 import java.io.ByteArrayInputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.util.Observable;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 
 /**
@@ -77,7 +62,7 @@ public class HandleCollection extends Observable {
      float prozent = newValue.floatValue();
      prozent = prozent/100;
 
-     if (newValue.floatValue() != player.percentstep()*100) {
+     if (newValue.floatValue() != player.position()*100) {
          player.setCurrentTime((long) (player.getcurrentTrack().getLength() * prozent));
      }
         }
@@ -133,6 +118,12 @@ public class HandleCollection extends Observable {
 
             }
             updaten();
+        }
+    };
+    public EventHandler<ActionEvent> repeat = new EventHandler<ActionEvent>() {
+        @Override
+        public void handle(ActionEvent event) {
+           player.repeat(!player.isRepeat());
         }
     };
 

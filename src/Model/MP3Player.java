@@ -27,7 +27,6 @@ public class MP3Player extends Observable {
 
     private SimpleMinim minim;
     private SimpleAudioPlayer audioPlayer;
-  //  private Thread timewatcher = new Thread(new Timewatch());
 
     public Playlist getPlaylist() {
         return playlist;
@@ -36,16 +35,20 @@ public class MP3Player extends Observable {
 
     private Playlist playlist;
     private Track currenttrack;
+    boolean repeat = false;
 
 
-
-    boolean again = true;
-
-
+    public boolean isRepeat() {
+        return repeat;
+    }
 
     public long getCurrentTime() {
-        currentTime = audioPlayer.position();
-        return currentTime;
+        if (currenttrack != null) {
+            currentTime = audioPlayer.position();
+            return currentTime;
+        } else{
+            return 0;
+        }
     }
 
 
@@ -61,18 +64,19 @@ public class MP3Player extends Observable {
 
     /**
      * Setzt die Zeit an die Stelle
+     *
      * @param currentTime
      */
     public void setCurrentTime(long currentTime) {
-        if (audioPlayer.isPlaying()){
+        if (audioPlayer.isPlaying()) {
             pause();
-          this.currentTime = currentTime;
-          play();
+            this.currentTime = currentTime;
+            play();
         }
     }
 
     public boolean isPlaying() {
-        if (audioPlayer == null){
+        if (audioPlayer == null) {
             return false;
         }
         return audioPlayer.isPlaying();
@@ -158,23 +162,11 @@ public class MP3Player extends Observable {
             System.out.println(currenttrack.getTitle() + " wird gespielt ");
 
 
-
             audioPlayer.play((int) currentTime);
-
-/*            if (!timewatcher.isAlive()){
-                try {
-                    timewatcher.start();
-                }catch (IllegalThreadStateException e){
-
-                }
-            setChanged();
-                notifyObservers("start");
-            }*/
 
 
         }
-        setChanged();
-        notifyObservers("player");
+
     }
 
 
@@ -185,13 +177,11 @@ public class MP3Player extends Observable {
         audioPlayer.pause();
 
 
-
     }
 
     public void stop() {
         minim.stop();
         currenttrack = null;
-
 
 
     }
@@ -245,14 +235,30 @@ public class MP3Player extends Observable {
 
     /**
      * Gibt den Zustand für den Slider aus bist 100
+     *
      * @return
      */
-    public float percentstep(){
+    public float position() {
+
+
+        if (getCurrentTime() >= getcurrentTrack().getLength()) {
+            System.out.println("Jetzt sind wir am Ende!");
+            if (repeat) {
+                repeatSong();
+                setChanged();
+                notifyObservers();
+                return 0;
+            } else {
+                skip();
+                setChanged();
+                notifyObservers();
+                return 0;
+            }
+        }
 
         float a = getCurrentTime();
         float b = getcurrentTrack().getLength();
-
-        return (a/b);
+        return (a / b);
     }
 
     public boolean isShuffle() {
@@ -293,10 +299,9 @@ public class MP3Player extends Observable {
     }
 
     public void repeat(boolean on) {
-        again = on;
+        repeat = on;
 
     }
-
 
 
     public void clear() {
@@ -304,38 +309,6 @@ public class MP3Player extends Observable {
     }
 
 
-
-
-
-
-/*
-    private class Timewatch implements Runnable {
-        private final long INTERVAL = 500;
-
-        Slider timer;
-
-        public void Sliderref(Slider ref){
-            timer = ref;
-        }
-
-        @Override
-        public void run() {
-
-                while (audioPlayer.isPlaying()) {
-
-                }
-
-                if (again) {
-                    skipBack();
-                } else {
-                    skip();
-                }
-
-
-
-        }
-
-    }*/
 }
 
 

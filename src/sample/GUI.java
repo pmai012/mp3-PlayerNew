@@ -104,6 +104,7 @@ public class GUI extends Application implements Observer {
         playlistview = new PlaylistView();
         playlistview.handleCollectionreferenz(handleCollection);
         handleCollection.addObserver(playlistview);
+        handleCollection.getPlayer().addObserver(playlistview);
 
         centerpane.getChildren().add(albumcover);
         albumcover.setFitWidth(400);
@@ -154,6 +155,7 @@ public class GUI extends Application implements Observer {
         next.setOnAction(handleCollection.next);
         prev.setOnAction(handleCollection.back);
         random.setOnAction(handleCollection.shuffle);
+        repeat.setOnAction(handleCollection.repeat);
         volume.valueProperty().addListener(handleCollection.volume);
         volume.setValue(50);
         timeline.valueProperty().addListener(handleCollection.position);
@@ -259,11 +261,11 @@ public class GUI extends Application implements Observer {
                 System.out.println("run auf Gui gestartet");
                 while (true) {
                     try {
-                        float oldposition;
-                        Thread.sleep(500);
-                        if (handleCollection.getPlayer().isPlaying()) {
 
-                            timeline.setValue(handleCollection.getPlayer().percentstep()*100);
+                        Thread.sleep(500);
+                        if (handleCollection.getPlayer().getcurrentTrack() != null) {
+
+                            timeline.setValue(handleCollection.getPlayer().position()*100);
 
 
                         }
