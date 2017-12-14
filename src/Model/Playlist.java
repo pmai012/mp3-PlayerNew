@@ -25,6 +25,7 @@ public class Playlist extends Exception {
     private ArrayList<Track> tracks;
     private ArrayList<Track> queue;
 
+
     private boolean shuffling = false;
     private String name;
     private String path;
@@ -41,7 +42,7 @@ public class Playlist extends Exception {
 
         if (shuffling == true) {
             for (int i = 0; i < tracks.size(); i++) {
-                if (tracks.get(i).getTitle().equals(currentTrack.getTitle())) {
+                if (tracks.get(i).equals(currentTrack)) {
                     return i;
                 }
             }
@@ -62,6 +63,7 @@ public class Playlist extends Exception {
         this.queue = new ArrayList<Track>();
 
 
+
     }
 
 
@@ -71,6 +73,7 @@ public class Playlist extends Exception {
     public void clear() {
         queue = new ArrayList<Track>();
         tracks = new ArrayList<Track>();
+
     }
 
     /**
@@ -259,6 +262,7 @@ public class Playlist extends Exception {
     public void addTrack(Track t) {
         queue.add(t);
         tracks.add(t);
+
     }
 
 

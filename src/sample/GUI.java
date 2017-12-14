@@ -40,7 +40,7 @@ public class GUI extends Application implements Observer {
     private boolean playing = false;
 
     PlaylistManager playlistManager = new PlaylistManager();
-
+    Thread timeslider = new Thread(new Timeslider());
 
     //GUI KOMPONENTE
 
@@ -56,6 +56,7 @@ public class GUI extends Application implements Observer {
     Button random = new Button("");
     Button repeat = new Button("");
 
+
     Button btn_sideView_back = new Button("<");
 
     Label title = new Label("Title");
@@ -63,6 +64,7 @@ public class GUI extends Application implements Observer {
     Label album = new Label("Album");
     Slider volume = new Slider();
     Slider timeline = new Slider();
+
     ObservableList<String> sideViewItems = FXCollections.observableArrayList("Songs", "Playlists");
     ListView sideView = new ListView();
     ListView songView = new ListView();
@@ -78,6 +80,7 @@ public class GUI extends Application implements Observer {
         handleCollection = new HandleCollection();
         handleCollection.addObserver(this);
         handleCollection.getPlayer().addObserver(this);
+
 
 
     }
@@ -204,9 +207,11 @@ public class GUI extends Application implements Observer {
 
 
 
-//TEst
-       // rightpane.getChildren().add(versuch);
+
+        timeslider.start();
+
         primaryStage.show();
+
     }
 
     public void stop() {
@@ -216,14 +221,10 @@ public class GUI extends Application implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        String von = (String) arg;
-
-        if (arg == null){
-            von="null";
+        String von ="";
+        if (arg != null){
+            von = (String) arg;
         }
-
-        //Meldungen vom  Collection handler
-
 
 
         if (von.equals("player")){
@@ -231,6 +232,7 @@ public class GUI extends Application implements Observer {
             album.setText(handleCollection.getPlayer().getAlbum());
             artist.setText(handleCollection.getPlayer().getArtist());
             albumcover.setImage(handleCollection.getCover());
+
 
         }
 
@@ -244,12 +246,37 @@ public class GUI extends Application implements Observer {
 
                 random.getStyleClass().addAll("buttons", "buttonRandom");
             }
-        System.out.println(handleCollection.getPlayer().isShuffle());
 
         handleCollection.currentupdater();
         play.getStyleClass().addAll("buttons", handleCollection.getCurrentplay());
 
 
     }
+
+    private class Timeslider implements Runnable{
+
+            @Override public void run() {
+                System.out.println("run auf Gui gestartet");
+                while (true) {
+                    try {
+                        float oldposition;
+                        Thread.sleep(500);
+                        if (handleCollection.getPlayer().isPlaying()) {
+
+                            timeline.setValue(handleCollection.getPlayer().percentstep()*100);
+
+                            if (timeline.getValue() !=handleCollection.getPlayer().percentstep()*100){
+                                handleCollection.getPlayer().setCurrentTime(0);
+                            }
+                        }
+
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            }
+    }
+
 }
 

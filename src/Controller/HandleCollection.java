@@ -76,11 +76,12 @@ public class HandleCollection extends Observable {
         public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
      float prozent = newValue.floatValue();
      prozent = prozent/100;
-     System.out.println(prozent);
-       player.setCurrentTime((long) (player.getcurrentTrack().getLength()*prozent));
+
+     if (newValue.floatValue() != player.percentstep()*100) {
+         player.setCurrentTime((long) (player.getcurrentTrack().getLength() * prozent));
+     }
         }
     };
-
 
 
 
@@ -89,10 +90,10 @@ public class HandleCollection extends Observable {
         public void handle(ActionEvent event) {
 
             if (getPlayer().getcurrentTrack() == null) {
-                return;
+                getPlayer().setCurrentNumber(0);
             }
 
-            if (!isplaying()) {
+            if (!player.isPlaying()) {
                 play();
 
                 currentplay = "buttonPause";
@@ -103,6 +104,7 @@ public class HandleCollection extends Observable {
                 currentplay = "buttonPlay";
 
             }
+
             updaten();
         }
     };

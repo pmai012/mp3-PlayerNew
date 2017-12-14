@@ -8,8 +8,10 @@ import javafx.beans.InvalidationListener;
 
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.scene.control.Slider;
 import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 
+import java.sql.Time;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Timer;
@@ -25,7 +27,7 @@ public class MP3Player extends Observable {
 
     private SimpleMinim minim;
     private SimpleAudioPlayer audioPlayer;
-
+  //  private Thread timewatcher = new Thread(new Timewatch());
 
     public Playlist getPlaylist() {
         return playlist;
@@ -159,6 +161,15 @@ public class MP3Player extends Observable {
 
             audioPlayer.play((int) currentTime);
 
+/*            if (!timewatcher.isAlive()){
+                try {
+                    timewatcher.start();
+                }catch (IllegalThreadStateException e){
+
+                }
+            setChanged();
+                notifyObservers("start");
+            }*/
 
 
         }
@@ -232,6 +243,18 @@ public class MP3Player extends Observable {
 
     }
 
+    /**
+     * Gibt den Zustand für den Slider aus bist 100
+     * @return
+     */
+    public float percentstep(){
+
+        float a = getCurrentTime();
+        float b = getcurrentTrack().getLength();
+
+        return (a/b);
+    }
+
     public boolean isShuffle() {
         return playlist.isShuffling();
     }
@@ -275,44 +298,44 @@ public class MP3Player extends Observable {
     }
 
 
+
     public void clear() {
         playlist.clear();
     }
 
 
+
+
+
+
+/*
     private class Timewatch implements Runnable {
         private final long INTERVAL = 500;
+
+        Slider timer;
+
+        public void Sliderref(Slider ref){
+            timer = ref;
+        }
 
         @Override
         public void run() {
 
-            while (audioPlayer.isPlaying()) {
+                while (audioPlayer.isPlaying()) {
 
-
-
-                try {
-                    Thread.sleep(INTERVAL);
-                    currentTime = audioPlayer.position();
-                    setChanged();
-                    notifyObservers();
-
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
                 }
 
-            }
+                if (again) {
+                    skipBack();
+                } else {
+                    skip();
+                }
 
-            if (again){
-                skipBack();
-            }else{
-                skip();
-            }
 
 
         }
 
-
-    }
+    }*/
 }
 
 
