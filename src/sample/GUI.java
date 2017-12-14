@@ -265,9 +265,7 @@ public class GUI extends Application implements Observer {
 
                             timeline.setValue(handleCollection.getPlayer().percentstep()*100);
 
-                            if (timeline.getValue() !=handleCollection.getPlayer().percentstep()*100){
-                                handleCollection.getPlayer().setCurrentTime(0);
-                            }
+
                         }
 
                     } catch (InterruptedException e) {
