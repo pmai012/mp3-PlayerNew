@@ -260,6 +260,7 @@ public class GUI extends Application implements Observer {
             @Override public void run() {
                 System.out.println("run auf Gui gestartet");
                 while (true) {
+
                     try {
 
                         Thread.sleep(500);

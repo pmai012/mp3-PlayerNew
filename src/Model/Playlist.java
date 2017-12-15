@@ -359,5 +359,7 @@ public class Playlist extends Exception {
         currentTrack = queue.get(0);
 
     }
+
+
 }
 

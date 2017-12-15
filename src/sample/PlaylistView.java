@@ -53,11 +53,16 @@ public class PlaylistView extends HBox implements Observer {
         playlistButton.getStyleClass().add("toggle-button");
         changeViewGroup.getToggles().forEach(x -> getStyleClass().add("toggle-button"));
         playlistManager.searchPlaylists(System.getProperty("user.home").concat("//Music"));
-        try {
-            allSongs = playlistManager.getAllTracks();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        new Thread(){
+            public void run() {
+                try {
+                    allSongs = playlistManager.getAllTracks();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }.start();
+
         btn_sideView_back.getStyleClass().addAll("buttons","text");
 
         hbox.getChildren().addAll(songsButton, playlistButton);
@@ -66,7 +71,7 @@ public class PlaylistView extends HBox implements Observer {
         vbox.getChildren().clear();
         vbox.getChildren().add(hbox);
 
-//        sideView.setItems(sideViewItems);
+    //    sideView.setItems(sideViewItems);
 
 
         songsButton.setOnMouseClicked(new EventHandler<MouseEvent>() {

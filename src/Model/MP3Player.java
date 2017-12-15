@@ -43,7 +43,7 @@ public class MP3Player extends Observable {
     }
 
     public long getCurrentTime() {
-        if (currenttrack != null) {
+        if (currenttrack != null && audioPlayer != null) {
             currentTime = audioPlayer.position();
             return currentTime;
         } else{
@@ -163,6 +163,8 @@ public class MP3Player extends Observable {
 
 
             audioPlayer.play((int) currentTime);
+            setChanged();
+            notifyObservers("player");
 
 
         }
@@ -245,11 +247,13 @@ public class MP3Player extends Observable {
             System.out.println("Jetzt sind wir am Ende!");
             if (repeat) {
                 repeatSong();
+
                 setChanged();
                 notifyObservers();
                 return 0;
             } else {
                 skip();
+
                 setChanged();
                 notifyObservers();
                 return 0;
