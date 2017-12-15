@@ -249,13 +249,13 @@ public class MP3Player extends Observable {
                 repeatSong();
 
                 setChanged();
-                notifyObservers();
+                notifyObservers("player");
                 return 0;
             } else {
                 skip();
 
                 setChanged();
-                notifyObservers();
+                notifyObservers("player");
                 return 0;
             }
         }

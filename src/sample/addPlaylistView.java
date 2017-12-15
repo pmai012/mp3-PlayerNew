@@ -10,6 +10,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -39,6 +40,7 @@ public class addPlaylistView extends Application{
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        primaryStage.initStyle(StageStyle.UTILITY);
         addPlaylistStage = primaryStage;
         init();
         secondaryLayout.getChildren().add(info);

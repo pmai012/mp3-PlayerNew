@@ -18,6 +18,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -77,6 +78,7 @@ public class GUI extends Application implements Observer {
 
     public void init() {
 
+
         handleCollection = new HandleCollection();
         handleCollection.addObserver(this);
         handleCollection.getPlayer().addObserver(this);
@@ -123,7 +125,8 @@ public class GUI extends Application implements Observer {
         Scene scene = new Scene(root, WIDTH, HEIGHT);
         scene.getStylesheets().add("CSS/MP3GUI.css");
         primaryStage.setScene(scene);
-        //primaryStage.initStyle(StageStyle.TRANSPARENT);
+        primaryStage.getIcons().add(new Image("picture/placeholderCover.png"));
+       primaryStage.initStyle(StageStyle.DECORATED);
         primaryStage.setMinHeight(200);
         primaryStage.setMinWidth(200);
         primaryStage.setTitle("3Player");

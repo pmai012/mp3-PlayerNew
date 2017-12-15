@@ -52,16 +52,16 @@ public class PlaylistView extends HBox implements Observer {
         songsButton.getStyleClass().add("toggle-button");
         playlistButton.getStyleClass().add("toggle-button");
         changeViewGroup.getToggles().forEach(x -> getStyleClass().add("toggle-button"));
-        playlistManager.searchPlaylists(System.getProperty("user.home").concat("//Music"));
-        new Thread(){
-            public void run() {
+
+
+                playlistManager.searchPlaylists(System.getProperty("user.home").concat("//Music"));
+
                 try {
                     allSongs = playlistManager.getAllTracks();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-            }
-        }.start();
+
 
         btn_sideView_back.getStyleClass().addAll("buttons","text");
 
@@ -199,7 +199,7 @@ public class PlaylistView extends HBox implements Observer {
                     playlists.add(p.getName());
                 }
                 playlistView.setItems(playlists);
-                vbox.getChildren().add(playlistView);
+//                vbox.getChildren().add(playlistView);
             }
         });
 
@@ -250,6 +250,9 @@ public class PlaylistView extends HBox implements Observer {
            songView.scrollTo(handleCollection.getPlayer().getPlaylist().getIndex());
        }
     }
+
+
+
 }
 /*
 Problem liegt beim Laden der Anzeige! Falscher Titel wird angezeigt!
