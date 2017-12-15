@@ -49,6 +49,7 @@ public class PlaylistView extends HBox implements Observer {
         songsButton.setToggleGroup(changeViewGroup);
         songsButton.setSelected(true);
         playlistButton.setToggleGroup(changeViewGroup);
+        //hbox.getStyleClass().addAll("hboxPlaylist");
         songsButton.getStyleClass().add("toggle-button");
         playlistButton.getStyleClass().add("toggle-button");
         changeViewGroup.getToggles().forEach(x -> getStyleClass().add("toggle-button"));
@@ -78,7 +79,7 @@ public class PlaylistView extends HBox implements Observer {
             @Override
             public void handle(MouseEvent event) {
                 vbox.getChildren().remove(playlistView);
-                vbox.getChildren().remove(btn_addPlaylist);
+                hbox.getChildren().remove(btn_addPlaylist);
                 vbox.getChildren().add(songView);
                 ObservableList<String> songs = FXCollections.observableArrayList();
                 handleCollection.getPlayer().setPlaylist(allSongs);
@@ -100,7 +101,7 @@ public class PlaylistView extends HBox implements Observer {
                 vbox.getChildren().clear();
                 vbox.getChildren().add(hbox);
 //                vbox.getChildren().add(btn_sideView_back);
-                vbox.getChildren().add(btn_addPlaylist);
+                hbox.getChildren().add(btn_addPlaylist);
                 ObservableList<String> playlists = FXCollections.observableArrayList();
                 for (Playlist p : playlistManager.getPlaylists()) {
                     playlists.add(p.getName());
