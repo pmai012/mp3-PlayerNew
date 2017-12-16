@@ -82,6 +82,7 @@ public class PlaylistView extends HBox implements Observer {
                 if (vbox.getChildren().size() == 1) {
                     vbox.getChildren().remove(playlistView);
                     hbox.getChildren().remove(btn_addPlaylist);
+
                     vbox.getChildren().add(songView);
                 }
                 ObservableList<String> songs = FXCollections.observableArrayList();
