@@ -43,23 +43,23 @@ public class addPlaylistView extends Application{
     public void start(Stage primaryStage) throws Exception {
         Platform.runLater(() ->{
             secondScene = new Scene(secondaryLayout, 250, 100);
+            primaryStage.initStyle(StageStyle.UTILITY);
+            addPlaylistStage = primaryStage;
+            init();
+            secondaryLayout.getChildren().add(info);
+            secondaryLayout.getChildren().add(textField);
+            secondaryLayout.getChildren().add(btn_ok);
+            secondaryLayout.getChildren().add(btn_cancel);
 
-        primaryStage.initStyle(StageStyle.UTILITY);
-        addPlaylistStage = primaryStage;
-        init();
-        secondaryLayout.getChildren().add(info);
-        secondaryLayout.getChildren().add(textField);
-        secondaryLayout.getChildren().add(btn_ok);
-        secondaryLayout.getChildren().add(btn_cancel);
+            btn_ok.setOnMouseClicked(controller.btn_ok_mouseclick);
+            btn_cancel.setOnMouseClicked(controller.btn_cancel_mouseclick);
 
-        btn_ok.setOnMouseClicked(controller.btn_ok_mouseclick);
-        btn_cancel.setOnMouseClicked(controller.btn_cancel_mouseclick);
-
-        addPlaylistStage.resizableProperty().setValue(false);
-        addPlaylistStage.setTitle("Playlist hinzufügen");
-        addPlaylistStage.initModality(Modality.APPLICATION_MODAL);
-        addPlaylistStage.setScene(secondScene);
-        addPlaylistStage.show();
+            addPlaylistStage.resizableProperty().setValue(false);
+            addPlaylistStage.setTitle("Playlist hinzufügen");
+            addPlaylistStage.initModality(Modality.APPLICATION_MODAL);
+            addPlaylistStage.setScene(secondScene);
+            addPlaylistStage.show();
+            secondaryLayout.getStyleClass().addAll("secondLayout");
         });
     }
     public void stop(){
@@ -80,3 +80,11 @@ public class addPlaylistView extends Application{
         return null;
     }
 }
+
+/*
+-DIE PLAYLIST LISTE MUSS AKTUALISIERT WERDEN WENN EINE PLAYLIST ERSTELLT WIRD
+
+-WENN MAN DIE ADDPLAYLISTVIEW SCHLIESST UND NOCHMAL ÖFFNEN WILL BEKOMMT MAN EINE EXCEPTION
+
+-HABEN WIR DRAG AND DROP?
+ */
