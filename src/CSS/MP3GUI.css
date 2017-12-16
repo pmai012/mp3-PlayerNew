@@ -122,6 +122,9 @@
     -fx-graphic: url("../picture/repeat.png");
 }
 
+.buttonRepeatOnPress {
+    -fx-graphic: url("../picture/repeatOnSelection.png");
+}
 
 .buttonRepeat:hover {
     -fx-graphic: url("../picture/repeatOnSelection.png");

@@ -33,7 +33,7 @@ public class HandleCollection extends Observable {
     final double TOLERANZ = 0.05;
     PlaylistManager playlistManager;
     MP3Player player;
-    addPlaylistView addPlaylistView = new addPlaylistView(); //WIEDER EINRÜCKEN EXCEPTIONS
+    //addPlaylistView addPlaylistView = new addPlaylistView(); //WIEDER EINRÜCKEN EXCEPTIONS
 
 
     Image playicon = new Image("picture/play.png");
@@ -151,7 +151,7 @@ public class HandleCollection extends Observable {
 
     public void addPlaylist() {
         try {
-            addPlaylistView.start(new Stage()); //WIEDER EINRÜCKEN EXCEPTIONS
+        //    addPlaylistView.start(new Stage()); //WIEDER EINRÜCKEN EXCEPTIONS
         } catch (Exception e) {
             e.printStackTrace();
         }
