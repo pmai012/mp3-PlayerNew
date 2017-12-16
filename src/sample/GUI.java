@@ -257,8 +257,14 @@ public class GUI extends Application implements Observer {
             random.getStyleClass().setAll("buttons", "buttonRandom");
         }
 
+        if (handleCollection.getPlayer().isRepeat()) {
+            repeat.getStyleClass().setAll("buttons", "buttonRepeatOnPress");
+        } else {
+            repeat.getStyleClass().setAll("buttons", "buttonRepeat");
+        }
+
         handleCollection.currentupdater();
-        play.getStyleClass().addAll("buttons", handleCollection.getCurrentplay());
+        play.getStyleClass().setAll("buttons", handleCollection.getCurrentplay());
 
 
     }
