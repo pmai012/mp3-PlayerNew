@@ -218,7 +218,7 @@ public class GUI extends Application implements Observer {
 
         root.setCenter(albumcover);
 
-
+        System.out.println("lel");
 
 
         primaryStage.show();
