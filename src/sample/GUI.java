@@ -40,7 +40,7 @@ public class GUI extends Application implements Observer {
     private boolean playing = false;
 
     PlaylistManager playlistManager = new PlaylistManager();
-    Thread timeslider = new Thread(new Timeslider());
+
 
     //GUI KOMPONENTE
 
@@ -72,7 +72,7 @@ public class GUI extends Application implements Observer {
     Label artist = new Label("Artist");
     Label album = new Label("Album");
     Slider volume = new Slider();
-    Slider timeline = new Slider();
+    Slider timeline ;
 
     ObservableList<String> sideViewItems = FXCollections.observableArrayList("Songs", "Playlists");
     ListView sideView = new ListView();
@@ -89,7 +89,7 @@ public class GUI extends Application implements Observer {
         handleCollection = new HandleCollection();
         handleCollection.addObserver(this);
         handleCollection.getPlayer().addObserver(this);
-
+        timeline = new TimeSlider(handleCollection.getPlayer());
 
     }
 
@@ -216,7 +216,7 @@ public class GUI extends Application implements Observer {
         root.setCenter(albumcover);
 
 
-        timeslider.start();
+
 
         primaryStage.show();
 
@@ -263,30 +263,7 @@ public class GUI extends Application implements Observer {
 
     }
 
-    private class Timeslider implements Runnable {
 
-        @Override
-        public void run() {
-            System.out.println("run auf Gui gestartet");
-            while (true) {
-
-                try {
-
-                    Thread.sleep(500);
-                    if (handleCollection.getPlayer().getcurrentTrack() != null) {
-
-                        timeline.setValue(handleCollection.getPlayer().position() * 100);
-
-
-                    }
-
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-
-            }
-        }
-    }
 
 }
 
