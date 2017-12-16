@@ -23,7 +23,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 public class PlaylistView extends HBox implements Observer {
-    Button btn_sideView_back = new Button("<");
+
     Button btn_addPlaylist = new Button();
     ToggleGroup changeViewGroup = new ToggleGroup();
     ToggleButton playlistButton = new ToggleButton("Playlist");
@@ -44,7 +44,7 @@ public class PlaylistView extends HBox implements Observer {
     }
 
     public PlaylistView(){
-        btn_sideView_back.getStyleClass().addAll("buttons","text");
+
         btn_addPlaylist.getStyleClass().addAll("buttons", "buttonAddPlaylist");
         songsButton.setToggleGroup(changeViewGroup);
         songsButton.setSelected(true);
@@ -64,7 +64,7 @@ public class PlaylistView extends HBox implements Observer {
                 }
 
 
-        btn_sideView_back.getStyleClass().addAll("buttons","text");
+
 
         hbox.getChildren().addAll(songsButton, playlistButton);
         vbox.getChildren().add(hbox);
@@ -79,12 +79,14 @@ public class PlaylistView extends HBox implements Observer {
             @Override
             public void handle(MouseEvent event) {
 
-                if (vbox.getChildren().size() == 1) {
+
                     vbox.getChildren().remove(playlistView);
                     hbox.getChildren().remove(btn_addPlaylist);
 
-                    vbox.getChildren().add(songView);
-                }
+                    if (songView.getParent() == null) {
+                        vbox.getChildren().add(songView);
+                    }
+
                 ObservableList<String> songs = FXCollections.observableArrayList();
                 handleCollection.getPlayer().setPlaylist(allSongs);
                 // songs.clear();
@@ -102,10 +104,17 @@ public class PlaylistView extends HBox implements Observer {
         playlistButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                vbox.getChildren().clear();
-                vbox.getChildren().add(hbox);
-//                vbox.getChildren().add(btn_sideView_back);
-                hbox.getChildren().add(btn_addPlaylist);
+
+
+
+
+                    vbox.getChildren().clear();
+                    vbox.getChildren().add(hbox);
+
+                    if (btn_addPlaylist.getParent() == null) {
+                        hbox.getChildren().add(btn_addPlaylist);
+                    }
+
                 ObservableList<String> playlists = FXCollections.observableArrayList();
                 for (Playlist p : playlistManager.getPlaylists()) {
                     playlists.add(p.getName());
@@ -114,47 +123,6 @@ public class PlaylistView extends HBox implements Observer {
                 vbox.getChildren().add(playlistView);
             }
         });
-
-        sideView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-
-                Object itemClicked = sideView.getSelectionModel().getSelectedItem();
-                if (itemClicked.equals("Songs")) {
-                    getChildren().remove(sideView);
-                    getChildren().add(btn_sideView_back);
-                    ObservableList<String> songs = FXCollections.observableArrayList();
-                    handleCollection.getPlayer().setPlaylist(allSongs);
-                   // songs.clear();
-                    //Er läd den Titel nicht!!!
-                    for (int i = 0; i < handleCollection.getPlayer().getPlaylist().getTracks().size(); i++){
-
-                        songs.add(handleCollection.getPlayer().getPlaylist().getTrack(i).getTitle());
-
-                    }
-
-                    songView.setItems(songs);
-
-                    getChildren().add(songView);
-                    vbox.getChildren().add(songView);
-
-                }
-                //Playlisten werden aufgelistet
-                if (itemClicked.equals("Playlists")) {
-                    getChildren().remove(sideView);
-                    getChildren().add(btn_sideView_back);
-                    getChildren().add(btn_addPlaylist);
-                    ObservableList<String> playlists = FXCollections.observableArrayList();
-                    for (Playlist p : playlistManager.getPlaylists()) {
-                        playlists.add(p.getName());
-                    }
-                    playlistView.setItems(playlists);
-                    getChildren().add(playlistView);
-                }
-            }
-        });
-
-
 
 
         /**
@@ -187,14 +155,7 @@ public class PlaylistView extends HBox implements Observer {
         });
 
 
-        btn_sideView_back.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                handleCollection.getPlayer().clear();
-                getChildren().clear();
-                getChildren().add(sideView);
-            }
-        });
+
         btn_addPlaylist.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
