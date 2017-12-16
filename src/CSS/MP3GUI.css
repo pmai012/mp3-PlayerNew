@@ -178,10 +178,13 @@
 
 .sliderTl {
        -fx-pref-width: 1000px;
-        -fx-background-color: #151515;
+        -fx-background-color: black /*#151515*/;
         -fx-padding: 0.02em;
 }
 
+.sliderTl .axis{
+        -fx-stroke: red;
+}
 .sliderTl .thumb{
         -fx-background-color: whitesmoke;
 }

@@ -2,6 +2,7 @@ package sample;
 
 import Controller.AddPlaylistController;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -26,7 +27,7 @@ public class addPlaylistView extends Application{
     StackPane secondaryLayout = new StackPane();
     Button btn_ok = new Button("Bestätigen");
     Button btn_cancel = new Button("Abbrechen");
-    Scene secondScene = new Scene(secondaryLayout, 250, 100);
+    Scene secondScene;
     Stage addPlaylistStage;
 
     public void init()
@@ -40,6 +41,9 @@ public class addPlaylistView extends Application{
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        Platform.runLater(() ->{
+            secondScene = new Scene(secondaryLayout, 250, 100);
+
         primaryStage.initStyle(StageStyle.UTILITY);
         addPlaylistStage = primaryStage;
         init();
@@ -56,6 +60,7 @@ public class addPlaylistView extends Application{
         addPlaylistStage.initModality(Modality.APPLICATION_MODAL);
         addPlaylistStage.setScene(secondScene);
         addPlaylistStage.show();
+        });
     }
     public void stop(){
         secondaryLayout.getChildren().clear();
