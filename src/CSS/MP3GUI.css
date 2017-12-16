@@ -162,8 +162,8 @@
 }
 
 
-.slider .timeline {
-    -fx-background-color: #696969;
+.slider .track {
+    -fx-background-color: dimgrey;
     -fx-padding: 0.05em;
 }
 
@@ -179,8 +179,13 @@
 .sliderTl {
        -fx-pref-width: 1000px;
         -fx-background-color: #151515;
-        -fx-padding: 0.01em;
+        -fx-padding: 0.02em;
 }
 
+.sliderTl .thumb{
+        -fx-background-color: whitesmoke;
+}
 
-
+.sliderTl .track{
+        -fx-background-color: dimgrey;
+}

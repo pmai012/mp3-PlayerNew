@@ -129,6 +129,7 @@ public class HandleCollection extends Observable {
         @Override
         public void handle(ActionEvent event) {
             player.repeat(!player.isRepeat());
+            updaten();
         }
     };
 
