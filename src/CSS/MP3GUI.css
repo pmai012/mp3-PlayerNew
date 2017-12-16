@@ -72,14 +72,16 @@
     -fx-graphic: url("../picture/pause.png");
  }
 
+.buttonPause:hover {
+    -fx-graphic: url("../picture/pauseOnSelection.png");
+ }
+
  .buttonPlay:hover {
     -fx-graphic: url("../picture/playOnSelection.png");
  }
 
 
- .buttonPlay:pressed {
-    -fx-graphic: url("../picture/pause.png");
- }
+
 
 
  .buttonNext {

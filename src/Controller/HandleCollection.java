@@ -21,7 +21,7 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import  java.io.InputStream;
+import java.io.InputStream;
 import java.io.File;
 import java.util.Observable;
 
@@ -63,15 +63,16 @@ public class HandleCollection extends Observable {
     public ChangeListener<Number> position = new ChangeListener<Number>() {
         @Override
         public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-     float prozent = newValue.floatValue();
-     prozent = prozent/100;
+            if (player.getcurrentTrack() != null) {
+                float prozent = newValue.floatValue();
+                prozent = prozent / 100;
 
-     if (newValue.floatValue() != player.position()*100) {
-         player.setCurrentTime((long) (player.getcurrentTrack().getLength() * prozent));
-     }
+                if (newValue.floatValue() != player.position() * 100) {
+                    player.setCurrentTime((long) (player.getcurrentTrack().getLength() * prozent));
+                }
+            }
         }
     };
-
 
 
     public EventHandler<ActionEvent> play = new EventHandler<ActionEvent>() {
@@ -79,7 +80,7 @@ public class HandleCollection extends Observable {
         public void handle(ActionEvent event) {
 
             if (getPlayer().getcurrentTrack() == null) {
-                getPlayer().setCurrentNumber(0);
+                return;
             }
 
             if (!player.isPlaying()) {
@@ -101,16 +102,21 @@ public class HandleCollection extends Observable {
     public EventHandler<ActionEvent> next = new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent event) {
-            player.skip();
+            if (player.getcurrentTrack() != null) {
+                player.skip();
 
-            updaten();
+                updaten();
+            }
+
         }
     };
 
     public EventHandler<ActionEvent> back = new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent event) {
-
+            if (player.getcurrentTrack() == null) {
+                return;
+            }
 
             if (player.getCurrentTime() <= 3000) {
 
@@ -127,7 +133,7 @@ public class HandleCollection extends Observable {
     public EventHandler<ActionEvent> repeat = new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent event) {
-           player.repeat(!player.isRepeat());
+            player.repeat(!player.isRepeat());
         }
     };
 
@@ -155,9 +161,9 @@ public class HandleCollection extends Observable {
     public EventHandler<ActionEvent> shuffle = new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent event) {
-          //Damit der Wert übergeben wird und man ab er aktuellen position weiter süielen kann!
+            //Damit der Wert übergeben wird und man ab er aktuellen position weiter süielen kann!
 
-           player.shuffle(!player.isShuffle());
+            player.shuffle(!player.isShuffle());
 
 
             setChanged();
@@ -246,32 +252,32 @@ public class HandleCollection extends Observable {
 
     public Image getCover() {
         Image cover = null;
-        try{
-             cover = new Image(new ByteArrayInputStream(player.getcurrentTrack().getCover()));
-        }catch (java.lang.NullPointerException e){
+        try {
+            cover = new Image(new ByteArrayInputStream(player.getcurrentTrack().getCover()));
+        } catch (java.lang.NullPointerException e) {
 
         }
 
 
-        if (cover == null){
+        if (cover == null) {
             return new Image("picture/placeholderCover.png");
-        }else {
+        } else {
             return cover;
         }
     }
 
-    public String getPixel(byte[] cover, int x, int y){
+    public String getPixel(byte[] cover, int x, int y) {
 
         InputStream picture = new ByteArrayInputStream(cover);
         BufferedImage bildBuff = null;
         try {
-             bildBuff = ImageIO.read(picture);
-        }catch(IOException e){
+            bildBuff = ImageIO.read(picture);
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
         //bildBuff.getRGB(x,y);
-        String hex = "#"+Integer.toHexString(bildBuff.getRGB(x,y)).substring(2);
+        String hex = "#" + Integer.toHexString(bildBuff.getRGB(x, y)).substring(2);
 
 
         return hex;

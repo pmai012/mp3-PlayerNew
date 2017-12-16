@@ -226,7 +226,7 @@ public class PlaylistView extends HBox implements Observer {
                         for (Track t : handleCollection.getPlayer().getPlaylist().getTracks()) {
                             songs.add(t.getTitle());
                             activePlaylist.getTracks().add(t);
-                            System.out.println("-"+ t.getTitle());
+
 
                         }
 
@@ -243,13 +243,15 @@ public class PlaylistView extends HBox implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        System.out.println("Index wurde geaendert");
+
        songView.getSelectionModel().select(handleCollection.getPlayer().getPlaylist().getIndex());
 
          if (handleCollection.getPlayer().isShuffle() == true) {
 
            songView.scrollTo(handleCollection.getPlayer().getPlaylist().getIndex());
        }
+
+
     }
 
 

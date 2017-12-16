@@ -18,7 +18,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -87,11 +86,9 @@ public class GUI extends Application implements Observer {
 
     public void init() {
 
-
         handleCollection = new HandleCollection();
         handleCollection.addObserver(this);
         handleCollection.getPlayer().addObserver(this);
-
 
 
     }
@@ -128,14 +125,13 @@ public class GUI extends Application implements Observer {
 
 
         //root.setRight(versuch);
-    //root.setCenter(centerpane);
+        //root.setCenter(centerpane);
 
 
         Scene scene = new Scene(root, WIDTH, HEIGHT);
         scene.getStylesheets().add("CSS/MP3GUI.css");
         primaryStage.setScene(scene);
-        primaryStage.getIcons().add(new Image("picture/placeholderCover.png"));
-       primaryStage.initStyle(StageStyle.DECORATED);
+        //primaryStage.initStyle(StageStyle.TRANSPARENT);
         primaryStage.setMinHeight(200);
         primaryStage.setMinWidth(200);
         primaryStage.setTitle("3Player");
@@ -217,9 +213,7 @@ public class GUI extends Application implements Observer {
         centerpane.getChildren().add(supertitle);
         */
 
-         root.setCenter(albumcover);
-
-
+        root.setCenter(albumcover);
 
 
         timeslider.start();
@@ -235,35 +229,33 @@ public class GUI extends Application implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        String von ="";
-        if (arg != null){
+        String von = "";
+        if (arg != null) {
             von = (String) arg;
         }
 
 
-        if (von.equals("player")){
+        if (von.equals("player")) {
             title.setText(handleCollection.getPlayer().getTitle());
             album.setText(handleCollection.getPlayer().getAlbum());
             artist.setText(handleCollection.getPlayer().getArtist());
             albumcover.setImage(handleCollection.getCover());
-            if(handleCollection.getPlayer().getcurrentTrack().getCover() == null){
+
+
+            if (handleCollection.getPlayer().getcurrentTrack().getCover() == null) {
                 root.setStyle("-fx-background-color: " + "#151515");
-            }else {
+            } else {
                 root.setStyle("-fx-background-color: "
                         + handleCollection.getPixel(handleCollection.getPlayer().getcurrentTrack().getCover(), 200, 50));
             }
         }
+        System.out.println(handleCollection.getPlayer().isShuffle());
 
-
-
-            if (handleCollection.getPlayer().isShuffle()) {
-                random.getStyleClass().addAll("buttons", "buttonRandomOnPress");
-            }
-
-            if(handleCollection.getPlayer().isShuffle() == false){
-
-                random.getStyleClass().addAll("buttons", "buttonRandom");
-            }
+        if (handleCollection.getPlayer().isShuffle()) {
+            random.getStyleClass().setAll("buttons", "buttonRandomOnPress");
+        } else {
+            random.getStyleClass().setAll("buttons", "buttonRandom");
+        }
 
         handleCollection.currentupdater();
         play.getStyleClass().addAll("buttons", handleCollection.getCurrentplay());
@@ -271,28 +263,29 @@ public class GUI extends Application implements Observer {
 
     }
 
-    private class Timeslider implements Runnable{
+    private class Timeslider implements Runnable {
 
-            @Override public void run() {
-                System.out.println("run auf Gui gestartet");
-                while (true) {
+        @Override
+        public void run() {
+            System.out.println("run auf Gui gestartet");
+            while (true) {
 
-                    try {
+                try {
 
-                        Thread.sleep(500);
-                        if (handleCollection.getPlayer().getcurrentTrack() != null) {
+                    Thread.sleep(500);
+                    if (handleCollection.getPlayer().getcurrentTrack() != null) {
 
-                            timeline.setValue(handleCollection.getPlayer().position()*100);
+                        timeline.setValue(handleCollection.getPlayer().position() * 100);
 
 
-                        }
-
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
                     }
 
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
+
             }
+        }
     }
 
 }
