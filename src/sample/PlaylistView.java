@@ -205,6 +205,7 @@ public class PlaylistView extends HBox implements Observer {
                 }
                 playlistView.setItems(playlists);
 //                vbox.getChildren().add(playlistView);
+                //hallo
             }
         });
 
