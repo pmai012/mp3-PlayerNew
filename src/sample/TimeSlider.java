@@ -7,16 +7,21 @@ import java.util.Observable;
 import java.util.Observer;
 
 /**
- * Created by User on 16.12.2017.
+ * Created by Julian on 16.12.2017.
+ */
+
+/**
+ * Die Timeslider Klasse aktualisiert sich selbstständig, man muss nur eine Mp3 klasse mitgeben!
  */
 public class TimeSlider extends Slider  implements Observer{
     Thread runner = new Thread(new Runner());
     MP3Player player;
+
+
     public TimeSlider(MP3Player player){
+        runner.setName("Slider Thread");
         this.player = player;
-        player.addObserver((Observer) this);
-
-
+        player.addObserver( this);
     }
 
     @Override

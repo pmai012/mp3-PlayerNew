@@ -5,6 +5,7 @@ import Model.MP3Player;
 import Model.Playlist;
 import Model.PlaylistManager;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -19,6 +20,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -237,10 +239,15 @@ public class GUI extends Application implements Observer {
 
 
         if (von.equals("player")) {
-            title.setText(handleCollection.getPlayer().getTitle());
-            album.setText(handleCollection.getPlayer().getAlbum());
-            artist.setText(handleCollection.getPlayer().getArtist());
-            albumcover.setImage(handleCollection.getCover());
+
+            Platform.runLater(() -> {
+                title.setText(handleCollection.getPlayer().getTitle());
+                album.setText(handleCollection.getPlayer().getAlbum());
+                artist.setText(handleCollection.getPlayer().getArtist());
+                albumcover.setImage(handleCollection.getCover());
+            });
+
+
 
 
             if (handleCollection.getPlayer().getcurrentTrack().getCover() == null) {
