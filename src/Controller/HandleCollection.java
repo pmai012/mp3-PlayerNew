@@ -273,7 +273,7 @@ public class HandleCollection extends Observable {
         }
 
         bildBuff.getRGB(x,y);
-        String hex = "#" + Integer.toHexString(bildBuff.getRGB(x, y)).substring(2);
+        String hex = "#" + Integer.toHexString(bildBuff.getRGB(x, y) -10).substring(2);
 
 
         return hex;

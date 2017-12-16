@@ -70,9 +70,9 @@ public class GUI extends Application implements Observer {
 
     Button btn_sideView_back = new Button("<");
 
-    Label title = new Label("Title");
-    Label artist = new Label("Artist");
-    Label album = new Label("Album");
+    Label title = new Label("   Title   ");
+    Label artist = new Label("  Artist  ");
+    Label album = new Label("   Album   ");
     Slider volume = new Slider();
     Slider timeline ;
 
@@ -105,7 +105,7 @@ public class GUI extends Application implements Observer {
 
         leftpane = new VBox();
         toprightpane = new VBox(10);
-        toppane = new TilePane();
+        toppane = new TilePane(50,0);
         bottompane = new VBox(5);
         controlpane = new HBox(80);
         pogresspane = new HBox();
