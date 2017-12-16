@@ -134,6 +134,7 @@ public class GUI extends Application implements Observer {
         Scene scene = new Scene(root, WIDTH, HEIGHT);
         scene.getStylesheets().add("CSS/MP3GUI.css");
         primaryStage.setScene(scene);
+        primaryStage.getIcons().add(new Image("picture/placeholderCover.png"));
         //primaryStage.initStyle(StageStyle.TRANSPARENT);
         primaryStage.setMinHeight(630);
         primaryStage.setMinWidth(800);
@@ -153,6 +154,7 @@ public class GUI extends Application implements Observer {
         prev.getStyleClass().addAll("buttons", "buttonPrev");
         random.getStyleClass().addAll("buttons", "buttonRandom");
         repeat.getStyleClass().addAll("buttons", "buttonRepeat");
+
 
         title.getStyleClass().addAll("text");
         artist.getStyleClass().addAll("text");
@@ -245,6 +247,7 @@ public class GUI extends Application implements Observer {
                 album.setText(handleCollection.getPlayer().getAlbum());
                 artist.setText(handleCollection.getPlayer().getArtist());
                 albumcover.setImage(handleCollection.getCover());
+
             });
 
 
