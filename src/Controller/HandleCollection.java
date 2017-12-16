@@ -17,7 +17,11 @@ import javafx.scene.input.TransferMode;
 import javafx.stage.Stage;
 import sample.addPlaylistView;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import  java.io.InputStream;
 import java.io.File;
 import java.util.Observable;
 
@@ -254,6 +258,23 @@ public class HandleCollection extends Observable {
         }else {
             return cover;
         }
+    }
+
+    public String getPixel(byte[] cover, int x, int y){
+
+        InputStream picture = new ByteArrayInputStream(cover);
+        BufferedImage bildBuff = null;
+        try {
+             bildBuff = ImageIO.read(picture);
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+
+        //bildBuff.getRGB(x,y);
+        String hex = "#"+Integer.toHexString(bildBuff.getRGB(x,y)).substring(2);
+
+
+        return hex;
     }
 
 

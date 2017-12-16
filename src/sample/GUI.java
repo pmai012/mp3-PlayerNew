@@ -45,6 +45,15 @@ public class GUI extends Application implements Observer {
 
     //GUI KOMPONENTE
 
+    VBox leftpane;
+    VBox toprightpane;
+    TilePane toppane;
+    VBox bottompane;
+    HBox controlpane;
+    HBox pogresspane;
+    StackPane centerpane;
+    BorderPane root;
+
 
     Image cover = new Image("picture/placeholderCover.png");
 
@@ -94,14 +103,13 @@ public class GUI extends Application implements Observer {
 
         //Fenstereinstellungen
 
-        VBox leftpane = new VBox();
-
-        VBox toprightpane = new VBox(10);
-        TilePane toppane = new TilePane();
-        VBox bottompane = new VBox(5);
-        HBox controlpane = new HBox(80);
-        HBox pogresspane = new HBox();
-        StackPane centerpane = new StackPane();
+        leftpane = new VBox();
+        toprightpane = new VBox(10);
+        toppane = new TilePane();
+        bottompane = new VBox(5);
+        controlpane = new HBox(80);
+        pogresspane = new HBox();
+        centerpane = new StackPane();
 
         playlistview = new PlaylistView();
         playlistview.handleCollectionreferenz(handleCollection);
@@ -112,7 +120,8 @@ public class GUI extends Application implements Observer {
         albumcover.setFitWidth(400);
         albumcover.setFitHeight(400);
 
-        BorderPane root = new BorderPane();
+        root = new BorderPane();
+
         root.setTop(toppane);
         root.setBottom(bottompane);
         root.setLeft(playlistview);
@@ -131,7 +140,7 @@ public class GUI extends Application implements Observer {
         primaryStage.setMinWidth(200);
         primaryStage.setTitle("3Player");
 
-        root.setStyle("-fx-background-color: #151515");
+        root.setStyle("-fx-background-color: " + "#151515");
         root.getStyleClass().addAll("root");
         root.setPadding(new Insets(30, 0, 30, 0));
 
@@ -237,8 +246,12 @@ public class GUI extends Application implements Observer {
             album.setText(handleCollection.getPlayer().getAlbum());
             artist.setText(handleCollection.getPlayer().getArtist());
             albumcover.setImage(handleCollection.getCover());
-
-
+            if(handleCollection.getPlayer().getcurrentTrack().getCover() == null){
+                root.setStyle("-fx-background-color: " + "#151515");
+            }else {
+                root.setStyle("-fx-background-color: "
+                        + handleCollection.getPixel(handleCollection.getPlayer().getcurrentTrack().getCover(), 200, 50));
+            }
         }
 
 
