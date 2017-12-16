@@ -246,14 +246,14 @@ public class MP3Player extends Observable {
         if (getCurrentTime() >= getcurrentTrack().getLength()) {
 
             if (repeat) {
-                System.out.println("Song wiederholt!");
+
                 repeatSong();
 
                 setChanged();
                 notifyObservers("player");
                 return 0;
             } else {
-                System.out.println("Song skippen");
+
                 skip();
 
                 setChanged();

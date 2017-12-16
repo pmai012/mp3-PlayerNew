@@ -10,6 +10,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.effect.BlurType;
 import javafx.scene.image.Image;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
@@ -18,7 +19,11 @@ import javafx.stage.Stage;
 import sample.addPlaylistView;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.awt.image.BufferedImageOp;
+import java.awt.image.ConvolveOp;
+import java.awt.image.Kernel;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -30,21 +35,11 @@ import java.util.Observable;
  * Created by User on 22.11.2017.
  */
 public class HandleCollection extends Observable {
-    final double TOLERANZ = 0.05;
+
     PlaylistManager playlistManager;
     MP3Player player;
-    //addPlaylistView addPlaylistView = new addPlaylistView(); //WIEDER EINRÜCKEN EXCEPTIONS
+    addPlaylistView addPlaylistView = new addPlaylistView(); //WIEDER EINRÜCKEN EXCEPTIONS
 
-
-    Image playicon = new Image("picture/play.png");
-    Image playonselect = new Image("picture/playOnSelection.png");
-    Image pauseicon = new Image("picture/pause.png");
-    Image pauseonselect = new Image("picture/pauseOnSelection.png");
-    Image previcon = new Image("picture/prev.png");
-    Image nexticon = new Image("picture/next.png");
-    Image stopicon = new Image("picture/stop.png");
-    Image randomicon = new Image("picture/random.png");
-    Image repeaticon = new Image("picture/repeat.png");
 
     String currentplay;
 
@@ -151,7 +146,7 @@ public class HandleCollection extends Observable {
 
     public void addPlaylist() {
         try {
-        //    addPlaylistView.start(new Stage()); //WIEDER EINRÜCKEN EXCEPTIONS
+           addPlaylistView.start(new Stage()); //WIEDER EINRÜCKEN EXCEPTIONS
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -268,6 +263,7 @@ public class HandleCollection extends Observable {
 
     public String getPixel(byte[] cover, int x, int y) {
 
+
         InputStream picture = new ByteArrayInputStream(cover);
         BufferedImage bildBuff = null;
         try {
@@ -276,7 +272,7 @@ public class HandleCollection extends Observable {
             e.printStackTrace();
         }
 
-        //bildBuff.getRGB(x,y);
+        bildBuff.getRGB(x,y);
         String hex = "#" + Integer.toHexString(bildBuff.getRGB(x, y)).substring(2);
 
 

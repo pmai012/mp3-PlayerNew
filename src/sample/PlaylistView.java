@@ -36,7 +36,7 @@ public class PlaylistView extends HBox implements Observer {
     ListView playlistView = new ListView();
     Playlist allSongs;
     Playlist activePlaylist;
-    VBox vbox = new VBox();
+     VBox vbox = new VBox();
     HBox hbox = new HBox();
 
     public void handleCollectionreferenz(HandleCollection ref){
@@ -78,9 +78,12 @@ public class PlaylistView extends HBox implements Observer {
         songsButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                vbox.getChildren().remove(playlistView);
-                hbox.getChildren().remove(btn_addPlaylist);
-                vbox.getChildren().add(songView);
+
+                if (vbox.getChildren().size() == 1) {
+                    vbox.getChildren().remove(playlistView);
+                    hbox.getChildren().remove(btn_addPlaylist);
+                    vbox.getChildren().add(songView);
+                }
                 ObservableList<String> songs = FXCollections.observableArrayList();
                 handleCollection.getPlayer().setPlaylist(allSongs);
                 // songs.clear();
@@ -257,6 +260,3 @@ public class PlaylistView extends HBox implements Observer {
 
 
 }
-/*
-Problem liegt beim Laden der Anzeige! Falscher Titel wird angezeigt!
- */

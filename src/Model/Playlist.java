@@ -312,6 +312,7 @@ public class Playlist extends Exception {
         queue = new ArrayList<Track>();
         tracks = new ArrayList<Track>();
 
+
         if (!path.endsWith(extension)) {
 
             return;
@@ -355,9 +356,11 @@ public class Playlist extends Exception {
             e.printStackTrace();
         }
 
-        merge();
-        currentTrack = queue.get(0);
+        if (queue.size() != 0) {
+            merge();
 
+        currentTrack = queue.get(0);
+    }
     }
 
 

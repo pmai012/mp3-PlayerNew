@@ -257,7 +257,7 @@ public class GUI extends Application implements Observer {
                         + handleCollection.getPixel(handleCollection.getPlayer().getcurrentTrack().getCover(), 200, 50));
             }
         }
-        System.out.println(handleCollection.getPlayer().isShuffle());
+
 
         if (handleCollection.getPlayer().isShuffle()) {
             random.getStyleClass().setAll("buttons", "buttonRandomOnPress");
