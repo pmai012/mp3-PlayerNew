@@ -132,8 +132,8 @@ public class GUI extends Application implements Observer {
         scene.getStylesheets().add("CSS/MP3GUI.css");
         primaryStage.setScene(scene);
         //primaryStage.initStyle(StageStyle.TRANSPARENT);
-        primaryStage.setMinHeight(200);
-        primaryStage.setMinWidth(200);
+        primaryStage.setMinHeight(630);
+        primaryStage.setMinWidth(800);
         primaryStage.setTitle("3Player");
 
         root.setStyle("-fx-background-color: " + "#151515");
