@@ -91,6 +91,7 @@ public class GUI extends Application implements Observer {
         handleCollection.getPlayer().addObserver(this);
         timeline = new TimeSlider(handleCollection.getPlayer());
 
+
     }
 
     @Override
