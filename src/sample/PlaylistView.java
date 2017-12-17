@@ -13,7 +13,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.DragEvent;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -25,20 +24,18 @@ import java.util.Observer;
 
 public class PlaylistView extends HBox implements Observer {
 
-    Button btn_addPlaylist = new Button();
-    ToggleGroup changeViewGroup = new ToggleGroup();
-    ToggleButton playlistButton = new ToggleButton("Playlist");
-    ToggleButton songsButton = new ToggleButton("Songs");
-    PlaylistManager playlistManager = new PlaylistManager();
-    HandleCollection handleCollection;
-    ObservableList<String> sideViewItems = FXCollections.observableArrayList("Songs", "Playlists");
-    ListView sideView = new ListView();
-    ListView songView = new ListView();
-    ListView playlistView = new ListView();
-    Playlist allSongs;
-    Playlist activePlaylist;
-    VBox vbox = new VBox();
-    HBox hbox = new HBox();
+    private Button btn_addPlaylist = new Button();
+    private ToggleGroup changeViewGroup = new ToggleGroup();
+    private ToggleButton playlistButton = new ToggleButton("Playlist");
+    private ToggleButton songsButton = new ToggleButton("Songs");
+    private PlaylistManager playlistManager = new PlaylistManager();
+    private HandleCollection handleCollection;
+    private ListView songView = new ListView();
+    private ListView playlistView = new ListView();
+    private Playlist allSongs;
+    private Playlist activePlaylist;
+    private VBox vbox = new VBox();
+    private HBox hbox = new HBox();
 
     public void handleCollectionreferenz(HandleCollection ref){
         this.handleCollection = ref;
@@ -50,7 +47,6 @@ public class PlaylistView extends HBox implements Observer {
         songsButton.setToggleGroup(changeViewGroup);
         songsButton.setSelected(true);
         playlistButton.setToggleGroup(changeViewGroup);
-        //hbox.getStyleClass().addAll("hboxPlaylist");
         songsButton.getStyleClass().add("toggle-button");
         playlistButton.getStyleClass().add("toggle-button");
         changeViewGroup.getToggles().forEach(x -> getStyleClass().add("toggle-button"));
@@ -82,8 +78,7 @@ public class PlaylistView extends HBox implements Observer {
 
             ObservableList<String> songs = FXCollections.observableArrayList();
             handleCollection.getPlayer().setPlaylist(allSongs);
-            // songs.clear();
-            //Er läd den Titel nicht!!!
+
             for (int i = 0; i < handleCollection.getPlayer().getPlaylist().getTracks().size(); i++){
 
                 songs.add(handleCollection.getPlayer().getPlaylist().getTrack(i).getTitle());
@@ -174,7 +169,6 @@ public class PlaylistView extends HBox implements Observer {
                     //Playlist auswählen
                     if (itemClicked.equals(p.getName())) {
                         handleCollection.getPlayer().getPlaylist().clear();
-                      //  handleCollection.getPlayer().loadPlaylist(p.getPath());
                         Playlist loader = new Playlist();
                         loader.loadPlaylist(p.getPath());
                         handleCollection.getPlayer().setPlaylist(loader);

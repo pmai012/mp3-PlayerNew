@@ -22,7 +22,7 @@ public class TimeSlider extends BorderPane implements Observer {
     Thread runner = new Thread(new Runner());
     MP3Player player;
     Slider slider = new Slider();
-    Label time = new Label("--:--:/--:--");
+    Label time = new Label("--:--/--:--");
     String laenge;
 
 

@@ -2,20 +2,16 @@ package sample;
 
 import Controller.AddPlaylistController;
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.*;
+
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.beans.EventHandler;
 
 /**
  * Created by Pascal on 06.12.2017.
@@ -41,7 +37,7 @@ public class addPlaylistView extends Application{
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-//        Platform.runLater(() ->{
+
             secondaryLayout = new StackPane();;
             secondScene = new Scene(secondaryLayout, 250, 100);
             primaryStage.initStyle(StageStyle.UTILITY);
@@ -61,7 +57,7 @@ public class addPlaylistView extends Application{
             addPlaylistStage.setScene(secondScene);
             addPlaylistStage.show();
             secondaryLayout.getStyleClass().addAll("secondLayout");
-//        });
+
     }
     public void stop(){
         secondaryLayout.getChildren().clear();
@@ -86,10 +82,3 @@ public class addPlaylistView extends Application{
     }
 }
 
-/*
--DIE PLAYLIST LISTE MUSS AKTUALISIERT WERDEN WENN EINE PLAYLIST ERSTELLT WIRD
-
--WENN MAN DIE ADDPLAYLISTVIEW SCHLIESST UND NOCHMAL ÖFFNEN WILL BEKOMMT MAN EINE EXCEPTION
-
--HABEN WIR DRAG AND DROP?
- */

@@ -46,41 +46,40 @@ public class GUI extends Application implements Observer {
 
     //GUI KOMPONENTE
 
-    VBox leftpane;
-    VBox toprightpane;
-    TilePane toppane;
-    VBox bottompane;
-    HBox controlpane;
-    TimeSlider pogresspane;
-    StackPane centerpane;
-    BorderPane root;
+    private VBox leftpane;
+    private VBox toprightpane;
+    private TilePane toppane;
+    private VBox bottompane;
+    private HBox controlpane;
+    private TimeSlider pogresspane;
+    private StackPane centerpane;
+    private BorderPane root;
 
 
-    Image cover = new Image("picture/placeholderCover.png");
+    private Image cover = new Image("picture/placeholderCover.png");
 
-    ImageView albumcover = new ImageView(cover);
-
-
-    Button play = new Button("");
-    Button next = new Button("");
-    Button prev = new Button("");
-    Button random = new Button("");
-    Button repeat = new Button("");
+    private ImageView albumcover = new ImageView(cover);
 
 
-    Button btn_sideView_back = new Button("<");
+    private  Button play = new Button("");
+    private Button next = new Button("");
+    private Button prev = new Button("");
+    private Button random = new Button("");
+    private Button repeat = new Button("");
 
-    Label title = new Label("   Title   ");
-    Label artist = new Label("  Artist  ");
-    Label album = new Label("   Album   ");
-    Slider volume = new Slider();
+
+    private Button btn_sideView_back = new Button("<");
+
+    private Label title = new Label("   Title   ");
+    private Label artist = new Label("  Artist  ");
+    private Label album = new Label("   Album   ");
+    private Slider volume = new Slider();
 
 
-    ObservableList<String> sideViewItems = FXCollections.observableArrayList("Songs", "Playlists");
-    ListView sideView = new ListView();
-    ListView songView = new ListView();
-    Playlist allSongs;
-    PlaylistView playlistview = new PlaylistView();
+    private ListView sideView = new ListView();
+    private ListView songView = new ListView();
+    private  Playlist allSongs;
+    private PlaylistView playlistview = new PlaylistView();
 
 
     private MouseEvent mouseEvent;
@@ -105,7 +104,7 @@ public class GUI extends Application implements Observer {
 
         leftpane = new VBox();
         toprightpane = new VBox(10);
-        toppane = new TilePane(50,0);
+        toppane = new TilePane(50, 0);
         bottompane = new VBox(5);
         controlpane = new HBox(80);
 
@@ -161,7 +160,6 @@ public class GUI extends Application implements Observer {
         album.getStyleClass().addAll("text");
 
 
-
         //HANDLECOLLECTIONS
 
         play.setOnAction(handleCollection.play);
@@ -173,20 +171,8 @@ public class GUI extends Application implements Observer {
         volume.setValue(50);
 
 
-        //timeline.setMax(1000);
-        //timeline.setBlockIncrement(1000);
-
-        // play.setOnAction(this);
-        //  next.setOnAction(this);
-        //  prev.setOnAction(this);
-
-
-        //Konfiguration von bottom Pane
-
         bottompane.getChildren().add(pogresspane);
         bottompane.getChildren().add(controlpane);
-
-       // pogresspane.setAlignment(Pos.CENTER);
 
 
         controlpane.getChildren().add(random);
@@ -195,32 +181,20 @@ public class GUI extends Application implements Observer {
         controlpane.getChildren().add(next);
         controlpane.getChildren().add(repeat);
         controlpane.getChildren().add(volume);
-        //controlpane.setPadding(new Insets(0, 0, 20, 0));
         controlpane.setAlignment(Pos.CENTER);
 
-        //Konfiguration von centerpane
 
-        //Konfiguration von toppane
-
-        //Konfiguration von bottom Pane
         toppane.setPadding(new Insets(6));
         toppane.setAlignment(Pos.CENTER);
         toppane.setOrientation(Orientation.VERTICAL);
-        //toppane.setOpacity(0);
+
 
         toppane.getChildren().add(title);
         toppane.getChildren().add(artist);
         toppane.getChildren().add(album);
 
-        /*
-        supertitle.setFont(new Font(50));
-        supertitle.setUnderline(true);
-        centerpane.getChildren().add(supertitle);
-        */
 
         root.setCenter(albumcover);
-
-        System.out.println("lel");
 
 
         primaryStage.show();
@@ -251,8 +225,6 @@ public class GUI extends Application implements Observer {
             });
 
 
-
-
             if (handleCollection.getPlayer().getcurrentTrack().getCover() == null) {
                 root.setStyle("-fx-background-color: " + "#151515");
             } else {
@@ -279,7 +251,6 @@ public class GUI extends Application implements Observer {
 
 
     }
-
 
 
 }

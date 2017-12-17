@@ -196,10 +196,10 @@ public class MP3Player extends Observable {
 
     public void volume(float value) {
 
-
+System.out.println(value);
         //Lauter
         if (value > 0.5) {
-            value = (float) ((value - 0.5) * 100);
+            value = (float) ((value - 0.5) *100);
             audioPlayer.setGain(value);
             return;
         }

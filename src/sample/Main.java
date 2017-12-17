@@ -30,13 +30,7 @@ public class Main extends Application {
        if (args.length != 0 && args[0].isEmpty() == false && args[0].equals("key")) {
             System.out.println("MusikPlayer");
 
-           /*
-           System.out.println(System.getProperty("os.name"));
-           System.out.println(System.getProperty("user.name"));
-           System.out.println(System.getProperty("file.separator"));
-           System.out.println(System.getProperty("path.separator"));
-           System.out.println(System.getProperty("line.separator"));
-           */
+
 
             boolean beenden = false;
             KeyboardController eingabe = new KeyboardController();
