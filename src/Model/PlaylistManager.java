@@ -9,7 +9,7 @@ public class PlaylistManager {
 
     private ArrayList<Playlist> playlists;
     private List<String> contents;
-    File allTacksPlaylist;
+    private File allTacksPlaylist;
     private String extension = ".mp3";
 
     public PlaylistManager() {
@@ -18,28 +18,12 @@ public class PlaylistManager {
         contents = new ArrayList<String>();
         contents.add("#EXTM3U");
     }
-
-    public List<Playlist> findPlaylist(String name) {
-        for (Playlist x : playlists) {
-            if (x.getName().equals(name)) {
-
-            }
-        }
-        return null;
-    }
-
     public Playlist getAllTracks() throws IOException{
-
         Playlist playlist = new Playlist("AllTracks", null);
-
         playlist = searchMP3(System.getProperty("user.home").concat("//Music"), playlist);
         savePlaylist(allTacksPlaylist);
         return playlist;
     }
-
-    public void setPlaylist(Playlist actPlaylist) {
-    }
-
     public void deletePlaylist(Playlist actPlaylist) {
         for (Playlist x: playlists) {
             if (x.getName().equals(actPlaylist.getName()))
@@ -48,7 +32,6 @@ public class PlaylistManager {
             }
         }
     }
-
     public void updatePlaylist(Playlist actPlaylist) {
         writeContent(actPlaylist);
         File old = new File(System.getProperty("user.home").concat("//Music") + "/" + actPlaylist.getName());
@@ -58,7 +41,6 @@ public class PlaylistManager {
     public void createEmptyPlaylist(File playlist){
         savePlaylist(playlist);
     }
-
     private Playlist searchMP3(String directoryName, Playlist playlist) throws IOException{
             File directory = new File(directoryName);
 
@@ -112,14 +94,10 @@ public class PlaylistManager {
                     e1.printStackTrace();
                 }
         }
-
         allTacksPlaylist = null;
         contents.clear();
     }
-
     public ArrayList<Playlist> getPlaylists(){return this.playlists;}
-
-
 
     public ArrayList<Playlist> searchPlaylists(String path)
     {

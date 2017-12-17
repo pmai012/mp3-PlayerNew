@@ -19,19 +19,15 @@ import java.util.*;
  */
 public class Playlist extends Exception {
 
-
     private int index = 0;
     private Track currentTrack = null;
     private ArrayList<Track> tracks;
     private ArrayList<Track> queue;
-
-
     private boolean shuffling = false;
     private String name;
     private String path;
     boolean repeat = true;
     final String extension = ".m3u";
-
 
     /**
      * Gibt index zurueck
@@ -61,21 +57,14 @@ public class Playlist extends Exception {
         this.path = path;
         this.tracks = new ArrayList<Track>();
         this.queue = new ArrayList<Track>();
-
-
-
     }
-
-
     /**
      * löscht die aktuelle Playlist
      */
     public void clear() {
         queue = new ArrayList<Track>();
         tracks = new ArrayList<Track>();
-
     }
-
     /**
      * Man kann setzen ob die Playlist nach einmaligem Durchspielen von vorne anfängt
      *
@@ -84,8 +73,6 @@ public class Playlist extends Exception {
     public void setRepeat(boolean repeat) {
         this.repeat = repeat;
     }
-
-
     /**
      * Aktueller stand ob es sich wiederholt
      *
@@ -103,7 +90,6 @@ public class Playlist extends Exception {
             }
         }
     }
-
     /**
      * isshuffling
      * Gibt zurueck ob der Shuffling Modus aktiviert wurde
@@ -113,14 +99,12 @@ public class Playlist extends Exception {
     public boolean isShuffling() {
         return shuffling;
     }
-
     /**
      * Der defaultkonstruktor hat keinen Pfad und keinen Namen
      */
     public Playlist() {
         clear();
     }
-
     /**
      * getPath
      *
@@ -129,7 +113,6 @@ public class Playlist extends Exception {
     public String getPath() {
         return this.path;
     }
-
     /**
      * getName
      *
@@ -139,7 +122,6 @@ public class Playlist extends Exception {
         return this.name;
     }
 
-
     /**
      * getCurrentTrack
      *
@@ -148,8 +130,6 @@ public class Playlist extends Exception {
     public Track getCurrentTrackTrack() {
         return currentTrack;
     }
-
-
     /**
      * skip
      * Springt zum naechsten Song.
@@ -170,7 +150,6 @@ public class Playlist extends Exception {
         }
         return null;
     }
-
     /**
      * Gibt den vorherigen Track wieder
      *
@@ -190,7 +169,6 @@ public class Playlist extends Exception {
         }
         return null;
     }
-
     /**
      * Merge mischt die playlist angepasst nach shuffle. Wenn shuffle aktiviert ist wird die Playlist zufaellig gemischt.
      * Der aktuelle Track  bleibt jedoch gleich. Dadurch kann man waehrend des Musik hören mischen.
@@ -200,32 +178,22 @@ public class Playlist extends Exception {
         queue = new ArrayList<Track>();
         for (int i = 0; i < tracks.size(); i++) {
             queue.add(tracks.get(i));
-
         }
-
         if (shuffling == true) {
             int s;
-
             for (int i = 0; i < queue.size(); i++) {
-
                 if (i != index) {
-
                     do {
                         s = s = i + (int) (Math.random() * (queue.size() - i));
                     }
                     while (s == index);
-
-
                     Track change = queue.get(i);
                     queue.set(i, queue.get(s));
                     queue.set(s, change);
                 }
             }
-
         }
     }
-
-
     /**
      * Shuffelt die Playlist. und mischt sie im zweifel neu
      *
@@ -236,13 +204,8 @@ public class Playlist extends Exception {
             index = getIndex();
         }
         shuffling = on;
-
-
         merge();
-
-
     }
-
 
     /**
      * getTracks gibt die Playlist zurueck
@@ -252,7 +215,6 @@ public class Playlist extends Exception {
     public ArrayList<Track> getTracks() {
         return tracks;
     }
-
     /**
      * getTracks gibt die Playlist zurueck
      *
@@ -270,9 +232,7 @@ public class Playlist extends Exception {
     public void addTrack(Track t) {
         queue.add(t);
         tracks.add(t);
-
     }
-
 
     /**
      * Nimmt den Track an einer bestimmten postition zum current track
@@ -336,37 +296,24 @@ public class Playlist extends Exception {
             {
                 if (next == true) {
                     String trackpath = zeile;
-
-
                     tracks.add(new Track(trackpath));
-
-
                     next = false;
                 }
-
                 if (zeile.startsWith("#EXTINF:")) {
-
                     next = true;
                 }
                 if (zeile.startsWith("#EXTM3U")) {   //Zeile exestiert
-
                 }
                 if (zeile.isEmpty() == true) {
-
                 }
-
             }
-
-
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         if (queue.size() != 0) {
             merge();
-
         currentTrack = queue.get(0);
     }
     }

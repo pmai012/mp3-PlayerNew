@@ -1,0 +1,20 @@
+<component name="ArtifactManager">
+  <artifact name="Mp3Player.zip">
+    <output-path>$PROJECT_DIR$/out/artifacts/Mp3Player_zip</output-path>
+    <root id="root">
+      <element id="archive" name="project.zip">
+        <element id="dir-copy" path="$PROJECT_DIR$" />
+        <element id="file-copy" path="$PROJECT_DIR$/libraries/tritonus_share.jar" />
+        <element id="file-copy" path="$PROJECT_DIR$/libraries/tritonus_aos.jar" />
+        <element id="file-copy" path="$PROJECT_DIR$/libraries/mp3spi1.9.4.jar" />
+        <element id="file-copy" path="$PROJECT_DIR$/libraries/mp3agic.jar" />
+        <element id="file-copy" path="$PROJECT_DIR$/libraries/minim.jar" />
+        <element id="file-copy" path="$PROJECT_DIR$/libraries/jsminim.jar" />
+        <element id="file-copy" path="$PROJECT_DIR$/libraries/jl1.0.jar" />
+        <element id="file-copy" path="$PROJECT_DIR$/libraries/eibo_staticscanner.jar" />
+        <element id="file-copy" path="$PROJECT_DIR$/libraries/eibo_simpleminim.jar" />
+        <element id="module-output" name="mp3-PlayerNew" />
+      </element>
+    </root>
+  </artifact>
+</component>

@@ -26,7 +26,6 @@ public class Track {
     private String path ;
     private String year ;
     private long length = 0;
-
     /**
      * Gibt die Länge des Tracks zurueck
      * @return Laenge des Tracks als long
@@ -34,11 +33,8 @@ public class Track {
     public long getLength() {
         return length;
     }
-
-
     private boolean internetpfad = false;
-    byte[] cover = null;
-
+    private byte[] cover = null;
     /**
      * Gibt zurueck ob es sich um einen Internetpfad handelt oder nicht
      * @return
@@ -46,9 +42,6 @@ public class Track {
     public boolean isInternetpfad() {
         return internetpfad;
     }
-
-
-
 
    /**
      * Get Title
@@ -114,14 +107,6 @@ public class Track {
         return cover;
     }
 
-
-
-
-
-
-
-
-
     /**
      *Konstruktor der Track Klasse
      * Erkennt zudem ob es sich um einen Internetpfad handelt
@@ -135,11 +120,8 @@ public class Track {
         }else {
             internetpfad = false;
             setTrack(path);
-
         }
     }
-
-
     /**
      * Set Track
      * Dabei werden die Id3 Tags des Tracks ausgelesen und in den Parametern der Klasse gespeichert
@@ -159,11 +141,7 @@ public class Track {
             e.printStackTrace();
             return;
         }
-
-
-
         this.path = path;
-
         if (mp3file.hasId3v2Tag()) {
             ID3v2 id3tags = mp3file.getId3v2Tag();
 
@@ -171,25 +149,18 @@ public class Track {
                 if (id3tags.getTitle() != null) {
                     title = id3tags.getTitle();
                 } else {
-
                     int index = path.lastIndexOf("\\");
                     title = path.substring(index+1);
-
-
                 }
-
                 if (id3tags.getArtist() != null) {
                     artist = id3tags.getArtist();
                 }
-
                 if (id3tags.getAlbum() != null) {
                     album = id3tags.getAlbum();
                 }
-
                 if (id3tags.getGenreDescription() != null) {
                     genre = id3tags.getGenreDescription();
                 }
-
                 if (id3tags.getComment() != null) {
                     comment = id3tags.getComment();
                 }
@@ -200,8 +171,6 @@ public class Track {
                     cover = id3tags.getAlbumImage();
                 }
                 length = mp3file.getLengthInMilliseconds();
-
-
             }
         }else {
            if (mp3file.hasId3v1Tag()) {
