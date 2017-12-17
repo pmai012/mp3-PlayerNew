@@ -190,7 +190,6 @@ public class HandleCollection extends Observable {
         boolean success = false;
         if (db.hasFiles()) {
             success = true;
-            // Only get the first file from the list
             final File file = db.getFiles().get(0);
             Track t = new Track(file.getAbsolutePath());
             actPlaylist.getTracks().add(t);
@@ -200,7 +199,6 @@ public class HandleCollection extends Observable {
         e.setDropCompleted(success);
         e.consume();
     }
-
 
     public void currentupdater() {
         if (isplaying()) {
