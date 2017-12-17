@@ -186,7 +186,7 @@ public class GUI extends Application implements Observer {
         bottompane.getChildren().add(pogresspane);
         bottompane.getChildren().add(controlpane);
 
-        pogresspane.setAlignment(Pos.CENTER);
+       // pogresspane.setAlignment(Pos.CENTER);
 
 
         controlpane.getChildren().add(random);
