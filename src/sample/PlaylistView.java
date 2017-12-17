@@ -13,6 +13,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.DragEvent;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -105,22 +106,18 @@ public class PlaylistView extends HBox implements Observer {
             @Override
             public void handle(MouseEvent event) {
 
+            vbox.getChildren().clear();
+            vbox.getChildren().add(hbox);
 
-
-
-                    vbox.getChildren().clear();
-                    vbox.getChildren().add(hbox);
-
-                    if (btn_addPlaylist.getParent() == null) {
-                        hbox.getChildren().add(btn_addPlaylist);
-                    }
-
-                ObservableList<String> playlists = FXCollections.observableArrayList();
-                for (Playlist p : playlistManager.getPlaylists()) {
-                    playlists.add(p.getName());
-                }
-                playlistView.setItems(playlists);
-                vbox.getChildren().add(playlistView);
+            if (btn_addPlaylist.getParent() == null) {
+                hbox.getChildren().add(btn_addPlaylist);
+            }
+            ObservableList<String> playlists = FXCollections.observableArrayList();
+            for (Playlist p : playlistManager.getPlaylists()) {
+                playlists.add(p.getName());
+            }
+            playlistView.setItems(playlists);
+            vbox.getChildren().add(playlistView);
             }
         });
 
@@ -160,13 +157,18 @@ public class PlaylistView extends HBox implements Observer {
             @Override
             public void handle(MouseEvent event) {
                 handleCollection.addPlaylist();
+                vbox.getChildren().clear();
+                vbox.getChildren().add(hbox);
+
+                if (btn_addPlaylist.getParent() == null) {
+                    hbox.getChildren().add(btn_addPlaylist);
+                }
                 ObservableList<String> playlists = FXCollections.observableArrayList();
                 for (Playlist p : playlistManager.getPlaylists()) {
                     playlists.add(p.getName());
                 }
                 playlistView.setItems(playlists);
-//                vbox.getChildren().add(playlistView);
-                //hallo
+                vbox.getChildren().add(playlistView);
             }
         });
 
@@ -219,7 +221,6 @@ public class PlaylistView extends HBox implements Observer {
 
 
     }
-
 
 
 }

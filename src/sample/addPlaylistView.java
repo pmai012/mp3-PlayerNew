@@ -24,7 +24,7 @@ public class addPlaylistView extends Application{
     AddPlaylistController controller = new AddPlaylistController(this);
     Label info = new Label("Wie soll Ihre Playlist heißen?");
     TextField textField = new TextField();
-    StackPane secondaryLayout = new StackPane();
+    StackPane secondaryLayout;
     Button btn_ok = new Button("Bestätigen");
     Button btn_cancel = new Button("Abbrechen");
     Scene secondScene;
@@ -42,6 +42,7 @@ public class addPlaylistView extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception {
         Platform.runLater(() ->{
+            secondaryLayout = new StackPane();;
             secondScene = new Scene(secondaryLayout, 250, 100);
             primaryStage.initStyle(StageStyle.UTILITY);
             addPlaylistStage = primaryStage;
@@ -64,6 +65,10 @@ public class addPlaylistView extends Application{
     }
     public void stop(){
         secondaryLayout.getChildren().clear();
+        secondaryLayout.getStyleClass().removeAll("secondLayout");
+        secondaryLayout = null;
+        secondScene = null;
+        textField.clear();
         addPlaylistStage.close();
     }
     public void invokeErrorMessage()

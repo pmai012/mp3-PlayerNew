@@ -95,6 +95,14 @@ public class Playlist extends Exception {
         return repeat;
     }
 
+    public void deleteTrack(Track track){
+        for (Track t : tracks){
+            if (track.equals(t))
+            {
+                tracks.remove(t);
+            }
+        }
+    }
 
     /**
      * isshuffling
