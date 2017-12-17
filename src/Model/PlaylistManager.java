@@ -115,7 +115,7 @@ public class PlaylistManager {
         }
 
         allTacksPlaylist = null;
-        contents = null;
+        contents.clear();
     }
 
     public ArrayList<Playlist> getPlaylists(){return this.playlists;}
