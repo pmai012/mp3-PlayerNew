@@ -51,7 +51,7 @@ public class GUI extends Application implements Observer {
     TilePane toppane;
     VBox bottompane;
     HBox controlpane;
-    HBox pogresspane;
+    TimeSlider pogresspane;
     StackPane centerpane;
     BorderPane root;
 
@@ -74,7 +74,7 @@ public class GUI extends Application implements Observer {
     Label artist = new Label("  Artist  ");
     Label album = new Label("   Album   ");
     Slider volume = new Slider();
-    Slider timeline ;
+
 
     ObservableList<String> sideViewItems = FXCollections.observableArrayList("Songs", "Playlists");
     ListView sideView = new ListView();
@@ -91,7 +91,7 @@ public class GUI extends Application implements Observer {
         handleCollection = new HandleCollection();
         handleCollection.addObserver(this);
         handleCollection.getPlayer().addObserver(this);
-        timeline = new TimeSlider(handleCollection.getPlayer());
+        pogresspane = new TimeSlider(handleCollection);
 
 
     }
@@ -108,7 +108,7 @@ public class GUI extends Application implements Observer {
         toppane = new TilePane(50,0);
         bottompane = new VBox(5);
         controlpane = new HBox(80);
-        pogresspane = new HBox();
+
         centerpane = new StackPane();
 
         playlistview = new PlaylistView();
@@ -160,7 +160,7 @@ public class GUI extends Application implements Observer {
         artist.getStyleClass().addAll("text");
         album.getStyleClass().addAll("text");
 
-        timeline.getStyleClass().addAll("sliderTl");
+
 
         //HANDLECOLLECTIONS
 
@@ -171,7 +171,7 @@ public class GUI extends Application implements Observer {
         repeat.setOnAction(handleCollection.repeat);
         volume.valueProperty().addListener(handleCollection.volume);
         volume.setValue(50);
-        timeline.valueProperty().addListener(handleCollection.position);
+
 
         //timeline.setMax(1000);
         //timeline.setBlockIncrement(1000);
@@ -187,7 +187,7 @@ public class GUI extends Application implements Observer {
         bottompane.getChildren().add(controlpane);
 
         pogresspane.setAlignment(Pos.CENTER);
-        pogresspane.getChildren().add(timeline);
+
 
         controlpane.getChildren().add(random);
         controlpane.getChildren().add(prev);

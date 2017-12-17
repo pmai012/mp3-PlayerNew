@@ -145,6 +145,8 @@ public class MP3Player extends Observable {
 
         currentTime = 0;
         play();
+        hasChanged();
+        notifyObservers();
     }
 
     public void play() {
@@ -316,19 +318,3 @@ public class MP3Player extends Observable {
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
