@@ -196,3 +196,7 @@
 .secondLayout {
     -fx-background-color: dimgrey;
 }
+
+.sliderLabel {
+    -fx-font-color: whitesmoke;
+}

@@ -31,6 +31,7 @@ public class TimeSlider extends BorderPane implements Observer {
         this.player = handleCollection.getPlayer();
         player.addObserver(this);
         slider.getStyleClass().addAll("sliderTl");
+        time.getStyleClass().addAll("sliderLabel");
         slider.valueProperty().addListener(handleCollection.position);
         this.setTop(slider);
         this.setRight(time);
@@ -81,10 +82,9 @@ public class TimeSlider extends BorderPane implements Observer {
 
                     Thread.sleep(500);
                     if (player.getcurrentTrack() != null) {
-
-                        slider.setValue(player.position() * 100);
                         Platform.runLater(() -> {
-                            time.setText(Zeit(player.getCurrentTime()) + laenge);
+                        slider.setValue(player.position() * 100);
+                        time.setText(Zeit(player.getCurrentTime()) + laenge);
                         });
                     }
 
