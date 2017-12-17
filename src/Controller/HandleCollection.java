@@ -10,21 +10,15 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.effect.BlurType;
 import javafx.scene.image.Image;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
 import javafx.stage.Stage;
-import sample.PlaylistView;
 import sample.addPlaylistView;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.awt.image.BufferedImageOp;
-import java.awt.image.ConvolveOp;
-import java.awt.image.Kernel;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -210,15 +204,9 @@ public class HandleCollection extends Observable {
     }
 
 
-    public void play(String path) {
-        //track = new Track(path);
-        play();
 
-    }
 
     public void play() {
-
-
         player.play();
 
         currentupdater();
