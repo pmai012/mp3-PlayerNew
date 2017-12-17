@@ -32,6 +32,16 @@ public class PlaylistManager {
             }
         }
     }
+    public void setPlaylist(Playlist actPlaylist) {
+    }
+    public List<Playlist> findPlaylist(String name) {
+        for (Playlist x : playlists) {
+            if (x.getName().equals(name)) {
+
+            }
+        }
+        return null;
+    }
     public void updatePlaylist(Playlist actPlaylist) {
         writeContent(actPlaylist);
         File old = new File(System.getProperty("user.home").concat("//Music") + "/" + actPlaylist.getName());
