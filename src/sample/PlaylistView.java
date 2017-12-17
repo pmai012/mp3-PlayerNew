@@ -191,6 +191,9 @@ public class PlaylistView extends HBox implements Observer {
         playlistManager.searchPlaylists(System.getProperty("user.home").concat("//Music"));
     }
 
+
+
+
     @Override
     public void update(Observable o, Object arg) {
 

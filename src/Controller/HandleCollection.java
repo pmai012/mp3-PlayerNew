@@ -136,16 +136,6 @@ public class HandleCollection extends Observable {
 
 
 
-    /*
-    public EventHandler<MouseEvent> onactive = new EventHandler<MouseEvent>() {
-        @Override
-        public void handle(MouseEvent event) {
-          Image bild = (Image) event.getSource();
-
-
-        }
-    };*/
-
     public void addPlaylist() {
         try {
            addPlaylistView.start(new Stage()); //WIEDER EINRÜCKEN EXCEPTIONS
@@ -196,6 +186,8 @@ public class HandleCollection extends Observable {
             actPlaylist.getTracks().add(t);
             playlistManager.updatePlaylist(actPlaylist);
             songs.add(t.getTitle());
+            player.getPlaylist().addTrack(t);
+
         }
         e.setDropCompleted(success);
         e.consume();

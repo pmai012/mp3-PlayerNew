@@ -35,8 +35,8 @@ public class GUI extends Application implements Observer {
     HandleCollection handleCollection;
 
 
-    final int WIDTH = 1200;
-    final int HEIGHT = 900;
+    final int WIDTH = 900;
+    final int HEIGHT = 740;
     private MP3Player mp3Player = new MP3Player();
 
     private boolean playing = false;
@@ -212,6 +212,8 @@ public class GUI extends Application implements Observer {
         if (arg != null) {
             von = (String) arg;
         }
+
+
 
 
         if (von.equals("player")) {
