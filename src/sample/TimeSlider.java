@@ -25,8 +25,8 @@ public class TimeSlider extends HBox implements Observer{
     Slider slider = new Slider();
 //HandleCollection hinzufügen?
     // Label neben dem Slider
-    Label time = new Label("zeit:zeit");
-
+    Label time = new Label("--:--:/--:--");
+    String laenge;
 
 
 
@@ -49,9 +49,29 @@ public class TimeSlider extends HBox implements Observer{
         if (player.isPlaying() && !runner.isAlive()){
          runner.start();
         }
+        laenge ="/" + Zeit(player.getcurrentTrack().getLength());
 
     }
+    private String Zeit(long millis){
+        long secs = millis / 1000;
+        long mins = secs / 60;
+        long restsecs = secs % 60;
+        String min = "0";
+        if (mins < 10){
+            min = "0"+String.valueOf(mins);
+        }else {
+            min = String.valueOf(mins);
+        }
+        String sec ="0" ;
+        if (restsecs < 10){
+            sec ="0" + String.valueOf(restsecs);
+        }else{
+            sec = String.valueOf(restsecs);
+        }
 
+
+        return (min +":"+sec);
+    }
 
     private class Runner implements Runnable {
 
@@ -68,7 +88,7 @@ public class TimeSlider extends HBox implements Observer{
 
                       slider.setValue(player.position() * 100);
                        Platform.runLater(() -> {
-                           time.setText(Zeit(player.getCurrentTime()));
+                           time.setText(Zeit(player.getCurrentTime())+laenge);
                        });
                    }
 
@@ -79,26 +99,7 @@ public class TimeSlider extends HBox implements Observer{
            }
        }
 
-       private String Zeit(long millis){
-           long secs = millis / 1000;
-           long mins = secs / 60;
-           long restsecs = secs % 60;
-           String min = "0";
-           if (mins < 10){
-               min = "0"+String.valueOf(mins);
-           }else {
-               min = String.valueOf(mins);
-           }
-           String sec ="0" ;
-           if (restsecs < 10){
-            sec ="0" + String.valueOf(restsecs);
-           }else{
-             sec = String.valueOf(restsecs);
-           }
 
-
-          return (min +":"+sec);
-       }
 
    }
 }
