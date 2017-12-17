@@ -37,7 +37,7 @@ public class PlaylistView extends HBox implements Observer {
     ListView playlistView = new ListView();
     Playlist allSongs;
     Playlist activePlaylist;
-     VBox vbox = new VBox();
+    VBox vbox = new VBox();
     HBox hbox = new HBox();
 
     public void handleCollectionreferenz(HandleCollection ref){
@@ -55,8 +55,7 @@ public class PlaylistView extends HBox implements Observer {
         playlistButton.getStyleClass().add("toggle-button");
         changeViewGroup.getToggles().forEach(x -> getStyleClass().add("toggle-button"));
 
-
-                playlistManager.searchPlaylists(System.getProperty("user.home").concat("//Music"));
+        searchPlaylists();
 
                 try {
                     allSongs = playlistManager.getAllTracks();
@@ -64,42 +63,34 @@ public class PlaylistView extends HBox implements Observer {
                     e.printStackTrace();
                 }
 
-
-
-
         hbox.getChildren().addAll(songsButton, playlistButton);
         vbox.getChildren().add(hbox);
         getChildren().add(vbox);
         vbox.getChildren().clear();
         vbox.getChildren().add(hbox);
 
-    //    sideView.setItems(sideViewItems);
-
-
         songsButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
 
+            vbox.getChildren().remove(playlistView);
+            hbox.getChildren().remove(btn_addPlaylist);
 
-                    vbox.getChildren().remove(playlistView);
-                    hbox.getChildren().remove(btn_addPlaylist);
+            if (songView.getParent() == null) {
+                vbox.getChildren().add(songView);
+            }
 
-                    if (songView.getParent() == null) {
-                        vbox.getChildren().add(songView);
-                    }
+            ObservableList<String> songs = FXCollections.observableArrayList();
+            handleCollection.getPlayer().setPlaylist(allSongs);
+            // songs.clear();
+            //Er läd den Titel nicht!!!
+            for (int i = 0; i < handleCollection.getPlayer().getPlaylist().getTracks().size(); i++){
 
-                ObservableList<String> songs = FXCollections.observableArrayList();
-                handleCollection.getPlayer().setPlaylist(allSongs);
-                // songs.clear();
-                //Er läd den Titel nicht!!!
-                for (int i = 0; i < handleCollection.getPlayer().getPlaylist().getTracks().size(); i++){
+                songs.add(handleCollection.getPlayer().getPlaylist().getTrack(i).getTitle());
 
-                    songs.add(handleCollection.getPlayer().getPlaylist().getTrack(i).getTitle());
+            }
 
-                }
-
-                songView.setItems(songs);
-//                vbox.getChildren().add(songView);
+            songView.setItems(songs);
             }
         });
         playlistButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -109,6 +100,8 @@ public class PlaylistView extends HBox implements Observer {
             vbox.getChildren().clear();
             vbox.getChildren().add(hbox);
 
+            playlistManager.getPlaylists().clear();
+            searchPlaylists();
             if (btn_addPlaylist.getParent() == null) {
                 hbox.getChildren().add(btn_addPlaylist);
             }
@@ -120,7 +113,6 @@ public class PlaylistView extends HBox implements Observer {
             vbox.getChildren().add(playlistView);
             }
         });
-
 
         /**
          * Song aus "Songs" abspielen
@@ -151,9 +143,7 @@ public class PlaylistView extends HBox implements Observer {
             }
         });
 
-
-
-        btn_addPlaylist.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        btn_addPlaylist.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 handleCollection.addPlaylist();
@@ -171,7 +161,6 @@ public class PlaylistView extends HBox implements Observer {
                 vbox.getChildren().add(playlistView);
             }
         });
-
 
         /**
          * Playlist aussuchen und abspielen
@@ -194,19 +183,18 @@ public class PlaylistView extends HBox implements Observer {
                         for (Track t : handleCollection.getPlayer().getPlaylist().getTracks()) {
                             songs.add(t.getTitle());
                             activePlaylist.getTracks().add(t);
-
-
                         }
-
-                        // p.getTracks().clear();
                         songView.setItems(songs);
                         vbox.getChildren().remove(playlistView);
                         vbox.getChildren().add(songView);
-//                        leftpane.getChildren().add(btn_sideView_back); //GIBT FEHLERMELDUNG BITTE ÄNDERN!
                     }
                 }
             }
         });
+    }
+
+    private void searchPlaylists() {
+        playlistManager.searchPlaylists(System.getProperty("user.home").concat("//Music"));
     }
 
     @Override
@@ -218,9 +206,5 @@ public class PlaylistView extends HBox implements Observer {
 
            songView.scrollTo(handleCollection.getPlayer().getPlaylist().getIndex());
        }
-
-
     }
-
-
 }

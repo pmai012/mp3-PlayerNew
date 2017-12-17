@@ -16,6 +16,7 @@ import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
 import javafx.stage.Stage;
+import sample.PlaylistView;
 import sample.addPlaylistView;
 
 import javax.imageio.ImageIO;

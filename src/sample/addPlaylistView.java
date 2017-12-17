@@ -41,7 +41,7 @@ public class addPlaylistView extends Application{
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Platform.runLater(() ->{
+//        Platform.runLater(() ->{
             secondaryLayout = new StackPane();;
             secondScene = new Scene(secondaryLayout, 250, 100);
             primaryStage.initStyle(StageStyle.UTILITY);
@@ -61,7 +61,7 @@ public class addPlaylistView extends Application{
             addPlaylistStage.setScene(secondScene);
             addPlaylistStage.show();
             secondaryLayout.getStyleClass().addAll("secondLayout");
-        });
+//        });
     }
     public void stop(){
         secondaryLayout.getChildren().clear();
